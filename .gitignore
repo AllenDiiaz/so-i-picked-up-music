@@ -16,3 +16,6 @@ compile_commands.json
 # OS and logs
 .DS_Store
 *.log
+
+# Python virtual environment for analysis/
+.venv/

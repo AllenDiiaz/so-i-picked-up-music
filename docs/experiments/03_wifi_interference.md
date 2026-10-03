@@ -59,6 +59,10 @@ Scenarios:
 | Final `ovf` | 0 | 0 | 0 |
 | Wi-Fi scans logged | - (Wi-Fi off) | 1 line: 10 scans at 25.5 s | 1 line: 10 scans at 25.5 s |
 
+![Per-second frame_dt range over time for A, B and C](../figures/03_jitter_range_over_time.png)
+
+Each band spans one statistics window, from that window's minimum to its maximum `frame_dt`, shown as a deviation from 16000 us. The two panels use different y-axis scales (top +/-60 us for A and C, bottom +/-1500 us for B). Values beyond the axis are marked with arrows and their actual value. Gray background: warm-up (first 2 windows).
+
 ## 5. Observations
 
 - In the stable period all three scenarios average 1000 Hz, and `ovf` is 0 in all three runs. No samples were lost.
