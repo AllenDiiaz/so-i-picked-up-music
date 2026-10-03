@@ -1,0 +1,18 @@
+# ESP-IDF build output (binaries, .elf, .bin, CMake cache)
+build/
+
+# Generated full config; sdkconfig.defaults is tracked instead
+sdkconfig
+sdkconfig.old
+
+# Components downloaded by the IDF Component Manager
+managed_components/
+
+# Editor / language-server caches (clangd)
+.cache/
+.vscode/
+compile_commands.json
+
+# OS and logs
+.DS_Store
+*.log
