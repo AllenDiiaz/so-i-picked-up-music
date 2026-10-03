@@ -44,6 +44,47 @@ def apply():
     })
 
 
+def fig_to_image(fig):
+    """Render a figure to an RGB Pillow image (one GIF frame)."""
+    import numpy as np
+    from PIL import Image
+
+    fig.canvas.draw()
+    return Image.fromarray(np.asarray(fig.canvas.buffer_rgba())).convert("RGB")
+
+
+def save_gif(frames, durations_ms, name, colors=64):
+    """Write frames as a looping GIF with one shared palette, then compress with gifsicle.
+
+    The palette comes from the first and the middle frame together, so colors that only
+    appear while animating (cursor, dimmed elements) are included.
+    """
+    import shutil
+    import subprocess
+    from PIL import Image
+
+    if shutil.which("gifsicle") is None:
+        raise SystemExit("gifsicle not found (macOS: brew install gifsicle)")
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    path = FIG_DIR / name
+    first, middle = frames[0], frames[len(frames) // 2]
+    sample = Image.new("RGB", (first.width * 2, first.height))
+    sample.paste(first, (0, 0))
+    sample.paste(middle, (first.width, 0))
+    palette = sample.quantize(colors=colors, dither=Image.Dither.NONE)
+    # Quantizing averages the background slightly off white; snap near-white entries back.
+    entries = palette.getpalette()
+    for i in range(0, len(entries), 3):
+        if min(entries[i:i + 3]) >= 248:
+            entries[i:i + 3] = [255, 255, 255]
+    palette.putpalette(entries)
+    quantized = [f.quantize(palette=palette, dither=Image.Dither.NONE) for f in frames]
+    quantized[0].save(path, save_all=True, append_images=quantized[1:],
+                      duration=durations_ms, loop=0, disposal=1, optimize=False)
+    subprocess.run(["gifsicle", "-O3", "--batch", str(path)], check=True)
+    print(f"wrote {path.relative_to(REPO)} ({path.stat().st_size / 1e6:.2f} MB, {len(frames)} frames)")
+
+
 def save(fig, name):
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     path = FIG_DIR / name
