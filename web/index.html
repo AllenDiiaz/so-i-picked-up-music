@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tension feedback</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Three.js pinned to one version; no build step. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="overlay">
+    <div id="edge-glow"></div>
+
+    <div id="topbar">
+      <span id="conn" class="pill">connecting…</span>
+      <span class="modes">
+        <button data-mode="A" title="key 1">A · forearm ring</button>
+        <button data-mode="B" title="key 2">B · fretboard strip</button>
+        <button data-mode="C" title="key 3">C · edge glow</button>
+      </span>
+      <button id="enter-ar" hidden title="untested on Quest">Enter AR</button>
+    </div>
+
+    <div id="panel">
+      <div class="row"><span id="state-dot"></span><span id="state-text">—</span></div>
+      <canvas id="chart" width="560" height="180"></canvas>
+      <div class="grid">
+        <span>norm</span><b id="v-norm">—</b>
+        <span>baseline</span><b id="v-base">—</b>
+        <span>bridge → browser</span><b id="v-net">—</b>
+        <span>browser → render</span><b id="v-render">—</b>
+        <span>loss</span><b id="v-loss">—</b>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
