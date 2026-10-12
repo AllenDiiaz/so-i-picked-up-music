@@ -1,0 +1,2 @@
+# Optional test tools (not needed to run the system)
+playwright==1.63.0   # tests/screenshot_frontend.py; uses the installed Google Chrome (channel="chrome")
