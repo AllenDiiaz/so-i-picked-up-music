@@ -21,3 +21,6 @@ compile_commands.json
 
 # Python virtual environment for analysis/
 .venv/
+
+# Bridge session logs (bridge/bridge.py): personal data, kept local
+sessions/
