@@ -54,6 +54,10 @@ In condition 1 there was no cable to pinch; its phases are kept only so the thre
 
 ![Mean and standard deviation per condition and phase](../figures/05_bringup_summary.png)
 
+Replay of the same readings at 3x speed ([`analysis/anim_05_bringup.py`](../../analysis/anim_05_bringup.py)):
+
+![Replay of the ADC readings for the three conditions](../figures/05_bringup_replay.gif)
+
 Sampling is about 5 Hz (one-shot reads), so these are individual readings, not a waveform. The electrode placement was wrist-to-wrist (ECG-style), not a forearm EMG placement.
 
 ## 5. Interpretation

@@ -18,6 +18,8 @@ Numbers below are from the 60 s per-frame runs of experiment 04 (3750 frames eac
 - Moving the ADC interrupt to core 1 did not reduce the remaining jitter in one run each. The jitter appears in clusters about 2.5 s apart, close to the average Wi-Fi scan interval of 2.50 s; the cause is still open.
 - In experiment 05, the AD8232 module's output reached GPIO4 and responded to the body: mid-range with three electrodes on the skin, with the standard deviation rising from 247 to 667 mV during a fist squeeze (about 5 Hz readings, not a waveform; [notes](docs/experiments/05_ad8232_bringup.md)).
 
+<img src="docs/figures/05_bringup_replay.gif" width="720" alt="Replay of AD8232 output readings on GPIO4: near 1.6 V with no lead cable, near 0 with the cable but no electrodes, and mid-range with larger swings during a fist squeeze with three electrodes">
+
 ![Illustration of oneshot versus DMA sampling: with oneshot reads a busy CPU delays the sample, with DMA only the frame collection moves](docs/figures/concept_oneshot_vs_dma.gif)
 
 ## Firmware experiments
@@ -43,8 +45,9 @@ python3 -m venv .venv
 .venv/bin/python analysis/plot_05_bringup.py
 .venv/bin/python analysis/anim_04_timing_replay.py
 .venv/bin/python analysis/anim_concept_oneshot_vs_dma.py
+.venv/bin/python analysis/anim_05_bringup.py
 ```
 
-The two animation scripts compress their GIFs with [gifsicle](https://www.lcdf.org/gifsicle/), which must be installed separately (macOS: `brew install gifsicle`).
+The animation scripts compress their GIFs with [gifsicle](https://www.lcdf.org/gifsicle/), which must be installed separately (macOS: `brew install gifsicle`).
 
 Colors, fonts and the white background are shared through `analysis/style.py`.
