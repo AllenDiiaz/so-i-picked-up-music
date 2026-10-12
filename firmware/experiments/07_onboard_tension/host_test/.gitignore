@@ -1,2 +1,4 @@
 # Built by make
 emg_host
+libemg_dsp.dylib
+emg_host_cv

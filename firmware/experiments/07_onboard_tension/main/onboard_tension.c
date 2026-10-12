@@ -4,8 +4,9 @@
 // core 1, time from the sample index. Every sample goes through emg_dsp (mains notches,
 // 45-200 Hz band-pass, 200 ms RMS, relax calibration); every 50 ms one line is printed:
 //   <sample index>,<rms mV>,<normalized>,<level>,<saturated>
-// level is 0 relax / 1 medium / 2 hard, -1 while calibrating (first 0.5 + 5 s after boot,
-// or 5 s after the button on GPIO6 is pressed). Once per second a '#' line reports
+// level is 0 relax / 1 medium / 2 hard, -1 while calibrating or without a baseline. Calibration:
+// 5 s attempts from 0.5 s after boot, repeated every 2 s until accepted; the button on GPIO6
+// starts a new attempt. Once per second a '#' line reports
 // counters and the DSP time per 16-sample frame. Wi-Fi is not started.
 #include <stdio.h>
 #include <stdbool.h>
@@ -39,8 +40,7 @@ static const char *TAG = "tension";
 
 typedef struct {
     emg_output_t out;
-    float baseline_mv;
-    bool cal_ok;
+    emg_cal_report_t report;    // valid when out.cal_event
 } hop_t;
 
 static TaskHandle_t s_sampler_task = NULL;
@@ -145,8 +145,7 @@ static void sampler_task(void *arg)
                 adc_cali_raw_to_voltage(s_cali, p->type2.data, &mv);
                 hop_t hop;
                 if (emg_dsp_process(&dsp, (float)mv, &hop.out)) {
-                    hop.baseline_mv = dsp.baseline_mv;
-                    hop.cal_ok = dsp.last_cal_ok;
+                    hop.report = dsp.report;
                     if (xQueueSend(s_hops, &hop, 0) != pdTRUE) {   // never wait here
                         s_dropped++;
                     }
@@ -166,9 +165,8 @@ static void sampler_task(void *arg)
 
 static void output_task(void *arg)
 {
-    static char text[192];
+    static char text[320];
     hop_t hop;
-    bool was_calibrating = true;
     uint32_t hops = 0, last_presses = 0;
 
     while (true) {
@@ -180,13 +178,13 @@ static void output_task(void *arg)
             last_presses = s_presses;
             len += snprintf(text + len, sizeof text - len, "# button: calibration started\n");
         }
-        if (was_calibrating && !o->calibrating) {
-            len += snprintf(text + len, sizeof text - len, hop.cal_ok
-                            ? "# calibration accepted: baseline_mv=%.3f\n"
-                            : "# calibration rejected (under 90%% unsaturated samples): baseline_mv=%.3f (kept)\n",
-                            hop.baseline_mv);
+        if (o->cal_event) {
+            const emg_cal_report_t *r = &hop.report;
+            len += snprintf(text + len, sizeof text - len,
+                            "# calibration attempt %" PRIu32 ": %s (valid %.1f%%, cv %.3f, rms %.3f mV); baseline_mv=%.3f\n",
+                            r->attempt, emg_cal_result_name(r->result), 100.0f * r->valid_fraction, r->cv, r->rms_mv,
+                            o->baseline_mv);
         }
-        was_calibrating = o->calibrating;
         if (++hops % (SAMPLE_HZ / EMG_HOP_SAMPLES) == 0) {   // once per second
             uint32_t frames = s_dsp_frames, sum = s_dsp_us_sum;
             s_dsp_frames = 0;
@@ -228,8 +226,9 @@ void app_main(void)
     ESP_ERROR_CHECK(adc_cali_create_scheme_curve_fitting(&cali_cfg, &s_cali));
 
     ESP_LOGI(TAG, "GPIO%d -> ADC%d channel %d, %d Hz; button GPIO%d; window %d ms, hop %d ms, "
-             "levels %.2fx / %.2fx (provisional)", EMG_GPIO, (int)unit + 1, (int)s_channel, SAMPLE_HZ,
-             BUTTON_GPIO, EMG_WINDOW_SAMPLES, EMG_HOP_SAMPLES, EMG_LEVEL1_RATIO, EMG_LEVEL2_RATIO);
+             "levels in %.2f/%.2fx, out %.2f/%.2fx (provisional)", EMG_GPIO, (int)unit + 1, (int)s_channel,
+             SAMPLE_HZ, BUTTON_GPIO, EMG_WINDOW_SAMPLES, EMG_HOP_SAMPLES, EMG_LEVEL1_ENTER, EMG_LEVEL2_ENTER,
+             EMG_LEVEL1_EXIT, EMG_LEVEL2_EXIT);
     ESP_LOGI(TAG, "output: <sample index>,<rms mV>,<normalized>,<level>,<saturated>; '#' lines are status");
 
     s_hops = xQueueCreate(QUEUE_ITEMS, sizeof(hop_t));

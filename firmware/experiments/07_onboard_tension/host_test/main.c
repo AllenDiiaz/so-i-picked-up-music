@@ -53,11 +53,20 @@ int main(int argc, char **argv)
     emg_dsp_t dsp;
     emg_dsp_init(&dsp);
     emg_output_t out;
-    printf("sample_index,rms_mv,normalized,level,saturated,calibrating\n");
+    printf("sample_index,rms_mv,normalized,level,saturated,calibrating,baseline_mv,cal_event,cal_result,"
+           "cal_valid,cal_cv,cal_rms_mv\n");
     for (size_t i = 0; i < n; i++) {
         if (emg_dsp_process(&dsp, mv[i], &out)) {
-            printf("%u,%.6f,%.6f,%d,%d,%d\n", (unsigned)out.sample_index, out.rms_mv, out.normalized,
-                   out.level, out.saturated, out.calibrating);
+            const emg_cal_report_t *r = &dsp.report;
+            printf("%u,%.6f,%.6f,%d,%d,%d,%.6f,%d,%d,%.6f,%.6f,%.6f\n", (unsigned)out.sample_index, out.rms_mv,
+                   out.normalized, out.level, out.saturated, out.calibrating, out.baseline_mv, out.cal_event,
+                   out.cal_event ? (int)r->result : 0, out.cal_event ? r->valid_fraction : 0.0f,
+                   out.cal_event ? r->cv : 0.0f, out.cal_event ? r->rms_mv : 0.0f);
+            if (out.cal_event) {
+                fprintf(stderr, "t=%.2f s (board) attempt %u: %s (valid %.1f %%, cv %.3f, rms %.3f mV)\n",
+                        out.sample_index / 1000.0, (unsigned)r->attempt, emg_cal_result_name(r->result),
+                        100.0 * r->valid_fraction, r->cv, r->rms_mv);
+            }
         }
     }
     fprintf(stderr, "%zu samples, baseline %.4f mV\n", n, dsp.baseline_mv);

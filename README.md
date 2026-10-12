@@ -37,6 +37,7 @@ Early bring-up experiments, each a standalone ESP-IDF project under `firmware/ex
 | `03_wifi_interference` | Stage 1b: whether Wi-Fi activity disturbs the 1 kHz DMA sampler's timing, and whether pinning it to core 1 helps. | [Experiment notes](docs/experiments/03_wifi_interference.md) |
 | `04_isr_core_affinity` | Stage 1c: whether the core that owns the ADC DMA interrupt affects frame timing jitter. | [Data](docs/data/04_isr_core_affinity/) (notes in progress) |
 | `06_raw_emg_stream` | Stage 2: stream every 1 kHz ADC sample of the AD8232 output to the host for forearm EMG analysis. | [Experiment notes](docs/experiments/06_forearm_emg.md) |
+| `07_onboard_tension` | MVP step 1: compute EMG tension on the board (mains notches, 45-200 Hz band-pass, 200 ms RMS, relax calibration, three levels). No Wi-Fi. | [README](firmware/experiments/07_onboard_tension/README.md) |
 
 ## Regenerating figures
 
