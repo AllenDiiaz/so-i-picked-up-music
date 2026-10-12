@@ -1,0 +1,9 @@
+# This file was generated using idf.py save-defconfig or menuconfig [D] key. It can be edited manually.
+# Espressif IoT Development Framework (ESP-IDF) 6.0.3 Project Minimal Configuration
+#
+# default:
+CONFIG_IDF_TARGET="esp32s3"
+# Stream ~12 kB/s of samples: console on the native USB port only.
+# (UART at 115200 baud carries only ~11.5 kB/s and would block.)
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
