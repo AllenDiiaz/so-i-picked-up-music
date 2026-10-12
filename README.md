@@ -20,6 +20,10 @@ Numbers below are from the 60 s per-frame runs of experiment 04 (3750 frames eac
 
 ![Replay of AD8232 output readings on GPIO4: near 1.6 V with no lead cable, near 0 with the cable but no electrodes, and mid-range with larger swings during a fist squeeze with three electrodes](docs/figures/05_bringup_replay.gif)
 
+- In experiment 06, forearm EMG through the same AD8232 module fell into three tension levels once every 60 Hz mains harmonic was removed and only 45-200 Hz kept: relax 4.6-8.1 mV, light grip or G chord 10.5-17.5 mV, hard grip 20.7-32.3 mV RMS (one subject, one day, 2-3 repetitions each; [notes](docs/experiments/06_forearm_emg.md)).
+
+![Replay of forearm EMG during light and hard grips: raw signal, mains-removed 45-200 Hz signal, its envelope and a tension bar that moves between relax, medium and hard](docs/figures/06_emg_replay.gif)
+
 ![Illustration of oneshot versus DMA sampling: with oneshot reads a busy CPU delays the sample, with DMA only the frame collection moves](docs/figures/concept_oneshot_vs_dma.gif)
 
 ## Firmware experiments
@@ -32,6 +36,7 @@ Early bring-up experiments, each a standalone ESP-IDF project under `firmware/ex
 | `02_adc_dma` | Stage 1: 1 kHz sampling with the continuous (DMA) ADC driver, measuring how regularly frames reach the CPU. | - |
 | `03_wifi_interference` | Stage 1b: whether Wi-Fi activity disturbs the 1 kHz DMA sampler's timing, and whether pinning it to core 1 helps. | [Experiment notes](docs/experiments/03_wifi_interference.md) |
 | `04_isr_core_affinity` | Stage 1c: whether the core that owns the ADC DMA interrupt affects frame timing jitter. | [Data](docs/data/04_isr_core_affinity/) (notes in progress) |
+| `06_raw_emg_stream` | Stage 2: stream every 1 kHz ADC sample of the AD8232 output to the host for forearm EMG analysis. | [Experiment notes](docs/experiments/06_forearm_emg.md) |
 
 ## Regenerating figures
 
@@ -43,9 +48,11 @@ python3 -m venv .venv
 .venv/bin/python analysis/plot_03_wifi_interference.py
 .venv/bin/python analysis/plot_04_isr_core_affinity.py
 .venv/bin/python analysis/plot_05_bringup.py
+.venv/bin/python analysis/plot_06_forearm_emg.py
 .venv/bin/python analysis/anim_04_timing_replay.py
 .venv/bin/python analysis/anim_concept_oneshot_vs_dma.py
 .venv/bin/python analysis/anim_05_bringup.py
+.venv/bin/python analysis/anim_06_emg.py
 ```
 
 The animation scripts compress their GIFs with [gifsicle](https://www.lcdf.org/gifsicle/), which must be installed separately (macOS: `brew install gifsicle`).
