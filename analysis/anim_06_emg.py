@@ -1,6 +1,7 @@
 """README animation: replay of experiment 06, segment A (light and hard grips) then segment B (G chord).
 
-Three tracks (raw ADC reading, 45-200 Hz with mains removed, its RMS envelope) and a
+Three tracks (raw ADC reading, 45-200 Hz with mains removed, its RMS envelope), each
+coloured by cued phase, and a
 "Tension" bar. The bar's levels are set per segment, relative to that segment's own relax
 RMS, using effort/relax ratios measured in experiment 06. The first GIF frame is the
 finished picture of B; the replay runs A, pauses, then runs B at 4x speed and ends on
@@ -11,6 +12,7 @@ import matplotlib.pyplot as plt
 
 import style
 from emg import CORE, RECORDINGS, efforts, load_recording, moving_rms, notched, rms, saturated, window
+from plot_06_forearm_emg import phase_spans
 
 FPS = 10                 # GIF frame times are stored in 10 ms units, so keep 1000/FPS whole
 SPEED = 4
@@ -75,9 +77,9 @@ class Replay:
 
         core_lim = np.percentile(np.abs(core), 99.95) * 1.4
         tracks = [
-            (mv, "Raw ADC reading", (min(mv.min(), 1000) - 80, max(mv.max(), 2200) + 80), style.RAW, 0.35),
-            (core, f"{CORE[0]}-{CORE[1]} Hz, 60 Hz harmonics removed", (-core_lim, core_lim), style.RAW, 0.35),
-            (env, "Envelope (100 ms RMS)", (0, np.percentile(env, 99.95) * 1.3), style.ENVELOPE, 0.8),
+            (mv, "Raw ADC reading", (min(mv.min(), 1000) - 80, max(mv.max(), 2200) + 80), 0.3),
+            (core, f"{CORE[0]}-{CORE[1]} Hz, 60 Hz harmonics removed", (-core_lim, core_lim), 0.3),
+            (env, "Envelope (100 ms RMS)", (0, np.percentile(env, 99.95) * 1.3), 0.7),
         ]
         self.lines = []
         counts = {}
@@ -86,7 +88,8 @@ class Replay:
             if kind != "relax":
                 counts[kind] = counts.get(kind, 0) + 1
                 labels.append((start, end, kind, f"{kind} {counts[kind]}"))
-        for ax, (y, title, ylim, color, lw) in zip(axes, tracks):
+        spans = phase_spans(t, rec["phases"])
+        for ax, (y, title, ylim, lw) in zip(axes, tracks):
             for start, end, kind, label in labels:
                 style.shade(ax, start, end, KIND_COLOR[kind])
                 if ax is axes[0]:
@@ -98,8 +101,10 @@ class Replay:
                 if ax is axes[0]:
                     ax.text(seg["sat_span"][1] + 0.5, ylim[0] + 0.12 * (ylim[1] - ylim[0]), "saturated",
                             fontsize=style.TICK_PT, color=style.REF_COLOR, ha="left", va="center")
-            line, = ax.plot([], [], color=color, linewidth=lw, zorder=3)
-            self.lines.append((line, y))
+            # One line per phase, coloured like the phase (relax gray, light teal, chord blue, hard red).
+            for i0, i1, kind in spans:
+                line, = ax.plot([], [], color=KIND_COLOR[kind], linewidth=lw, zorder=3)
+                self.lines.append((line, y, i0, i1))
             ax.set_xlim(0, duration)
             ax.set_ylim(*ylim)
             ax.set_ylabel("mV")
@@ -147,8 +152,10 @@ class Replay:
         seg = self.seg
         t = seg["t"]
         shown = t <= t_now
-        for line, y in self.lines:
-            line.set_data(t[shown], y[shown])
+        n = int(shown.sum())
+        for line, y, i0, i1 in self.lines:
+            end = min(i1, n)
+            line.set_data(t[i0:end], y[i0:end]) if end > i0 else line.set_data([], [])
         for c in self.cursors:
             c.set_xdata([t_now, t_now])
             c.set_visible(t_now < seg["rec"]["duration"] - 0.05)

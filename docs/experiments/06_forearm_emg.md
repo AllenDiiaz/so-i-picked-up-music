@@ -99,13 +99,13 @@ Levels observed in the retest, A and B (first attempt excluded):
 
 ![RMS envelopes of A and B with every effort phase marked](../figures/06_envelopes.png)
 
-*100 ms moving RMS of segment A (**a**) and B (**b**): light blue, 20-450 Hz without mains removal; dark blue, main metric. Shaded: effort phases as cued (grip onset lagged the cue by about 1-1.6 s). Hatched: samples at the ADC rails in B's first chord.*
+***a**, **b**, 100 ms moving RMS of segment A and B: solid, main metric; faint, 20-450 Hz without mains removal. Traces are coloured by cued phase (relax gray, light grip teal, G chord blue, hard grip red); grip onset and release lagged the cues by about 1-1.6 s, so some activity just after a phase is drawn gray. Hatched: samples at the ADC rails in B's first chord. **c**, **d**, 0.2 s of the main-metric signal (45-200 Hz, 60 Hz harmonics removed) from A, same y-axis: a relax phase (20.65-20.85 s) and hard grip 1 (28.15-28.35 s). Each window is centred in its phase's analysis window (first 1.5 s after the cue skipped); arrows in **a** mark where they come from.*
 
 ![Spectrum of A at relax and during hard grips](../figures/06_psd.png)
 
 *Welch PSD of segment A at relax (gray) and during hard grips (red); Hann window, 512 samples, 50 % overlap, first 1.5 s after each cue skipped. Gray band and dashed lines: 45-200 Hz used for the main metric. Dotted: 60 Hz mains harmonics.*
 
-Replay of segment A and then segment B at 4x speed ([`analysis/anim_06_emg.py`](../../analysis/anim_06_emg.py)). The tension bar uses a 500 ms RMS of the main-metric signal. Its levels are set per segment, relative to that segment's own relax RMS: medium from 1.49x and hard from 2.72x, the factors lying halfway between relax and the weakest medium effort, and between the strongest medium and the weakest hard effort (effort/relax ratios from the table above, saturated window excluded). For A (relax 5.4 mV) this gives 8.1 and 14.8 mV; for B (relax 7.5 mV) 11.1 and 20.4 mV. Hatched in B: the saturated part of the first chord.
+Replay of segment A and then segment B at 4x speed ([`analysis/anim_06_emg.py`](../../analysis/anim_06_emg.py)). The tension bar uses a 500 ms RMS of the main-metric signal. Its levels are set per segment, relative to that segment's own relax RMS: medium from 1.49x and hard from 2.72x, the factors lying halfway between relax and the weakest medium effort, and between the strongest medium and the weakest hard effort (effort/relax ratios from the table above, saturated window excluded). For A (relax 5.4 mV) this gives 8.1 and 14.8 mV; for B (relax 7.5 mV) 11.1 and 20.4 mV. Traces are coloured by cued phase, as in the envelope figure. Hatched in B: the saturated part of the first chord.
 
 ![Replay of segment A (light and hard grips) and segment B (G chords): raw signal, mains-removed 45-200 Hz signal, envelope and tension bar](../figures/06_emg_replay.gif)
 

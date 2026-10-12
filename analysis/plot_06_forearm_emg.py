@@ -108,8 +108,44 @@ def plot_metric_comparison(data):
     style.save(fig, "06_metric_comparison.png")
 
 
+def phase_spans(t, phases):
+    """Sample index ranges (i0, i1, kind), one per phase, covering the whole trace.
+
+    Samples before the first cue count as the first phase (relax). Neighbouring spans share
+    one sample so a trace drawn span by span stays connected.
+    """
+    starts = [p[0] for p in phases]
+    out = []
+    for k, (_, _, kind) in enumerate(phases):
+        i0 = 0 if k == 0 else int(np.searchsorted(t, starts[k]))
+        i1 = len(t) if k == len(phases) - 1 else int(np.searchsorted(t, starts[k + 1])) + 1
+        out.append((i0, min(i1, len(t)), kind))
+    return out
+
+
+def plot_by_phase(ax, t, y, phases, **kwargs):
+    """Draw y(t) coloured by phase: relax gray, light teal, chord blue, hard red."""
+    return [ax.plot(t[i0:i1], y[i0:i1], color=KIND_COLOR[kind], **kwargs)[0]
+            for i0, i1, kind in phase_spans(t, phases)]
+
+
+ZOOM_S = 0.2   # length of the zoom windows; each is centred in its phase's analysis window
+
+
+def zoom_window(phases, kind, number=1):
+    """(start, end) of a ZOOM_S window centred in the analysis window of the n-th phase of a kind."""
+    found = [p for p in phases if p[2] == kind][number - 1]
+    centre = (found[0] + SKIP_S + found[1]) / 2
+    return centre - ZOOM_S / 2, centre + ZOOM_S / 2
+
+
 def plot_envelopes():
-    fig, axes = plt.subplots(2, 1, figsize=(style.WIDTH_IN, 4.4), gridspec_kw={"hspace": 0.45})
+    fig = plt.figure(figsize=(style.WIDTH_IN, 6.0))
+    grid = fig.add_gridspec(3, 2, height_ratios=[1, 1, 0.85], hspace=0.6, wspace=0.12)
+    axes = [fig.add_subplot(grid[0, :]), fig.add_subplot(grid[1, :])]
+    zoom_axes = [fig.add_subplot(grid[2, 0])]
+    zoom_axes.append(fig.add_subplot(grid[2, 1], sharey=zoom_axes[0]))
+    zooms = [("relax", 2), ("hard", 1)]   # A: the relax phase 15-25 s and hard grip 1
     for ax, letter, name in zip(axes, "ab", ("A", "B")):
         rec = RECORDINGS[name]
         t, mv = load_recording(name)
@@ -125,10 +161,8 @@ def plot_envelopes():
             ax.text((start + end) / 2, ymax * 0.98, f"{kind} {counts[kind]}", ha="center", va="top",
                     fontsize=style.NOTE_PT, color=KIND_COLOR[kind], zorder=5,
                     bbox=dict(boxstyle="square,pad=0.1", fc="white", ec="none"))
-        ax.plot(t, env_plain, color=style.LIGHT_BLUE, linewidth=0.6, zorder=2,
-                label=f"{BAND[0]}-{BAND[1]} Hz, no mains removal")
-        ax.plot(t, env_core, color=style.ENVELOPE, linewidth=0.8, zorder=3,
-                label=f"{CORE[0]}-{CORE[1]} Hz, mains removed")
+        plot_by_phase(ax, t, env_plain, rec["phases"], linewidth=0.5, alpha=0.35, zorder=2)
+        plot_by_phase(ax, t, env_core, rec["phases"], linewidth=0.7, zorder=3)
         sat = saturated(mv)
         if sat.any():
             idx = np.flatnonzero(sat)
@@ -136,14 +170,46 @@ def plot_envelopes():
             ax.axvspan(s0, s1, facecolor="none", edgecolor=style.REF_COLOR, hatch="////", linewidth=0, zorder=1)
             ax.text(s1 + 2.2, ymax * 0.78, f"saturated {s0:.1f}-{s1:.1f} s", fontsize=style.NOTE_PT,
                     color=style.REF_COLOR, ha="left", va="center")
+        if name == "A":
+            # Where the zoom panels c and d come from.
+            for zletter, (kind, number) in zip("cd", zooms):
+                z0, z1 = zoom_window(rec["phases"], kind, number)
+                ax.annotate(zletter, xy=((z0 + z1) / 2, ymax * 0.62), xytext=((z0 + z1) / 2, ymax * 0.8),
+                            ha="center", va="bottom", fontsize=style.NOTE_PT, fontweight="bold",
+                            arrowprops=dict(arrowstyle="-|>", color=style.REF_COLOR, lw=0.6,
+                                            mutation_scale=6))
+            handles = [Line2D([], [], color=style.GRAY, linewidth=0.7, label=f"{CORE[0]}-{CORE[1]} Hz, mains removed"),
+                       Line2D([], [], color=style.GRAY, linewidth=0.5, alpha=0.35,
+                              label=f"{BAND[0]}-{BAND[1]} Hz, no mains removal")]
+            ax.legend(handles=handles, loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=2, borderaxespad=0.2)
         ax.set_xlim(0, rec["duration"])
         ax.set_ylim(0, ymax)
-        ax.set_ylabel("Moving RMS, 100 ms (mV)")
+        ax.set_ylabel("Moving RMS,\n100 ms (mV)")
         ax.set_title(rec["title"], loc="left")
         style.panel_label(ax, letter, x=-0.07, y=1.03)
-        if name == "A":
-            ax.legend(loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=2, borderaxespad=0.2)
     axes[-1].set_xlabel("Time since start of recording (s)")
+
+    # Zoom panels: 0.2 s of the main-metric signal (45-200 Hz, mains removed) from A.
+    rec = RECORDINGS["A"]
+    t, mv = load_recording("A")
+    core = notched(mv, CORE)
+    lim = 0
+    for zax, zletter, (kind, number) in zip(zoom_axes, "cd", zooms):
+        z0, z1 = zoom_window(rec["phases"], kind, number)
+        w = (t >= z0) & (t < z1)
+        zax.plot(t[w], core[w], color=KIND_COLOR[kind], linewidth=0.8)
+        lim = max(lim, np.abs(core[w]).max())
+        zax.set_xlim(z0, z1)
+        zax.set_xticks([z0, (z0 + z1) / 2, z1])
+        zax.set_xticklabels([f"{z0:.2f}", f"{(z0 + z1) / 2:.2f}", f"{z1:.2f}"])
+        zax.set_title(f"A {kind} {number if kind == 'hard' else ''}".rstrip() + f", {z0:.2f}-{z1:.2f} s "
+                      f"(RMS {rms(core[w]):.1f} mV)", loc="left", color=KIND_COLOR[kind])
+        zax.set_xlabel("Time (s)")
+        style.ref_line(zax, 0)
+        style.panel_label(zax, zletter, x=-0.15 if zletter == "c" else -0.05, y=1.03)
+    zoom_axes[0].set_ylim(-lim * 1.15, lim * 1.15)
+    zoom_axes[0].set_ylabel(f"{CORE[0]}-{CORE[1]} Hz,\nmains removed (mV)")
+    zoom_axes[1].tick_params(labelleft=False)
     style.save(fig, "06_envelopes.png")
 
 
