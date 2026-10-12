@@ -52,7 +52,7 @@ static adc_continuous_handle_t adc_dma_init(adc_channel_t channel)
         .adc_pattern = &pattern,
         .sample_freq_hz = SAMPLE_HZ,
         .conv_mode = ADC_CONV_SINGLE_UNIT_1,
-        .format = ADC_DIGI_OUTPUT_FORMAT_TYPE2,
+        // No .format: it is deprecated, and the driver always outputs TYPE2 on ESP32-S3.
     };
     ESP_ERROR_CHECK(adc_continuous_config(handle, &cfg));
 
