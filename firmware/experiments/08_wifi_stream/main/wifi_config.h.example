@@ -1,0 +1,10 @@
+// Copy to wifi_config.h (git-ignored) and fill in. Never commit the real file.
+#pragma once
+
+#define WIFI_CONFIG_IS_EXAMPLE 1          // remove this line in wifi_config.h
+
+#define WIFI_SSID       "your-network"
+#define WIFI_PASSWORD   "your-password"
+#define BRIDGE_HOST     "192.168.1.10"    // the Mac running bridge/bridge.py (IPv4)
+#define BRIDGE_PORT     9750              // docs/protocol.md
+#define DEVICE_NAME     "esp32s3-emg"     // sent as "dev"; never a MAC address

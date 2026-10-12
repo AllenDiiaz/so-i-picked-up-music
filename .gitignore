@@ -24,3 +24,6 @@ compile_commands.json
 
 # Bridge session logs (bridge/bridge.py): personal data, kept local
 sessions/
+
+# Real Wi-Fi credentials for 08_wifi_stream (only the .example is tracked)
+firmware/experiments/08_wifi_stream/main/wifi_config.h
