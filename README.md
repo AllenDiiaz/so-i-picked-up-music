@@ -16,6 +16,7 @@ Numbers below are from the 60 s per-frame runs of experiment 04 (3750 frames eac
 - In experiment 03, with the sampler on core 0, one 66.6 ms gap between frames occurred during Wi-Fi start-up, close to the 64 ms DMA buffer.
 - No DMA buffer overflows (ovf = 0) occurred in any run of experiments 03 and 04. This is consistent with the ADC being clocked by hardware and DMA buffering the data, so that only the CPU's collection time varies.
 - Moving the ADC interrupt to core 1 did not reduce the remaining jitter in one run each. The jitter appears in clusters about 2.5 s apart, close to the average Wi-Fi scan interval of 2.50 s; the cause is still open.
+- In experiment 05, the AD8232 module's output reached GPIO4 and responded to the body: mid-range with three electrodes on the skin, with the standard deviation rising from 247 to 667 mV during a fist squeeze (about 5 Hz readings, not a waveform; [notes](docs/experiments/05_ad8232_bringup.md)).
 
 ![Illustration of oneshot versus DMA sampling: with oneshot reads a busy CPU delays the sample, with DMA only the frame collection moves](docs/figures/concept_oneshot_vs_dma.gif)
 
@@ -39,6 +40,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r analysis/requirements.txt
 .venv/bin/python analysis/plot_03_wifi_interference.py
 .venv/bin/python analysis/plot_04_isr_core_affinity.py
+.venv/bin/python analysis/plot_05_bringup.py
 .venv/bin/python analysis/anim_04_timing_replay.py
 .venv/bin/python analysis/anim_concept_oneshot_vs_dma.py
 ```

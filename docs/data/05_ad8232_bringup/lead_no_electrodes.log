@@ -1,0 +1,209 @@
+  0.001	
+  0.001	I (79) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0a630h ( 42544) map
+  0.001	I (94) esp_image: segment 1: paddr=0001a658 vaddr=3fc90100 size=0312ch ( 12588) load
+  0.001	I (97) esp_image: segment 2: paddr=0001d78c vaddr=40374000 size=0288ch ( 10380) load
+  0.001	I (103) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=12da0h ( 77216) map
+  0.001	I (122) esp_image: segment 4: paddr=00032dc8 vaddr=4037688c size=0982ch ( 38956) load
+  0.001	I (131) esp_image: segment 5: paddr=0003c5fc vaddr=50000000 size=00024h (    36) load
+  0.001	I (137) boot: Loaded app from partition at offset 0x10000
+  0.001	I (137) boot: Disabling RNG early entropy source...
+  0.001	I (149) cpu_start: Multicore app
+  0.001	I (158) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+  0.001	I (159) cpu_start: Pro cpu start user code
+  0.001	I (159) cpu_start: cpu freq: 160000000 Hz
+  0.001	I (161) app_init: Application information:
+  0.001	I (164) app_init: Project name:     adc_pot
+  0.001	I (168) app_init: App version:      eedde22
+  0.001	I (172) app_init: Compile time:     Oct 12 2026 21:01:39
+  0.001	I (177) app_init: ELF file SHA256:  c8d8d5b18...
+  0.001	I (182) app_init: ESP-IDF:          v6.0.3
+  0.001	I (185) efuse_init: Min chip rev:     v0.0
+  0.001	I (189) efuse_init: Max chip rev:     v0.99
+  0.001	I (193) efuse_init: Chip rev:         v0.2
+  0.001	I (197) heap_init: Initializing. RAM available for dynamic allocation:
+  0.001	I (203) heap_init: At 3FC93C50 len 00055AC0 (342 KiB): RAM
+  0.001	I (208) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+  0.001	I (214) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+  0.001	I (219) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+  0.001	I (225) spi_flash: detected chip: generic
+  0.001	I (228) spi_flash: flash io: dio
+  0.001	W (231) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+  0.001	I (244) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+  0.001	I (249) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+  0.001	I (257) main_task: Started on CPU0
+  0.001	I (257) main_task: Calling app_main()
+  0.001	I (267) adc_pot: GPIO4 -> ADC1 channel 3
+  0.001	I (267) adc_pot: raw= 116  voltage= 102 mV
+  0.001	I (467) adc_pot: raw=  62  voltage=  54 mV
+  0.001	I (667) adc_pot: raw=  39  voltage=  34 mV
+  0.001	I (867) adc_pot: raw=  40  voltage=  35 mV
+  0.001	I (1067) adc_pot: raw=  37  voltage=  31 mV
+  0.001	I (1267) adc_pot: raw=  41  voltage=  36 mV
+  0.001	I (1467) adc_pot: raw=  72  voltage=  63 mV
+  0.001	I (1667) adc_pot: raw=  46  voltage=  40 mV
+  0.001	I (1867) adc_pot: raw=  42  voltage=  37 mV
+  0.001	I (2067) adc_pot: raw=  45  voltage=  39 mV
+  0.001	I (2267) adc_pot: raw=  46  voltage=  40 mV
+  0.001	I (2467) adc_pot: raw=  69  voltage=  60 mV
+  0.001	I (2667) adc_pot: raw=  39  voltage=  34 mV
+  0.001	I (2867) adc_pot: raw=  40  voltage=  35 mV
+  0.001	I (3067) adc_pot: raw=  40  voltage=  35 mV
+  0.001	I (3267) adc_pot: raw=  41  voltage=  36 mV
+  0.001	I (3467) adc_pot: raw=  39  voltage=  34 mV
+  0.001	I (3667) adc_pot: raw=  41  voltage=  36 mV
+  0.001	I (3867) adc_pot: raw=  36  voltage=  31 mV
+  0.001	I (4067) adc_pot: raw=  38  voltage=  32 mV
+  0.001	I (4267) adc_pot: raw=  33  voltage=  28 mV
+  0.001	I (4467) adc_pot: raw=  37  voltage=  31 mV
+  0.001	I (4667) adc_pot: raw=  31  voltage=  26 mV
+  0.001	I (4867) adc_pot: raw=  36  voltage=  31 mV
+  0.017	I (5067) adc_pot: raw=  40  voltage=  35 mV
+  0.217	I (5267) adc_pot: raw=  40  voltage=  35 mV
+  0.417	I (5467) adc_pot: raw=  36  voltage=  31 mV
+  0.617	I (5667) adc_pot: raw=  39  voltage=  34 mV
+  0.817	I (5867) adc_pot: raw=  46  voltage=  40 mV
+  1.017	I (6067) adc_pot: raw=  17  voltage=  14 mV
+  1.217	I (6267) adc_pot: raw=  37  voltage=  31 mV
+  1.417	I (6467) adc_pot: raw=  11  voltage=   9 mV
+  1.617	I (6667) adc_pot: raw=  25  voltage=  21 mV
+  1.817	I (6867) adc_pot: raw=  27  voltage=  23 mV
+  2.017	I (7067) adc_pot: raw=  30  voltage=  26 mV
+  2.217	I (7267) adc_pot: raw=  30  voltage=  26 mV
+  2.417	I (7467) adc_pot: raw=  36  voltage=  31 mV
+  2.617	I (7667) adc_pot: raw=  36  voltage=  31 mV
+  2.821	I (7867) adc_pot: raw=  35  voltage=  30 mV
+  3.017	I (8067) adc_pot: raw=  35  voltage=  30 mV
+  3.217	I (8267) adc_pot: raw=  39  voltage=  34 mV
+  3.417	I (8467) adc_pot: raw=  37  voltage=  31 mV
+  3.617	I (8667) adc_pot: raw=  37  voltage=  31 mV
+  3.817	I (8867) adc_pot: raw=  37  voltage=  31 mV
+  4.017	I (9067) adc_pot: raw=  38  voltage=  32 mV
+  4.217	I (9267) adc_pot: raw=  37  voltage=  31 mV
+  4.417	I (9467) adc_pot: raw=  39  voltage=  34 mV
+  4.617	I (9667) adc_pot: raw=  38  voltage=  32 mV
+  4.817	I (9867) adc_pot: raw=  37  voltage=  31 mV
+  5.017	I (10067) adc_pot: raw=  40  voltage=  35 mV
+  5.217	I (10267) adc_pot: raw=  39  voltage=  34 mV
+  5.417	I (10467) adc_pot: raw=  34  voltage=  29 mV
+  5.617	I (10667) adc_pot: raw=  37  voltage=  31 mV
+  5.817	I (10867) adc_pot: raw=  35  voltage=  30 mV
+  6.017	I (11067) adc_pot: raw=  45  voltage=  39 mV
+  6.217	I (11267) adc_pot: raw=  31  voltage=  26 mV
+  6.417	I (11467) adc_pot: raw=  37  voltage=  31 mV
+  6.617	I (11667) adc_pot: raw=  39  voltage=  34 mV
+  6.817	I (11867) adc_pot: raw=  39  voltage=  34 mV
+  7.017	I (12067) adc_pot: raw=  37  voltage=  31 mV
+  7.217	I (12267) adc_pot: raw=  39  voltage=  34 mV
+  7.417	I (12467) adc_pot: raw=  37  voltage=  31 mV
+  7.617	I (12667) adc_pot: raw=   3  voltage=   2 mV
+  7.817	I (12867) adc_pot: raw=  37  voltage=  31 mV
+  8.017	I (13067) adc_pot: raw=  31  voltage=  26 mV
+  8.217	I (13267) adc_pot: raw=  25  voltage=  21 mV
+  8.417	I (13467) adc_pot: raw=  38  voltage=  32 mV
+  8.617	I (13667) adc_pot: raw=  68  voltage=  59 mV
+  8.817	I (13867) adc_pot: raw=  31  voltage=  26 mV
+  9.017	I (14067) adc_pot: raw=  38  voltage=  32 mV
+  9.217	I (14267) adc_pot: raw=  36  voltage=  31 mV
+  9.417	I (14467) adc_pot: raw=  30  voltage=  26 mV
+  9.617	I (14667) adc_pot: raw=  38  voltage=  32 mV
+  9.817	I (14867) adc_pot: raw=  37  voltage=  31 mV
+ 10.022	I (15067) adc_pot: raw=  37  voltage=  31 mV
+ 10.217	I (15267) adc_pot: raw=  36  voltage=  31 mV
+ 10.417	I (15467) adc_pot: raw=  38  voltage=  32 mV
+ 10.617	I (15667) adc_pot: raw=  39  voltage=  34 mV
+ 10.817	I (15867) adc_pot: raw=  33  voltage=  28 mV
+ 11.017	I (16067) adc_pot: raw=  59  voltage=  52 mV
+ 11.217	I (16267) adc_pot: raw=  38  voltage=  32 mV
+ 11.417	I (16467) adc_pot: raw=  25  voltage=  21 mV
+ 11.617	I (16667) adc_pot: raw=  39  voltage=  34 mV
+ 11.817	I (16867) adc_pot: raw=  39  voltage=  34 mV
+ 12.017	I (17067) adc_pot: raw=  37  voltage=  31 mV
+ 12.217	I (17267) adc_pot: raw=  43  voltage=  38 mV
+ 12.417	I (17467) adc_pot: raw=  37  voltage=  31 mV
+ 12.617	I (17667) adc_pot: raw=  39  voltage=  34 mV
+ 12.817	I (17867) adc_pot: raw=  42  voltage=  37 mV
+ 13.017	I (18067) adc_pot: raw=  36  voltage=  31 mV
+ 13.217	I (18267) adc_pot: raw=  44  voltage=  38 mV
+ 13.417	I (18467) adc_pot: raw=  31  voltage=  26 mV
+ 13.617	I (18667) adc_pot: raw=  39  voltage=  34 mV
+ 13.817	I (18867) adc_pot: raw=  45  voltage=  39 mV
+ 14.017	I (19067) adc_pot: raw=  42  voltage=  37 mV
+ 14.217	I (19267) adc_pot: raw=  44  voltage=  38 mV
+ 14.417	I (19467) adc_pot: raw=  39  voltage=  34 mV
+ 14.617	I (19667) adc_pot: raw=  43  voltage=  38 mV
+ 14.817	I (19867) adc_pot: raw=  29  voltage=  25 mV
+ 15.017	I (20067) adc_pot: raw=  47  voltage=  41 mV
+ 15.217	I (20267) adc_pot: raw=  46  voltage=  40 mV
+ 15.417	I (20467) adc_pot: raw=  55  voltage=  48 mV
+ 15.617	I (20667) adc_pot: raw=  39  voltage=  34 mV
+ 15.817	I (20867) adc_pot: raw=  54  voltage=  47 mV
+ 16.017	I (21067) adc_pot: raw=  56  voltage=  48 mV
+ 16.217	I (21267) adc_pot: raw=  42  voltage=  37 mV
+ 16.417	I (21467) adc_pot: raw=  55  voltage=  48 mV
+ 16.617	I (21667) adc_pot: raw=  62  voltage=  54 mV
+ 16.817	I (21867) adc_pot: raw=  53  voltage=  46 mV
+ 17.017	I (22067) adc_pot: raw=  55  voltage=  48 mV
+ 17.217	I (22267) adc_pot: raw=  54  voltage=  47 mV
+ 17.417	I (22467) adc_pot: raw=  56  voltage=  48 mV
+ 17.617	I (22667) adc_pot: raw=  52  voltage=  45 mV
+ 17.817	I (22867) adc_pot: raw=  57  voltage=  50 mV
+ 18.017	I (23067) adc_pot: raw=  55  voltage=  48 mV
+ 18.217	I (23267) adc_pot: raw=  53  voltage=  46 mV
+ 18.417	I (23467) adc_pot: raw=  55  voltage=  48 mV
+ 18.617	I (23667) adc_pot: raw=  72  voltage=  63 mV
+ 18.817	I (23867) adc_pot: raw=  16  voltage=  13 mV
+ 19.017	I (24067) adc_pot: raw=  57  voltage=  50 mV
+ 19.217	I (24267) adc_pot: raw=  55  voltage=  48 mV
+ 19.417	I (24467) adc_pot: raw=  57  voltage=  50 mV
+ 19.617	I (24667) adc_pot: raw=  55  voltage=  48 mV
+ 19.817	I (24867) adc_pot: raw=  60  voltage=  53 mV
+ 20.021	I (25067) adc_pot: raw=  53  voltage=  46 mV
+ 20.216	I (25267) adc_pot: raw=  53  voltage=  46 mV
+ 20.417	I (25467) adc_pot: raw=  55  voltage=  48 mV
+ 20.617	I (25667) adc_pot: raw=  70  voltage=  61 mV
+ 20.817	I (25867) adc_pot: raw=  55  voltage=  48 mV
+ 21.017	I (26067) adc_pot: raw=  47  voltage=  41 mV
+ 21.217	I (26267) adc_pot: raw=  55  voltage=  48 mV
+ 21.417	I (26467) adc_pot: raw=  53  voltage=  46 mV
+ 21.616	I (26667) adc_pot: raw=  47  voltage=  41 mV
+ 21.817	I (26867) adc_pot: raw= 109  voltage=  95 mV
+ 22.017	I (27067) adc_pot: raw=  44  voltage=  38 mV
+ 22.217	I (27267) adc_pot: raw=  44  voltage=  38 mV
+ 22.417	I (27467) adc_pot: raw=  41  voltage=  36 mV
+ 22.617	I (27667) adc_pot: raw=  42  voltage=  37 mV
+ 22.817	I (27867) adc_pot: raw=  41  voltage=  36 mV
+ 23.017	I (28067) adc_pot: raw=  39  voltage=  34 mV
+ 23.217	I (28267) adc_pot: raw=  37  voltage=  31 mV
+ 23.417	I (28467) adc_pot: raw=  39  voltage=  34 mV
+ 23.617	I (28667) adc_pot: raw=  37  voltage=  31 mV
+ 23.817	I (28867) adc_pot: raw=  47  voltage=  41 mV
+ 24.017	I (29067) adc_pot: raw=  73  voltage=  64 mV
+ 24.217	I (29267) adc_pot: raw=  77  voltage=  68 mV
+ 24.417	I (29467) adc_pot: raw=  77  voltage=  68 mV
+ 24.616	I (29667) adc_pot: raw=  75  voltage=  65 mV
+ 24.816	I (29867) adc_pot: raw=  75  voltage=  65 mV
+ 25.016	I (30067) adc_pot: raw=  75  voltage=  65 mV
+ 25.216	I (30267) adc_pot: raw=  69  voltage=  60 mV
+ 25.416	I (30467) adc_pot: raw=  69  voltage=  60 mV
+ 25.616	I (30667) adc_pot: raw=  69  voltage=  60 mV
+ 25.816	I (30867) adc_pot: raw=  73  voltage=  64 mV
+ 26.016	I (31067) adc_pot: raw=  78  voltage=  69 mV
+ 26.216	I (31267) adc_pot: raw=  59  voltage=  52 mV
+ 26.416	I (31467) adc_pot: raw=  60  voltage=  53 mV
+ 26.616	I (31667) adc_pot: raw=  59  voltage=  52 mV
+ 26.816	I (31867) adc_pot: raw=  57  voltage=  50 mV
+ 27.016	I (32067) adc_pot: raw=  51  voltage=  44 mV
+ 27.216	I (32267) adc_pot: raw=  57  voltage=  50 mV
+ 27.416	I (32467) adc_pot: raw=  55  voltage=  48 mV
+ 27.616	I (32667) adc_pot: raw=  55  voltage=  48 mV
+ 27.816	I (32867) adc_pot: raw=  55  voltage=  48 mV
+ 28.016	I (33067) adc_pot: raw=  73  voltage=  64 mV
+ 28.216	I (33267) adc_pot: raw=  58  voltage=  51 mV
+ 28.416	I (33467) adc_pot: raw=  54  voltage=  47 mV
+ 28.616	I (33667) adc_pot: raw=  45  voltage=  39 mV
+ 28.816	I (33867) adc_pot: raw=  54  voltage=  47 mV
+ 29.016	I (34067) adc_pot: raw=  52  voltage=  45 mV
+ 29.216	I (34267) adc_pot: raw=  53  voltage=  46 mV
+ 29.416	I (34467) adc_pot: raw=  48  voltage=  42 mV
+ 29.616	I (34667) adc_pot: raw=  51  voltage=  44 mV
+ 29.816	I (34867) adc_pot: raw=  47  voltage=  41 mV
