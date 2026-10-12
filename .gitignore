@@ -12,6 +12,8 @@ managed_components/
 .cache/
 .vscode/
 compile_commands.json
+# Local clangd settings: contain machine-specific toolchain paths
+.clangd
 
 # OS and logs
 .DS_Store
