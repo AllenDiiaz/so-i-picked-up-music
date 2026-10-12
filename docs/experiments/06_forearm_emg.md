@@ -63,6 +63,8 @@ Data integrity (run after the last board reset; see Method):
 
 ![RMS of every phase: relax, light grip, G chord and hard grip fall into three levels](../figures/06_tension_levels.png)
 
+*Main-metric RMS (45-200 Hz, every 60 Hz harmonic removed) of every phase in the retest (triangles), A (circles) and B (squares), first 1.5 s after each cue skipped. Colours: relax gray, light grip teal, G chord blue, hard grip red. Bands: range of the observed values per level. Open square: the first chord in B, whose window contains saturated samples. The first attempt is excluded (grip hand not confirmed).*
+
 Every effort (main metric):
 
 | Recording | Effort | Window (s) | Saturated samples | RMS 45-200 Hz, mains removed (mV) | / neighbouring relax | RMS 20-450 Hz / neighbouring relax |
@@ -93,13 +95,19 @@ Levels observed in the retest, A and B (first attempt excluded):
 
 ![Same efforts with and without mains removal](../figures/06_metric_comparison.png)
 
+*Each effort's RMS divided by the RMS of the relax phases right before and after it, for the same efforts in both panels. **a**, 20-450 Hz band-pass without mains removal. **b**, main metric (45-200 Hz, 60 Hz harmonics removed). In A, 60 Hz mains made up most of the relax RMS, so in **a** light grips look like relax. Open square: window contains saturated samples. Dashed line: relax level (1).*
+
 ![RMS envelopes of A and B with every effort phase marked](../figures/06_envelopes.png)
+
+*100 ms moving RMS of segment A (**a**) and B (**b**): light blue, 20-450 Hz without mains removal; dark blue, main metric. Shaded: effort phases as cued (grip onset lagged the cue by about 1-1.6 s). Hatched: samples at the ADC rails in B's first chord.*
 
 ![Spectrum of A at relax and during hard grips](../figures/06_psd.png)
 
-Replay of A at 4x speed ([`analysis/anim_06_emg.py`](../../analysis/anim_06_emg.py)); the bar uses a 500 ms RMS and splits the levels at 9.3 and 19.1 mV, halfway between the observed ranges:
+*Welch PSD of segment A at relax (gray) and during hard grips (red); Hann window, 512 samples, 50 % overlap, first 1.5 s after each cue skipped. Gray band and dashed lines: 45-200 Hz used for the main metric. Dotted: 60 Hz mains harmonics.*
 
-![Replay of segment A: raw signal, mains-removed 45-200 Hz signal, envelope and tension bar](../figures/06_emg_replay.gif)
+Replay of segment A and then segment B at 4x speed ([`analysis/anim_06_emg.py`](../../analysis/anim_06_emg.py)). The tension bar uses a 500 ms RMS of the main-metric signal. Its levels are set per segment, relative to that segment's own relax RMS: medium from 1.49x and hard from 2.72x, the factors lying halfway between relax and the weakest medium effort, and between the strongest medium and the weakest hard effort (effort/relax ratios from the table above, saturated window excluded). For A (relax 5.4 mV) this gives 8.1 and 14.8 mV; for B (relax 7.5 mV) 11.1 and 20.4 mV. Hatched in B: the saturated part of the first chord.
+
+![Replay of segment A (light and hard grips) and segment B (G chords): raw signal, mains-removed 45-200 Hz signal, envelope and tension bar](../figures/06_emg_replay.gif)
 
 ## 6. How the method was found
 
@@ -109,6 +117,8 @@ Replay of A at 4x speed ([`analysis/anim_06_emg.py`](../../analysis/anim_06_emg.
 4. **The main metric was adopted** for all recordings. The same removal lowered relax RMS from 27.5 to 12.5 mV in the retest and from 48.2 to 15.8 mV in B.
 
 ![First attempt vs retest, effort / relax](../figures/06_first_vs_retest.png)
+
+*Effort RMS divided by the RMS over all relax phases, computed as when the runs were first analysed (first 0.5 s after each cue skipped). Light bars: 20-450 Hz; dark bars: main metric. Red: hard grips; blue: the first attempt's chord phase, done with the left hand as instructed. Which hand gripped in the first attempt was not recorded.*
 
 ## 7. Interpretation
 

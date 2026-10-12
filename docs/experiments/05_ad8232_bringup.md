@@ -52,7 +52,13 @@ In condition 1 there was no cable to pinch; its phases are kept only so the thre
 
 ![ADC readings over time for the three conditions](../figures/05_bringup_timeseries.png)
 
+*ADC reading on GPIO4 over the 30 s schedule. **a**, no lead cable (gray, baseline). **b**, lead cable plugged in, fingers on the red and yellow snaps (red: output stuck near 0). **c**, three electrodes on the skin (teal: working). Shaded: the pinch or fist phase, in the condition's colour. Dashed lines: 0 mV and the 3108 mV saturation limit. Same y-axis in all panels.*
+
 ![Mean and standard deviation per condition and phase](../figures/05_bringup_summary.png)
+
+*Mean ± SD of the readings in each phase, same colours as above. Open circles: rest phases; filled squares: pinch or fist phases. Numbers: SD in mV.*
+
+In both figures sampling is about 5 Hz (one-shot ADC read every 200 ms): individual readings, not a waveform. Electrodes in condition 3: red on the right wrist, yellow on the left wrist, green on the right forearm near the elbow (wrist-to-wrist, ECG-style), not a forearm EMG placement.
 
 Replay of the same readings at 3x speed ([`analysis/anim_05_bringup.py`](../../analysis/anim_05_bringup.py)):
 

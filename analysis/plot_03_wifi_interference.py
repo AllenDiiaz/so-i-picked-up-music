@@ -27,10 +27,10 @@ def draw_band(ax, key):
     x = np.column_stack([starts, ends]).ravel()
     ylo, yhi = np.repeat(lo, 2), np.repeat(hi, 2)
     color = style.COLORS[key]
-    ax.fill_between(x, ylo, yhi, color=color, alpha=0.35, linewidth=0, label=label)
+    ax.fill_between(x, ylo, yhi, color=color, alpha=0.25, linewidth=0, label=label)
     # Outlines keep a zero-height band (A) visible.
-    ax.plot(x, ylo, color=color, linewidth=1.4, zorder=3)
-    ax.plot(x, yhi, color=color, linewidth=1.4, zorder=3)
+    ax.plot(x, ylo, color=color, linewidth=0.9, zorder=3)
+    ax.plot(x, yhi, color=color, linewidth=0.9, zorder=3)
     return starts, ends, lo, hi
 
 
@@ -46,25 +46,25 @@ def mark_clipped(ax, starts, ends, lo, hi, limit, color, text_for, text_y):
                 x = (s + e) / 2
                 ax.annotate(text_for(value), xy=(x, sign * limit * 0.98),
                             xytext=(WARMUP_END_S + 0.6, sign * limit * text_y),
-                            color=color, fontsize=8.5, ha="left", va="center",
+                            color=color, fontsize=style.NOTE_PT, ha="left", va="center",
                             bbox=dict(boxstyle="square,pad=0.15", fc="white", ec="none"),
-                            arrowprops=dict(arrowstyle="->", color=color, lw=1.0,
+                            arrowprops=dict(arrowstyle="->", color=color, lw=0.6,
                                             shrinkA=0, shrinkB=0))
 
 
 def shade_warmup(ax):
-    ax.axvspan(0, WARMUP_END_S, color=style.WARMUP_COLOR, zorder=0, linewidth=0)
+    style.shade(ax, 0, WARMUP_END_S, style.GRAY)
 
 
 def main():
     style.apply()
-    fig, (top, bottom) = plt.subplots(2, 1, sharex=True, figsize=(style.WIDTH_IN, 6.2),
-                                      gridspec_kw={"hspace": 0.12})
+    fig, (top, bottom) = plt.subplots(2, 1, sharex=True, figsize=(style.WIDTH_IN, 4.3),
+                                      gridspec_kw={"hspace": 0.18})
 
     for ax in (top, bottom):
         shade_warmup(ax)
         # Dashed so it is not mistaken for A's band, which sits on 0.
-        ax.axhline(0, color=style.REF_COLOR, linewidth=0.6, linestyle=(0, (4, 3)), zorder=1)
+        style.ref_line(ax, 0, zorder=1)
 
     for key in ("A", "C"):
         starts, ends, lo, hi = draw_band(top, key)
@@ -72,9 +72,10 @@ def main():
                      lambda v: f"{v:+d} µs (off scale)", text_y=0.75)
     top.set_ylim(-TOP_YLIM, TOP_YLIM)
     top.set_ylabel("Deviation from 16000 µs (µs)")
-    top.text(WARMUP_END_S + 0.6, TOP_YLIM * 0.85, "◀ warm-up (first 2 windows)",
-             ha="left", va="center", fontsize=8, color=style.REF_COLOR)
-    top.legend(loc="upper right")
+    top.text(WARMUP_END_S + 0.6, TOP_YLIM * 0.85, "← warm-up (first 2 windows)",
+             ha="left", va="center", fontsize=style.NOTE_PT, color=style.REF_COLOR)
+    top.legend(loc="upper right", ncol=2)
+    style.panel_label(top, "a")
 
     starts, ends, lo, hi = draw_band(bottom, "B")
     mark_clipped(bottom, starts, ends, lo, hi, BOTTOM_YLIM, style.COLORS["B"],
@@ -85,12 +86,8 @@ def main():
     bottom.set_xlabel("Time since boot (s)")
     bottom.legend(loc="upper right")
     bottom.set_xlim(0, ends[-1] + 0.3)
-
-    top.set_title("Experiment 03: per-second frame_dt range (min to max), deviation from 16000 µs")
-    fig.text(0.01, -0.01,
-             "Note: the two panels use different y-axis scales (top ±60 µs, bottom ±1500 µs). "
-             "Each band spans one ~1 s statistics window.\nGray background: warm-up (first 2 windows). Dashed line: 0 µs.",
-             fontsize=8, color=style.REF_COLOR, ha="left", va="top")
+    style.panel_label(bottom, "b")
+    # Title and notes are in the figure caption (docs/experiments/03_wifi_interference.md).
 
     style.save(fig, "03_jitter_range_over_time.png")
 

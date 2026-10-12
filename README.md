@@ -22,7 +22,7 @@ Numbers below are from the 60 s per-frame runs of experiment 04 (3750 frames eac
 
 - In experiment 06, forearm EMG through the same AD8232 module fell into three tension levels once every 60 Hz mains harmonic was removed and only 45-200 Hz kept: relax 4.6-8.1 mV, light grip or G chord 10.5-17.5 mV, hard grip 20.7-32.3 mV RMS (one subject, one day, 2-3 repetitions each; [notes](docs/experiments/06_forearm_emg.md)).
 
-![Replay of forearm EMG during light and hard grips: raw signal, mains-removed 45-200 Hz signal, its envelope and a tension bar that moves between relax, medium and hard](docs/figures/06_emg_replay.gif)
+![Replay of forearm EMG during light and hard grips and then G chords on the guitar: raw signal, mains-removed 45-200 Hz signal, its envelope and a tension bar that moves between relax, medium and hard](docs/figures/06_emg_replay.gif)
 
 ![Illustration of oneshot versus DMA sampling: with oneshot reads a busy CPU delays the sample, with DMA only the frame collection moves](docs/figures/concept_oneshot_vs_dma.gif)
 

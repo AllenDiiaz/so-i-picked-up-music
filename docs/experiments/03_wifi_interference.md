@@ -61,7 +61,7 @@ Scenarios:
 
 ![Per-second frame_dt range over time for A, B and C](../figures/03_jitter_range_over_time.png)
 
-Each band spans one statistics window, from that window's minimum to its maximum `frame_dt`, shown as a deviation from 16000 us. The two panels use different y-axis scales (top +/-60 us for A and C, bottom +/-1500 us for B). Values beyond the axis are marked with arrows and their actual value. Gray background: warm-up (first 2 windows).
+*Per-second `frame_dt` range (minimum to maximum) over time, as a deviation from 16000 us. **a**, A (no Wi-Fi, gray) and C (Wi-Fi, sampler on core 1, teal), shared scale +/-60 us. **b**, B (Wi-Fi, sampler on core 0, red), its own scale +/-1500 us. Each band spans one statistics window (about 1 s); values beyond the axis are marked with arrows and their actual value. Gray background: warm-up (first 2 windows). Dashed line: 0 us.*
 
 ## 5. Observations
 

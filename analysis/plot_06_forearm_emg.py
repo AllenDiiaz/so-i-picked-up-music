@@ -12,11 +12,11 @@ from emg import (BAND, CORE, MAINS_HZ, RECORDINGS, SKIP_S, bandpass, efforts, lo
 
 KIND_COLOR = {"relax": style.COLORS["A"], "light": style.COLORS["C"], "chord": style.COLORS["D"],
               "hard": style.COLORS["B"]}
-KIND_SHADE = {"light": "#d5efeb", "chord": "#dbe6f6", "hard": "#fde0d6"}
+
 MARKER = {"A": "o", "B": "s", "retest": "^"}
 REC_LABEL = {"A": "A: table, hand free", "B": "B: holding the guitar", "retest": "Retest: hard grips only"}
-LEVELS = [("relax", ("relax",), "#ececec"), ("medium", ("light", "chord"), "#dff1ee"),
-          ("hard", ("hard",), "#fde6de")]
+LEVELS = [("relax", ("relax",), style.GRAY), ("medium", ("light", "chord"), style.BLUE),
+          ("hard", ("hard",), style.RED)]
 KINDS = ["relax", "light", "chord", "hard"]
 SUBJECT = ("Real data, one subject, one day. Left forearm flexors (red/yellow 2-3 cm apart along the muscle, "
            "green on the elbow), left hand.")
@@ -24,8 +24,8 @@ METRIC = (f"Main metric: RMS of the {CORE[0]}-{CORE[1]} Hz band with every {MAIN
           f"removed; first {SKIP_S} s after each cue skipped.")
 
 
-def footnote(fig, text, y=-0.01):
-    fig.text(0.01, y, text, fontsize=7.5, color=style.REF_COLOR, ha="left", va="top")
+# Figure titles and notes (subject, metric, method) are in the captions in
+# docs/experiments/06_forearm_emg.md.
 
 
 def collect():
@@ -45,12 +45,12 @@ def level_ranges(data):
 
 
 def plot_tension_levels(data, ranges):
-    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 4.8))
+    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 3.4))
     for level, _, shade in LEVELS:
         lo, hi = ranges[level]
-        ax.axhspan(lo, hi, color=shade, linewidth=0, zorder=0)
+        ax.axhspan(lo, hi, color=shade, alpha=style.SHADE_ALPHA, linewidth=0, zorder=0)
         ax.text(1.0, (lo + hi) / 2, f" {level}\n {lo:.1f}-{hi:.1f} mV", transform=ax.get_yaxis_transform(),
-                ha="left", va="center", fontsize=8, color=style.REF_COLOR)
+                ha="left", va="center", fontsize=style.NOTE_PT, color=style.REF_COLOR)
     for name in ("A", "B", "retest"):
         relax, active = data[name]
         offset = {"A": -0.25, "B": 0.0, "retest": 0.25}[name]
@@ -60,30 +60,27 @@ def plot_tension_levels(data, ranges):
             x = KINDS.index(item["kind"]) + offset + (j - 1.5) * 0.045
             sat = item["saturated"] > 0
             color = KIND_COLOR[item["kind"]]
-            ax.plot(x, item["rms_core"], MARKER[name], markersize=7, color=color, markeredgewidth=1.4,
+            ax.plot(x, item["rms_core"], MARKER[name], markersize=4.5, color=color, markeredgewidth=0.9,
                     markerfacecolor="white" if sat else color, zorder=3)
             if sat:
                 ax.annotate("saturated", xy=(x, item["rms_core"]), xytext=(x - 0.6, item["rms_core"] + 4),
-                            fontsize=7.5, color=color, arrowprops=dict(arrowstyle="->", color=color, lw=0.9))
+                            fontsize=style.NOTE_PT, color=color, arrowprops=dict(arrowstyle="->", color=color, lw=0.6))
     ax.set_xticks(range(len(KINDS)))
     ax.set_xticklabels(["relax", "light grip", "G chord", "hard grip"])
     ax.set_xlim(-0.5, len(KINDS) - 0.5)
     ax.set_ylim(0, None)
     ax.grid(axis="x", visible=False)
     ax.set_ylabel(f"RMS, {CORE[0]}-{CORE[1]} Hz, mains removed (mV)")
-    ax.set_title("Experiment 06: forearm EMG falls into three tension levels", loc="left")
-    handles = [Line2D([], [], marker=MARKER[n], linestyle="", color="#555555", label=REC_LABEL[n])
+    handles = [Line2D([], [], marker=MARKER[n], linestyle="", color=style.REF_COLOR, label=REC_LABEL[n])
                for n in ("A", "B", "retest")]
-    handles.append(Line2D([], [], marker="o", linestyle="", color="#555555", markerfacecolor="white",
+    handles.append(Line2D([], [], marker="o", linestyle="", color=style.REF_COLOR, markerfacecolor="white",
                           label="window contains saturated samples"))
-    ax.legend(handles=handles, loc="upper left", fontsize=8)
-    footnote(fig, SUBJECT + "\n" + METRIC + "\nOne point per phase. Bands: range of the observed values "
-             "per level. The first attempt is excluded (grip hand not confirmed).")
+    ax.legend(handles=handles, loc="upper left")
     style.save(fig, "06_tension_levels.png")
 
 
 def plot_metric_comparison(data):
-    fig, axes = plt.subplots(1, 2, sharey=True, figsize=(style.WIDTH_IN, 4.2), gridspec_kw={"wspace": 0.08})
+    fig, axes = plt.subplots(1, 2, sharey=True, figsize=(style.WIDTH_IN, 3.0), gridspec_kw={"wspace": 0.12})
     order = [("A", "light"), ("B", "chord"), ("A", "hard"), ("retest", "hard")]
     for ax, key, title in ((axes[0], "ratio_plain", f"{BAND[0]}-{BAND[1]} Hz, no mains removal"),
                            (axes[1], "ratio_core", f"{CORE[0]}-{CORE[1]} Hz, mains removed (main metric)")):
@@ -93,30 +90,27 @@ def plot_metric_comparison(data):
             for j, a in enumerate(items):
                 x = gx + (j - (len(items) - 1) / 2) * 0.18
                 sat = a["saturated"] > 0
-                ax.plot(x, a[key], MARKER[name], markersize=7, color=KIND_COLOR[kind], markeredgewidth=1.4,
+                ax.plot(x, a[key], MARKER[name], markersize=4.5, color=KIND_COLOR[kind], markeredgewidth=0.9,
                         markerfacecolor="white" if sat else KIND_COLOR[kind], zorder=3)
             ticks.append(gx)
             labels.append(f"{name}\n{kind}")
-        ax.axhline(1, color=style.REF_COLOR, linewidth=0.8, linestyle=(0, (4, 3)))
+        style.ref_line(ax, 1)
         ax.set_xticks(ticks)
-        ax.set_xticklabels(labels, fontsize=8)
+        ax.set_xticklabels(labels)
         ax.set_xlim(-0.5, len(order) - 0.5)
         ax.grid(axis="x", visible=False)
-        ax.set_title(title, loc="left", fontsize=9)
-    axes[0].text(-0.4, 1.05, "relax level", fontsize=7.5, color=style.REF_COLOR, va="bottom")
+        ax.set_title(title, loc="left")
+    style.panel_label(axes[0], "a", x=-0.12)
+    style.panel_label(axes[1], "b", x=-0.04)
+    axes[0].text(3.45, 1.05, "relax level", fontsize=style.NOTE_PT, color=style.REF_COLOR, va="bottom", ha="right")
     axes[0].set_ylim(0, None)
     axes[0].set_ylabel("RMS / relax phases before and after")
-    fig.suptitle("Experiment 06: removing mains interference reveals the EMG", x=0.125, ha="left", y=1.0,
-                 fontsize=11)
-    footnote(fig, SUBJECT + f"\nSame efforts in both panels; first {SKIP_S} s after each cue skipped. "
-             "Open marker: window contains saturated samples.\nIn A, 60 Hz mains made up most of the relax "
-             "RMS, so without removing it light grips look like relax.", y=-0.03)
     style.save(fig, "06_metric_comparison.png")
 
 
 def plot_envelopes():
-    fig, axes = plt.subplots(2, 1, figsize=(style.WIDTH_IN, 6.0), gridspec_kw={"hspace": 0.42})
-    for ax, name in zip(axes, ("A", "B")):
+    fig, axes = plt.subplots(2, 1, figsize=(style.WIDTH_IN, 4.4), gridspec_kw={"hspace": 0.45})
+    for ax, letter, name in zip(axes, "ab", ("A", "B")):
         rec = RECORDINGS[name]
         t, mv = load_recording(name)
         env_core = moving_rms(notched(mv, CORE))
@@ -127,54 +121,54 @@ def plot_envelopes():
             if kind == "relax":
                 continue
             counts[kind] = counts.get(kind, 0) + 1
-            ax.axvspan(start, end, color=KIND_SHADE[kind], linewidth=0, zorder=0)
+            style.shade(ax, start, end, KIND_COLOR[kind])
             ax.text((start + end) / 2, ymax * 0.98, f"{kind} {counts[kind]}", ha="center", va="top",
-                    fontsize=7.5, color=KIND_COLOR[kind], fontweight="bold")
-        ax.plot(t, env_plain, color="#9db8e3", linewidth=0.8, zorder=2,
+                    fontsize=style.NOTE_PT, color=KIND_COLOR[kind], zorder=5,
+                    bbox=dict(boxstyle="square,pad=0.1", fc="white", ec="none"))
+        ax.plot(t, env_plain, color=style.LIGHT_BLUE, linewidth=0.6, zorder=2,
                 label=f"{BAND[0]}-{BAND[1]} Hz, no mains removal")
-        ax.plot(t, env_core, color="#222222", linewidth=0.9, zorder=3,
+        ax.plot(t, env_core, color=style.ENVELOPE, linewidth=0.8, zorder=3,
                 label=f"{CORE[0]}-{CORE[1]} Hz, mains removed")
         sat = saturated(mv)
         if sat.any():
             idx = np.flatnonzero(sat)
-            ax.annotate(f"saturated {t[idx[0]]:.1f}-{t[idx[-1]]:.1f} s", xy=(t[idx[0]], 2),
-                        xytext=(t[idx[0]] + 3, ymax * 0.55), fontsize=7.5, color=KIND_COLOR["chord"],
-                        arrowprops=dict(arrowstyle="->", color=KIND_COLOR["chord"], lw=0.9))
+            s0, s1 = t[idx[0]], t[idx[-1]]
+            ax.axvspan(s0, s1, facecolor="none", edgecolor=style.REF_COLOR, hatch="////", linewidth=0, zorder=1)
+            ax.text(s1 + 2.2, ymax * 0.78, f"saturated {s0:.1f}-{s1:.1f} s", fontsize=style.NOTE_PT,
+                    color=style.REF_COLOR, ha="left", va="center")
         ax.set_xlim(0, rec["duration"])
         ax.set_ylim(0, ymax)
         ax.set_ylabel("Moving RMS, 100 ms (mV)")
-        ax.set_title(rec["title"], loc="left", fontsize=9.5)
-        ax.legend(loc="upper right", bbox_to_anchor=(1.0, 0.86), fontsize=7.5)
+        ax.set_title(rec["title"], loc="left")
+        style.panel_label(ax, letter, x=-0.07, y=1.03)
+        if name == "A":
+            ax.legend(loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=2, borderaxespad=0.2)
     axes[-1].set_xlabel("Time since start of recording (s)")
-    footnote(fig, SUBJECT + "\nShaded: effort phases as cued (grip onset lagged the cue by about 1-1.6 s).")
     style.save(fig, "06_envelopes.png")
 
 
 def plot_psd():
     rec = RECORDINGS["A"]
     t, mv = load_recording("A")
-    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 4.2))
-    ax.axvspan(*CORE, color="#f3f3f3", linewidth=0, zorder=0)
+    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 3.0))
+    style.shade(ax, *CORE, style.GRAY)
     for h in range(MAINS_HZ, 500, MAINS_HZ):
-        ax.axvline(h, color="#bbbbbb", linewidth=0.7, linestyle=":", zorder=1)
+        ax.axvline(h, color="#BBBBBB", linewidth=0.6, linestyle=":", zorder=1)
     for x in CORE:
-        ax.axvline(x, color=style.REF_COLOR, linewidth=0.9, linestyle=(0, (4, 3)), zorder=1)
+        ax.axvline(x, color=style.REF_COLOR, linewidth=0.6, linestyle=(0, (4, 3)), zorder=1)
     for kind in ("relax", "hard"):
         f, p, n = welch([mv[window(t, s, e)] for s, e, k in rec["phases"] if k == kind])
-        ax.semilogy(f, p, color=KIND_COLOR[kind], linewidth=1.2, label=f"A {kind} ({n} segments)", zorder=3)
-    ax.text(CORE[0] + 3, 0.97, f"{CORE[0]} Hz", transform=ax.get_xaxis_transform(), fontsize=7.5,
+        ax.semilogy(f, p, color=KIND_COLOR[kind], linewidth=0.9, label=f"A {kind} ({n} segments)", zorder=3)
+    ax.text(CORE[0] - 3, 0.97, f"{CORE[0]} Hz", transform=ax.get_xaxis_transform(), fontsize=style.NOTE_PT, ha="right",
             va="top", color=style.REF_COLOR)
-    ax.text(CORE[1] + 3, 0.97, f"{CORE[1]} Hz", transform=ax.get_xaxis_transform(), fontsize=7.5,
+    ax.text(CORE[1] + 3, 0.97, f"{CORE[1]} Hz", transform=ax.get_xaxis_transform(), fontsize=style.NOTE_PT,
             va="top", color=style.REF_COLOR)
     ax.text(242, 0.04, f"dotted: {MAINS_HZ} Hz mains harmonics", transform=ax.get_xaxis_transform(),
-            fontsize=7.5, color="#888888")
+            fontsize=style.NOTE_PT, color=style.GRAY)
     ax.set_xlim(0, 500)
     ax.set_xlabel("Frequency (Hz)")
     ax.set_ylabel("PSD (mV²/Hz, log scale)")
-    ax.set_title("Experiment 06: spectrum of A, relax vs hard grip (Welch)", loc="left")
     ax.legend(loc="upper right")
-    footnote(fig, SUBJECT + f"\nWelch: Hann, 512 samples, 50% overlap; first {SKIP_S} s after each cue skipped. "
-             f"Gray band: {CORE[0]}-{CORE[1]} Hz used for the main metric.")
     style.save(fig, "06_psd.png")
 
 
@@ -197,7 +191,7 @@ def first_vs_retest_values():
 
 
 def plot_first_vs_retest(values):
-    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 4.2))
+    fig, ax = plt.subplots(figsize=(style.WIDTH_IN, 3.0))
     groups = [(("first", "hard"), "First attempt\nhard grip\n(grip hand not confirmed)"),
               (("retest", "hard"), "Retest\nhard grip\n(left hand, hand free)"),
               (("first", "chord"), "First attempt\nchord phase\n(left hand, as instructed)")]
@@ -207,23 +201,19 @@ def plot_first_vs_retest(values):
         color = KIND_COLOR[key[1]]
         for dx, value, alpha, hatch in ((-width / 2, plain, 0.45, None), (width / 2, core, 1.0, None)):
             ax.bar(gx + dx, value, width, color=color, alpha=alpha, hatch=hatch, zorder=2)
-            ax.text(gx + dx, value + 0.05, f"{value:.2f}", ha="center", va="bottom", fontsize=8)
-    ax.axhline(1, color=style.REF_COLOR, linewidth=0.8, linestyle=(0, (4, 3)), zorder=3)
+            ax.text(gx + dx, value + 0.05, f"{value:.2f}", ha="center", va="bottom", fontsize=style.NOTE_PT)
+    style.ref_line(ax, 1, zorder=3)
     ax.annotate("", xy=(1 - width / 2, values[("retest", "hard")][0] + 0.25),
                 xytext=(0 - width / 2, values[("first", "hard")][0] + 0.25),
                 arrowprops=dict(arrowstyle="->", color=style.REF_COLOR, lw=1.0, connectionstyle="arc3,rad=-0.25"))
     ax.set_xticks(range(len(groups)))
-    ax.set_xticklabels([g[1] for g in groups], fontsize=8)
+    ax.set_xticklabels([g[1] for g in groups])
     ax.grid(axis="x", visible=False)
     ax.set_ylim(0, None)
     ax.set_ylabel("Effort RMS / RMS over all relax phases")
-    ax.set_title("Experiment 06: first attempt vs retest, effort / relax", loc="left", fontsize=10)
-    legend = [plt.Rectangle((0, 0), 1, 1, color="#999999", alpha=0.45, label=f"{BAND[0]}-{BAND[1]} Hz"),
-              plt.Rectangle((0, 0), 1, 1, color="#999999", label=f"{CORE[0]}-{CORE[1]} Hz, mains removed")]
-    ax.legend(handles=legend, loc="upper right", fontsize=8)
-    footnote(fig, SUBJECT.replace(", left hand.", ".") + "\nComputed as when the runs were first analysed: "
-             "first 0.5 s after each cue skipped, baseline = all relax phases.\nWhich hand gripped in the first "
-             "attempt was not recorded; the chord phase was explicitly done with the left hand.", y=-0.1)
+    legend = [plt.Rectangle((0, 0), 1, 1, color=style.GRAY, alpha=0.45, label=f"{BAND[0]}-{BAND[1]} Hz"),
+              plt.Rectangle((0, 0), 1, 1, color=style.GRAY, label=f"{CORE[0]}-{CORE[1]} Hz, mains removed")]
+    ax.legend(handles=legend, loc="upper right")
     style.save(fig, "06_first_vs_retest.png")
 
 
