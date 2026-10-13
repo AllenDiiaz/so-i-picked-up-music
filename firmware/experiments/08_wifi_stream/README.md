@@ -2,7 +2,7 @@
 
 MVP step 2: send the on-board EMG tension of experiment 07 to the Mac bridge over Wi-Fi UDP, one [protocol v1](../../../docs/protocol.md) message every 50 ms.
 
-**Status: written and built without warnings, never flashed. Untested on hardware.**
+**Status: partly tested on hardware** ([session 1](../../../docs/experiments/08_hardware_session_1.md), 2026-10-13): Wi-Fi streaming to the bridge, LED, button and the status line work, and no MAC address appears in the logs. Not yet tested: levels with a working AD8232 module, latency, the 5 min run. **Open defect:** the board can stay `wifi=up` while its datagrams stop reaching the Mac (seen twice, for minutes); only a disconnect event triggers a reconnect.
 
 Why a new project instead of extending 07: 07 stays the Wi-Fi-free reference for the DSP and the sampling (experiment 03 showed that Wi-Fi activity disturbs core 0), so the two can be compared. The DSP is not copied: `CMakeLists.txt` adds `../07_onboard_tension/components` to `EXTRA_COMPONENT_DIRS`, so 07, 08, the host test and the replayer all build the same `emg_dsp.c`.
 

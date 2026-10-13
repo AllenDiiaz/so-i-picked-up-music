@@ -4,7 +4,7 @@ An ESP32-S3 firmware and real-time system project: the board measures forearm EM
 
 ![Replay of measured frame timing for three conditions: no Wi-Fi, Wi-Fi with the sampler on core 0, Wi-Fi with the sampler on core 1](docs/figures/04_timing_replay.gif)
 
-Work in progress: the whole pipeline runs end to end on replayed recordings; the Wi-Fi firmware is built but not yet tested on the board. See [Roadmap / status](#roadmap--status).
+Work in progress: the whole pipeline runs end to end on replayed recordings, and the Wi-Fi firmware streams from the board; the level test on the guitar waits for a replacement AD8232 module ([session 1](docs/experiments/08_hardware_session_1.md)). See [Roadmap / status](#roadmap--status).
 
 ## Key results
 
@@ -42,7 +42,8 @@ Done (tested without hardware, on the experiment 06 recordings):
 
 Written, needs hardware ([checklist](docs/hardware_session_checklist.md)):
 
-- [ ] Flash and test 08: Wi-Fi streaming, reconnect, button, LED, no MAC address in the logs
+- [x] Flash 08: Wi-Fi streaming, button, LED, no MAC address in the logs ([session 1](docs/experiments/08_hardware_session_1.md))
+- [ ] 08: detect Wi-Fi stalls while associated (seen twice in session 1); replace the AD8232 module
 - [ ] Three levels on the guitar with real calibration; new recordings to fix the provisional thresholds
 - [ ] End-to-end latency < 300 ms (LED + phone slow motion)
 - [ ] 5 min continuous streaming, packet loss < 1 %
@@ -76,7 +77,7 @@ Early bring-up experiments, each a standalone ESP-IDF project under `firmware/ex
 | `04_isr_core_affinity` | Stage 1c: whether the core that owns the ADC DMA interrupt affects frame timing jitter. | [Data](docs/data/04_isr_core_affinity/) (notes in progress) |
 | `06_raw_emg_stream` | Stage 2: stream every 1 kHz ADC sample of the AD8232 output to the host for forearm EMG analysis. | [Experiment notes](docs/experiments/06_forearm_emg.md) |
 | `07_onboard_tension` | MVP step 1: compute EMG tension on the board (mains notches, 45-200 Hz band-pass, 200 ms RMS, relax calibration, three levels). No Wi-Fi. | [README](firmware/experiments/07_onboard_tension/README.md) |
-| `08_wifi_stream` | MVP step 2: the 07 DSP plus Wi-Fi UDP streaming (protocol v1), latency LED and calibration button. **Built, untested on hardware.** | [README](firmware/experiments/08_wifi_stream/README.md) |
+| `08_wifi_stream` | MVP step 2: the 07 DSP plus Wi-Fi UDP streaming (protocol v1), latency LED and calibration button. **Partly tested on hardware.** | [README](firmware/experiments/08_wifi_stream/README.md) |
 
 ## Regenerating figures
 

@@ -1,6 +1,6 @@
 # Hardware session checklist
 
-Everything that could be done without the board is done and tested with replayed data ([mvp.md](mvp.md)). This list is for the next session with the ESP32-S3, the AD8232 module and electrodes. Work top to bottom; each step says what to write down.
+Everything that could be done without the board is done and tested with replayed data ([mvp.md](mvp.md)). Session 1 (2026-10-13) got through steps 1-3 and stopped at a faulty AD8232 module: [notes](experiments/08_hardware_session_1.md). This list is for the next session with the ESP32-S3, the AD8232 module and electrodes. Work top to bottom; each step says what to write down.
 
 Before starting: `git pull`, `.venv` set up (`.venv/bin/pip install -r analysis/requirements.txt`), ESP-IDF v6.0.3 installed, phone with slow-motion video (240 fps if available), fresh electrode pads.
 
@@ -9,7 +9,7 @@ Before starting: `git pull`, `.venv` set up (`.venv/bin/pip install -r analysis/
 | GPIO | Connect | Notes |
 |---|---|---|
 | 4 | AD8232 OUTPUT | As in experiments 05-07 |
-| 6 | Push button to **GND** | No resistor needed: the internal pull-up is enabled; pressed = low. Two consecutive low 16 ms frames count as a press |
+| 6 | Push button to **GND** | No resistor needed: the internal pull-up is enabled; pressed = low. Two consecutive low 16 ms frames count as a press. Use two **diagonal** legs of a 4-leg button, and put each wire in the same breadboard row as its leg |
 | 5 | LED anode through a 220-470 Ω resistor, cathode to GND | Toggles at every level change; used for the latency measurement (step 6) |
 
 AD8232: 3.3v -> 3V3, GND -> GND; LO+, LO- and SDN not connected.
@@ -17,6 +17,7 @@ AD8232: 3.3v -> 3V3, GND -> GND; LO+, LO- and SDN not connected.
 - [ ] Button wired GPIO6 <-> GND
 - [ ] LED with resistor on GPIO5
 - [ ] Board on USB, port is `/dev/cu.usbmodem1101` (`ls /dev/cu.usb*`)
+- [ ] AD8232 check before the electrodes (after step 3): with the lead cable unplugged, the status line's `raw_mV avg` is around 1600 mV. If it sits near 0 V, stop here: see [session 1](experiments/08_hardware_session_1.md#4-ad8232-output-stuck-near-0-v-blocks-the-level-test) for how to isolate it
 
 ## 2. Electrodes
 
@@ -48,7 +49,7 @@ idf.py -p /dev/cu.usbmodem1101 flash monitor
 - [ ] Boot log: no "using the template" warning; `wifi=up` in the status line within a few seconds
 - [ ] **No MAC address or BSSID anywhere in the monitor output** (search for `:` groups like `aa:bb:...`). If one appears, do not paste the log anywhere; note which line printed it
 - [ ] Status line: `ovf=0`, `queue_drop=0`, `bad=0`, `dsp_us_frame_max` well below 16000
-- [ ] Press the button: `# button: calibration started`, then a `calibration attempt` line
+- [ ] Press the button: `# button: calibration started`, then a `calibration attempt` line. If nothing appears, watch `button_low_frames`: it must count up while the button is held
 - [ ] LED toggles when the level changes (squeeze the fist)
 
 Untested parts of 08 to watch: reconnect after turning the access point off and on (`reconnects=` should rise and `wifi=up` return), `send_fail=` staying at 0.
@@ -58,7 +59,7 @@ Untested parts of 08 to watch: reconnect after turning the access point off and 
 The board calibrates by itself 0.5 s after boot; a rejected attempt is retried every 2 s. The button starts a new attempt at any time.
 
 1. Wait the 30 s from step 2, guitar in hand, fingers resting on the strings, forearm relaxed.
-2. Press the button, stay still for 5 s.
+2. Press the button **with the right hand** (the left forearm is measured; pressing with it put 12.1 mV into the baseline instead of 7.9 mV in session 1), stay still for 5 s.
 3. Read the result: `# calibration attempt N: accepted ... baseline_mv=...` (or in the browser, the `cal` result).
 4. If rejected:
    - `saturated`: signal at the rails, usually a loose pad or the 30 s not over; press the pads, wait, retry;
@@ -66,6 +67,7 @@ The board calibrates by itself 0.5 s after boot; a rejected attempt is retried e
    - `unstable` (CV >= 0.5): movement during the 5 s; stay still and retry.
 
 - [ ] Write down: attempts until accepted, and `baseline_mv` (experiment 06: 4.5-8.1 mV relax)
+- [ ] Status line during relax: `raw_mV` with `at_low=0` and `at_high=0`; `avg` mid-range (experiment 06: about 1650 mV)
 
 ## 5. Switch from replay to the real board
 
@@ -80,7 +82,7 @@ Open http://localhost:8000/. Do **not** run `tools/replay_stream.py` or `scripts
 
 - [ ] Bridge prints the board's address as a new source, `dev` = `esp32s3-emg`; macOS may ask to allow incoming connections for Python: allow
 - [ ] Front end leaves "no data", shows "calibrating" and then levels
-- [ ] Bridge's 5 s stats line: `lost` near 0
+- [ ] Bridge's 5 s stats line: `lost` near 0. Known defect: the board can stay `wifi=up` while almost nothing arrives (session 1, twice for minutes); reset the board if it happens
 
 If nothing arrives: same Wi-Fi network for Mac and board? `BRIDGE_HOST` is the Mac's current address? macOS firewall? `nc -ul 9750` (with the bridge stopped) shows whether datagrams reach the Mac.
 

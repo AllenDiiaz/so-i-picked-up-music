@@ -18,7 +18,7 @@ The MVP is done when a guitarist wearing the electrodes sees their forearm tensi
 - 300 ms leaves about 100 ms for the board's frame collection, Wi-Fi, bridge, browser smoothing and display, which is several times their expected sum (tens of ms).
 - That roughly 300 ms is still felt as "right after" an action is a working assumption for this project, not a value taken from a study. If the hardware session shows the feedback feels late, the window length and smoothing are the knobs.
 
-## Current status (2026-10-13)
+## Current status (2026-10-13, after hardware session 1)
 
 | Part | Status | Evidence |
 |---|---|---|
@@ -26,11 +26,11 @@ The MVP is done when a guitarist wearing the electrodes sees their forearm tensi
 | Three levels on recordings | Partly met on recordings: A relax 91.2 %, medium 78.0 %, hard 100 %; B (guitar chords) relax 67.2 %, medium 30.2 % | Thresholds are provisional and in-sample; B misses criterion 1 |
 | Protocol v1 | Done | [protocol.md](protocol.md), `bridge/protocol.py` |
 | Replayer, bridge, front end (three designs) | Done, tested with replayed data | `tests/test_e2e_replay.py` passes for A and B: every message received, seq continuous, levels identical to the host test |
-| Wi-Fi firmware (08) | **Written and built, never flashed: untested** | `idf.py build` without warnings |
+| Wi-Fi firmware (08) | **Partly tested on the board** (session 1, 2026-10-13): Wi-Fi streaming, LED, button, no MAC in logs. Open defect: Wi-Fi stalls while `wifi=up` are not detected | [Session 1 notes](experiments/08_hardware_session_1.md) |
 | Session summary, letter prompt | Done (prompt printed only, no model call) | Run on a replay session log |
-| Criterion 1 on the board, on the guitar | Not done: needs hardware | |
+| Criterion 1 on the board, on the guitar | Not done: blocked by an AD8232 module whose output stays near 0 V (session 1) | Replace the module |
 | Criterion 2 (latency) | Algorithm part measured offline; device-to-screen part needs hardware | |
-| Criteria 3, 4 (5 min, loss) | Replay over localhost only: 0 lost. Wi-Fi needs hardware | |
+| Criteria 3, 4 (5 min, loss) | Replay: 0 lost. Wi-Fi on the board: long stretches with 0 lost, but two multi-minute stalls brought the evening's total to 7.7 % lost | Fix stall detection, then the 5 min run |
 | WebXR AR on Quest | Written, untested | |
 
 Known weakness: with the baseline taken before each recording, normalized values in B are inflated (baseline 5.82 mV vs 7.36 mV relax during the recording), so relax after a chord sits near the medium threshold. New recordings with the real calibration flow are needed before the thresholds can be fixed ([checklist](hardware_session_checklist.md#7-recordings-to-validate-the-thresholds)).
