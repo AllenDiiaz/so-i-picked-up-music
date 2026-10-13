@@ -76,6 +76,7 @@ static adc_cali_handle_t s_cali = NULL;
 
 // Counters (32-bit, written by one task, read by the status line).
 static volatile uint32_t s_samples, s_overflows, s_queue_drops, s_bad, s_presses;
+static volatile uint32_t s_button_low_frames;   // frames in which the button pin read low (wiring check)
 static volatile uint32_t s_dsp_us_max, s_dsp_us_sum, s_dsp_frames;
 static volatile uint32_t s_sent, s_send_fail, s_offline, s_reconnects;
 static volatile bool s_wifi_up = false;
@@ -149,6 +150,7 @@ static void sampler_task(void *arg)
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
         if (gpio_get_level(BUTTON_GPIO) == 0) {        // two low 16 ms frames = a press
+            s_button_low_frames++;
             if (++low_frames == 2 && armed) {
                 emg_dsp_start_calibration(&dsp);
                 armed = false;
@@ -335,10 +337,11 @@ static void status_task(void *arg)
         int len = snprintf(line, sizeof line,
                            "# samples=%" PRIu32 " ovf=%" PRIu32 " queue_drop=%" PRIu32 " bad=%" PRIu32
                            " wifi=%s rssi=%d sent=%" PRIu32 " send_fail=%" PRIu32 " offline=%" PRIu32
-                           " reconnects=%" PRIu32 " dsp_us_frame_avg=%.1f dsp_us_frame_max=%" PRIu32 "\n",
+                           " reconnects=%" PRIu32 " dsp_us_frame_avg=%.1f dsp_us_frame_max=%" PRIu32
+                           " button=%d button_low_frames=%" PRIu32 "\n",
                            s_samples, s_overflows, s_queue_drops, s_bad, s_wifi_up ? "up" : "down", rssi,
                            s_sent, s_send_fail, s_offline, s_reconnects, frames ? (float)sum / frames : 0.0f,
-                           s_dsp_us_max);
+                           s_dsp_us_max, gpio_get_level(BUTTON_GPIO), s_button_low_frames);
         if (s_presses != last_presses) {
             last_presses = s_presses;
             len += snprintf(line + len, sizeof line - len, "# button: calibration started\n");

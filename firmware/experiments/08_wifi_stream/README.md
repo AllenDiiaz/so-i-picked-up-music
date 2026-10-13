@@ -40,10 +40,10 @@ Without `wifi_config.h` the build uses the template and logs a warning at boot.
 ## USB status line (once per second)
 
 ```
-# samples= ovf= queue_drop= bad= wifi=up|down rssi= sent= send_fail= offline= reconnects= dsp_us_frame_avg= dsp_us_frame_max=
+# samples= ovf= queue_drop= bad= wifi=up|down rssi= sent= send_fail= offline= reconnects= dsp_us_frame_avg= dsp_us_frame_max= button= button_low_frames=
 ```
 
-plus `calibration attempt N: ...` lines. No MAC address is printed: the Wi-Fi driver's INFO logs (station MAC, AP BSSID) are set to warnings only before `esp_wifi_init()`, and the device identifies itself with `DEVICE_NAME` and a random `boot` number.
+plus `calibration attempt N: ...` and `# button: calibration started` lines. `button` is the GPIO6 level right now (1 = released, 0 = pressed) and `button_low_frames` counts the 16 ms frames in which it read low since boot: if it stays 0 while the button is pressed, the button is not wired to GPIO6 (check that both wires share a breadboard row with a button leg, on diagonal legs). No MAC address is printed: the Wi-Fi driver's INFO logs (station MAC, AP BSSID) are set to warnings only before `esp_wifi_init()`, and the device identifies itself with `DEVICE_NAME` and a random `boot` number.
 
 ## Pins
 
