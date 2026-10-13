@@ -36,7 +36,10 @@
 #include "soc/soc_caps.h"
 #include "emg_dsp.h"
 
-#if __has_include("wifi_config.h")
+// HAVE_WIFI_CONFIG is set by main/CMakeLists.txt, which re-checks for the file at every build.
+// (__has_include alone missed a wifi_config.h created after the first build: nothing triggered
+// a recompile, so the board ran with the placeholder.)
+#if HAVE_WIFI_CONFIG
 #include "wifi_config.h"
 #else
 #include "wifi_config.h.example"
