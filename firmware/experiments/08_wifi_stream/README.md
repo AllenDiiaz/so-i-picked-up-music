@@ -43,7 +43,13 @@ Without `wifi_config.h` the build uses the template and logs a warning at boot.
 # samples= ovf= queue_drop= bad= wifi=up|down rssi= sent= send_fail= offline= reconnects= dsp_us_frame_avg= dsp_us_frame_max= button= button_low_frames=
 ```
 
-plus `calibration attempt N: ...` and `# button: calibration started` lines. `button` is the GPIO6 level right now (1 = released, 0 = pressed) and `button_low_frames` counts the 16 ms frames in which it read low since boot: if it stays 0 while the button is pressed, the button is not wired to GPIO6 (check that both wires share a breadboard row with a button leg, on diagonal legs). No MAC address is printed: the Wi-Fi driver's INFO logs (station MAC, AP BSSID) are set to warnings only before `esp_wifi_init()`, and the device identifies itself with `DEVICE_NAME` and a random `boot` number.
+then, once per second of samples:
+
+```
+# raw_mV min= avg= max= at_low= at_high= (of 1000; rails <= 5 / >= 3100 mV)
+```
+
+the raw AD8232 output over the last 1000 samples, to check wiring and electrodes. Reference from experiments 05 and 06: about 1.6 V with no lead cable plugged in; 30-50 mV mean (max under 100 mV) with the cable plugged in but no proper electrode contact; mid-range (about 1.3 V) with three electrodes on the skin. Also printed: `calibration attempt N: ...` and `# button: calibration started` lines. `button` is the GPIO6 level right now (1 = released, 0 = pressed) and `button_low_frames` counts the 16 ms frames in which it read low since boot: if it stays 0 while the button is pressed, the button is not wired to GPIO6 (check that both wires share a breadboard row with a button leg, on diagonal legs). No MAC address is printed: the Wi-Fi driver's INFO logs (station MAC, AP BSSID) are set to warnings only before `esp_wifi_init()`, and the device identifies itself with `DEVICE_NAME` and a random `boot` number.
 
 ## Pins
 

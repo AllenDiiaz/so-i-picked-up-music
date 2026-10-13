@@ -77,6 +77,9 @@ static adc_cali_handle_t s_cali = NULL;
 // Counters (32-bit, written by one task, read by the status line).
 static volatile uint32_t s_samples, s_overflows, s_queue_drops, s_bad, s_presses;
 static volatile uint32_t s_button_low_frames;   // frames in which the button pin read low (wiring check)
+// Raw input over the last 1000 samples (wiring and electrode check), published by the sampler.
+static volatile int32_t s_raw_min_mv, s_raw_max_mv, s_raw_avg_mv;
+static volatile uint32_t s_raw_low, s_raw_high, s_raw_windows;
 static volatile uint32_t s_dsp_us_max, s_dsp_us_sum, s_dsp_frames;
 static volatile uint32_t s_sent, s_send_fail, s_offline, s_reconnects;
 static volatile bool s_wifi_up = false;
@@ -144,6 +147,9 @@ static void sampler_task(void *arg)
     bool armed = true;
     int8_t last_level = -1;
     uint8_t led = 0;
+    int raw_min = INT32_MAX, raw_max = INT32_MIN, raw_n = 0;
+    int64_t raw_sum = 0;
+    uint32_t raw_low = 0, raw_high = 0;
 
     ESP_ERROR_CHECK(adc_continuous_start(handle));
     while (true) {
@@ -172,6 +178,24 @@ static void sampler_task(void *arg)
                 }
                 int mv = 0;
                 adc_cali_raw_to_voltage(s_cali, p->type2.data, &mv);
+                raw_min = mv < raw_min ? mv : raw_min;
+                raw_max = mv > raw_max ? mv : raw_max;
+                raw_sum += mv;
+                raw_low += mv <= (int)EMG_SAT_LOW_MV;
+                raw_high += mv >= (int)EMG_SAT_HIGH_MV;
+                if (++raw_n == SAMPLE_HZ) {             // publish once per second of samples
+                    s_raw_min_mv = raw_min;
+                    s_raw_max_mv = raw_max;
+                    s_raw_avg_mv = (int32_t)(raw_sum / raw_n);
+                    s_raw_low = raw_low;
+                    s_raw_high = raw_high;
+                    s_raw_windows++;
+                    raw_min = INT32_MAX;
+                    raw_max = INT32_MIN;
+                    raw_sum = 0;
+                    raw_n = 0;
+                    raw_low = raw_high = 0;
+                }
                 hop_t hop;
                 if (emg_dsp_process(&dsp, (float)mv, &hop.out)) {
                     if (hop.out.level != last_level) {
@@ -322,7 +346,7 @@ static void net_task(void *arg)
 // Once per second over USB: transport and sampling statistics (no MAC, no credentials).
 static void status_task(void *arg)
 {
-    static char line[256];
+    static char line[384];
     uint32_t last_presses = 0;
     while (true) {
         vTaskDelay(pdMS_TO_TICKS(1000));
@@ -342,6 +366,13 @@ static void status_task(void *arg)
                            s_samples, s_overflows, s_queue_drops, s_bad, s_wifi_up ? "up" : "down", rssi,
                            s_sent, s_send_fail, s_offline, s_reconnects, frames ? (float)sum / frames : 0.0f,
                            s_dsp_us_max, gpio_get_level(BUTTON_GPIO), s_button_low_frames);
+        if (s_raw_windows) {
+            len += snprintf(line + len, sizeof line - len,
+                            "# raw_mV min=%" PRId32 " avg=%" PRId32 " max=%" PRId32 " at_low=%" PRIu32
+                            " at_high=%" PRIu32 " (of 1000; rails <= %d / >= %d mV)\n",
+                            s_raw_min_mv, s_raw_avg_mv, s_raw_max_mv, s_raw_low, s_raw_high,
+                            (int)EMG_SAT_LOW_MV, (int)EMG_SAT_HIGH_MV);
+        }
         if (s_presses != last_presses) {
             last_presses = s_presses;
             len += snprintf(line + len, sizeof line - len, "# button: calibration started\n");
