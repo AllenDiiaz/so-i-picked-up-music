@@ -21,7 +21,7 @@ Serial output (USB-Serial-JTAG), every 50 ms:
 <sample index>,<rms mV>,<normalized>,<level>,<saturated>
 ```
 
-and once per second a `# samples= ovf= dropped= bad= dsp_us_frame_avg= dsp_us_frame_max=` line; each calibration attempt is reported as `# calibration attempt N: accepted | rejected: <reason> (valid %, cv, rms); baseline_mv=...`.
+and once per second a `# samples= ovf= dropped= bad= dsp_us_frame_avg= dsp_us_frame_max=` line and a `# raw_mV min= avg= max= at_low= at_high=` line (raw input range over the last 1000 samples, as in 08, to check wiring and electrodes); each calibration attempt is reported as `# calibration attempt N: accepted | rejected: <reason> (valid %, cv, rms); baseline_mv=...`.
 
 ## Host test and validation
 

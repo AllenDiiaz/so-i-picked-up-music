@@ -57,6 +57,9 @@ static volatile uint32_t s_dsp_us_max = 0;   // per 16-sample frame, since boot
 static volatile uint32_t s_dsp_us_sum = 0;   // since the last statistics line
 static volatile uint32_t s_dsp_frames = 0;
 static volatile uint32_t s_presses = 0;
+// Raw input over the last 1000 samples (wiring and electrode check, as in 08), published by the sampler.
+static volatile int32_t s_raw_min_mv, s_raw_max_mv, s_raw_avg_mv;
+static volatile uint32_t s_raw_low, s_raw_high, s_raw_windows;
 
 static bool IRAM_ATTR on_conv_done(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata,
                                    void *user_data)
@@ -114,6 +117,9 @@ static void sampler_task(void *arg)
     uint32_t index = 0;
     int low_frames = 0;
     bool armed = true;       // button must be released before it can trigger again
+    int raw_min = INT32_MAX, raw_max = INT32_MIN, raw_n = 0;
+    int64_t raw_sum = 0;
+    uint32_t raw_low = 0, raw_high = 0;
 
     ESP_ERROR_CHECK(adc_continuous_start(handle));
 
@@ -143,6 +149,24 @@ static void sampler_task(void *arg)
                 }
                 int mv = 0;
                 adc_cali_raw_to_voltage(s_cali, p->type2.data, &mv);
+                raw_min = mv < raw_min ? mv : raw_min;
+                raw_max = mv > raw_max ? mv : raw_max;
+                raw_sum += mv;
+                raw_low += mv <= (int)EMG_SAT_LOW_MV;
+                raw_high += mv >= (int)EMG_SAT_HIGH_MV;
+                if (++raw_n == SAMPLE_HZ) {             // publish once per second of samples
+                    s_raw_min_mv = raw_min;
+                    s_raw_max_mv = raw_max;
+                    s_raw_avg_mv = (int32_t)(raw_sum / raw_n);
+                    s_raw_low = raw_low;
+                    s_raw_high = raw_high;
+                    s_raw_windows++;
+                    raw_min = INT32_MAX;
+                    raw_max = INT32_MIN;
+                    raw_sum = 0;
+                    raw_n = 0;
+                    raw_low = raw_high = 0;
+                }
                 hop_t hop;
                 if (emg_dsp_process(&dsp, (float)mv, &hop.out)) {
                     hop.report = dsp.report;
@@ -165,7 +189,7 @@ static void sampler_task(void *arg)
 
 static void output_task(void *arg)
 {
-    static char text[320];
+    static char text[448];
     hop_t hop;
     uint32_t hops = 0, last_presses = 0;
 
@@ -194,6 +218,13 @@ static void output_task(void *arg)
                             " dsp_us_frame_avg=%.1f dsp_us_frame_max=%" PRIu32 "\n",
                             s_samples, s_overflows, s_dropped, s_bad, frames ? (float)sum / frames : 0.0f,
                             s_dsp_us_max);
+            if (s_raw_windows) {
+                len += snprintf(text + len, sizeof text - len,
+                                "# raw_mV min=%" PRId32 " avg=%" PRId32 " max=%" PRId32 " at_low=%" PRIu32
+                                " at_high=%" PRIu32 " (of 1000; rails <= %d / >= %d mV)\n",
+                                s_raw_min_mv, s_raw_avg_mv, s_raw_max_mv, s_raw_low, s_raw_high,
+                                (int)EMG_SAT_LOW_MV, (int)EMG_SAT_HIGH_MV);
+            }
         }
         usb_serial_jtag_write_bytes(text, len, portMAX_DELAY);
     }

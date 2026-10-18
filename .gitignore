@@ -19,8 +19,9 @@ compile_commands.json
 .DS_Store
 *.log
 
-# Python virtual environment for analysis/
+# Python virtual environment for analysis/ and bytecode caches
 .venv/
+__pycache__/
 
 # Bridge session logs (bridge/bridge.py): personal data, kept local
 sessions/
