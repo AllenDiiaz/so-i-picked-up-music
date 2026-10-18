@@ -1,0 +1,260 @@
+17:39:08.307 # samples=15152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:08.308 # raw_mV min=1202 avg=1616 max=2014 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:09.316 # samples=16160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:09.317 # raw_mV min=1198 avg=1589 max=1982 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:10.307 # samples=17152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:10.308 # raw_mV min=1206 avg=1650 max=2076 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:11.317 # samples=18160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:11.318 # raw_mV min=1188 avg=1627 max=2043 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:12.307 # samples=19152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:12.307 # raw_mV min=1199 avg=1638 max=2065 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:13.315 # samples=20160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:13.316 # raw_mV min=901 avg=1617 max=2130 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:14.306 # samples=21152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:14.307 # raw_mV min=1239 avg=1683 max=2121 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:15.315 # samples=22160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:15.316 # raw_mV min=1223 avg=1617 max=2014 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:16.308 # samples=23152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:16.308 # raw_mV min=1213 avg=1588 max=1975 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:17.315 # samples=24160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:17.316 # raw_mV min=1185 avg=1607 max=1997 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:18.308 # samples=25152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:18.308 # raw_mV min=1226 avg=1658 max=2058 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:19.314 # samples=26160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:19.315 # raw_mV min=1260 avg=1683 max=2113 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:20.307 # samples=27152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:20.308 # raw_mV min=1162 avg=1593 max=2010 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:21.315 # samples=28160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:21.315 # raw_mV min=1241 avg=1626 max=2015 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:22.307 # samples=29152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:22.308 # raw_mV min=1245 avg=1659 max=2041 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:23.315 # samples=30160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:23.316 # raw_mV min=1170 avg=1622 max=2068 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:24.307 # samples=31152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:24.308 # raw_mV min=1194 avg=1592 max=2028 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:25.315 # samples=32160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:25.316 # raw_mV min=1262 avg=1638 max=2047 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:26.307 # samples=33152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:26.308 # raw_mV min=1228 avg=1647 max=2053 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:27.316 # samples=34160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:27.317 # raw_mV min=1300 avg=1664 max=2041 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:28.307 # samples=35152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.2 dsp_us_frame_max=236
+17:39:28.307 # raw_mV min=813 avg=1503 max=2026 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:29.315 # samples=36160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.9 dsp_us_frame_max=236
+17:39:29.316 # raw_mV min=1133 avg=1723 max=2218 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:30.306 # samples=37152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:30.307 # raw_mV min=1250 avg=1661 max=2037 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:31.317 # samples=38160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:31.317 # raw_mV min=1262 avg=1643 max=2003 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:32.307 # samples=39152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:32.308 # raw_mV min=1249 avg=1659 max=2028 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:33.314 # samples=40160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:33.314 # raw_mV min=1160 avg=1604 max=2019 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:34.306 # samples=41152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:34.307 # raw_mV min=1175 avg=1591 max=2003 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:35.316 # samples=42160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:35.317 # raw_mV min=1265 avg=1646 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:36.307 # samples=43152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:36.308 # raw_mV min=1076 avg=1604 max=2080 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:37.315 # samples=44160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:37.315 # raw_mV min=1163 avg=1645 max=2089 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:38.307 # samples=45152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:38.307 # raw_mV min=1170 avg=1586 max=2026 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:39.316 # samples=46160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:39.316 # raw_mV min=1251 avg=1665 max=2078 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:40.307 # samples=47152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:40.308 # raw_mV min=1276 avg=1638 max=2004 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:41.315 # samples=48160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:39:41.316 # raw_mV min=1213 avg=1659 max=2045 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:42.306 # samples=49152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:42.306 # raw_mV min=1196 avg=1604 max=2016 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:43.316 # samples=50160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:43.317 # raw_mV min=1276 avg=1666 max=2026 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:44.306 # samples=51152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:44.307 # raw_mV min=1303 avg=1686 max=2071 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:45.317 # samples=52160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:45.318 # raw_mV min=1237 avg=1646 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:46.307 # samples=53152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:46.307 # raw_mV min=1224 avg=1615 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:47.315 # samples=54160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.3 dsp_us_frame_max=236
+17:39:47.316 # raw_mV min=462 avg=1323 max=1959 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:48.306 # samples=55152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:48.306 # raw_mV min=1162 avg=1784 max=2180 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:49.316 # samples=56160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:49.317 # raw_mV min=1234 avg=1645 max=2119 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:50.305 # samples=57152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:50.306 # raw_mV min=1295 avg=1684 max=2106 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:51.313 # samples=58160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:51.314 # raw_mV min=1202 avg=1583 max=1966 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:52.306 # samples=59152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:52.307 # raw_mV min=1195 avg=1608 max=1989 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:53.315 # samples=60160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:53.316 # raw_mV min=1182 avg=1661 max=2139 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:54.304 # samples=61152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:54.304 # raw_mV min=1309 avg=1716 max=2111 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:55.312 # samples=62160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:39:55.313 # raw_mV min=1194 avg=1579 max=1983 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:56.305 # samples=63152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:39:56.305 # raw_mV min=1079 avg=1628 max=2159 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:57.314 # samples=64160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:39:57.315 # raw_mV min=1289 avg=1684 max=2108 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:58.304 # samples=65152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:39:58.305 # raw_mV min=1125 avg=1618 max=2012 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:39:59.312 # samples=66160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.9 dsp_us_frame_max=236
+17:39:59.313 # raw_mV min=1134 avg=1688 max=2108 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:00.305 # samples=67152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:40:00.306 # raw_mV min=1231 avg=1622 max=2052 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:01.312 # samples=68160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:01.312 # raw_mV min=1258 avg=1616 max=1985 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:02.303 # samples=69152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:02.304 # raw_mV min=1283 avg=1695 max=2093 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:03.313 # samples=70160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:03.313 # raw_mV min=1206 avg=1620 max=2010 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:04.304 # samples=71152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:04.304 # raw_mV min=1303 avg=1687 max=2071 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:05.312 # samples=72160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:05.312 # raw_mV min=1265 avg=1643 max=2032 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:06.303 # samples=73152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:06.304 # raw_mV min=1194 avg=1630 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:07.311 # samples=74160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:40:07.312 # raw_mV min=1286 avg=1661 max=2071 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:08.303 # samples=75152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:08.304 # raw_mV min=1260 avg=1694 max=2068 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:09.311 # samples=76160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:09.312 # raw_mV min=1245 avg=1615 max=1978 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:10.304 # samples=77152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:10.305 # raw_mV min=1223 avg=1614 max=1985 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:11.314 # samples=78160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:11.315 # raw_mV min=1236 avg=1642 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:12.305 # samples=79152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:12.305 # raw_mV min=1228 avg=1642 max=2055 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:13.314 # samples=80160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:13.315 # raw_mV min=1260 avg=1647 max=2039 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:14.304 # samples=81152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:14.305 # raw_mV min=1265 avg=1636 max=2005 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:15.313 # samples=82160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:15.314 # raw_mV min=1309 avg=1674 max=2052 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:16.306 # samples=83152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:16.306 # raw_mV min=1065 avg=1575 max=2091 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:17.315 # samples=84160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.9 dsp_us_frame_max=236
+17:40:17.316 # raw_mV min=1312 avg=1723 max=2104 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:18.305 # samples=85152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:40:18.306 # raw_mV min=1233 avg=1621 max=2003 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:19.311 # samples=86160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:19.311 # raw_mV min=1236 avg=1629 max=2002 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:20.306 # samples=87152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:20.307 # raw_mV min=1249 avg=1665 max=2039 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:21.312 # samples=88160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=153.0 dsp_us_frame_max=236
+17:40:21.313 # raw_mV min=1258 avg=1694 max=2142 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:22.305 # samples=89152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=153.2 dsp_us_frame_max=236
+17:40:22.305 # raw_mV min=1194 avg=1633 max=2082 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:23.313 # samples=90160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:23.314 # raw_mV min=1209 avg=1619 max=2023 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:24.303 # samples=91152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:24.303 # raw_mV min=1233 avg=1639 max=2012 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:25.311 # samples=92160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.9 dsp_us_frame_max=236
+17:40:25.312 # raw_mV min=1289 avg=1694 max=2113 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:26.306 # samples=93152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:26.306 # raw_mV min=1287 avg=1638 max=1989 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:27.312 # samples=94160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:27.313 # raw_mV min=1278 avg=1663 max=2020 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:28.304 # samples=95152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:28.305 # raw_mV min=1234 avg=1638 max=2014 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:29.313 # samples=96160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:29.313 # raw_mV min=1246 avg=1649 max=2043 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:30.304 # samples=97152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:30.305 # raw_mV min=1287 avg=1648 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:31.313 # samples=98160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:31.314 # raw_mV min=1259 avg=1636 max=2012 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:32.305 # samples=99152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:32.306 # raw_mV min=1237 avg=1639 max=2026 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:33.314 # samples=100160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:33.315 # raw_mV min=1209 avg=1640 max=2032 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:34.303 # samples=101152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:40:34.303 # raw_mV min=1241 avg=1628 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:35.313 # samples=102160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:35.314 # raw_mV min=1239 avg=1645 max=2068 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:36.304 # samples=103152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:36.305 # raw_mV min=1099 avg=1640 max=2137 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:37.313 # samples=104160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:37.314 # raw_mV min=1041 avg=1616 max=2135 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:38.305 # samples=105152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:40:38.306 # raw_mV min=1224 avg=1651 max=2093 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:39.310 # samples=106160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=153.0 dsp_us_frame_max=236
+17:40:39.311 # raw_mV min=1254 avg=1693 max=2096 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:40.304 # samples=107152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:40:40.305 # raw_mV min=1163 avg=1672 max=2129 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:41.314 # samples=108160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.9 dsp_us_frame_max=236
+17:40:41.315 # raw_mV min=1303 avg=1674 max=2041 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:42.304 # samples=109152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:42.305 # raw_mV min=1328 avg=1674 max=2020 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:43.313 # samples=110160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:43.314 # raw_mV min=1276 avg=1640 max=1994 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:44.304 # samples=111152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:44.304 # raw_mV min=1276 avg=1682 max=2083 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:45.312 # samples=112160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:45.312 # raw_mV min=1234 avg=1619 max=1993 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:46.304 # samples=113152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:40:46.304 # raw_mV min=1260 avg=1635 max=2012 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:47.313 # samples=114160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:47.314 # raw_mV min=1283 avg=1636 max=2003 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:48.304 # samples=115152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:48.305 # raw_mV min=1312 avg=1677 max=2039 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:49.310 # samples=116160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:49.310 # raw_mV min=1294 avg=1672 max=2030 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:50.304 # samples=117152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:50.304 # raw_mV min=1248 avg=1642 max=2019 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:51.313 # samples=118160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:40:51.314 # raw_mV min=1209 avg=1622 max=2066 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:52.304 # samples=119152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:52.304 # raw_mV min=1289 avg=1676 max=2082 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:53.313 # samples=120160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:53.314 # raw_mV min=1245 avg=1649 max=2010 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:54.302 # samples=121152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:54.302 # raw_mV min=1254 avg=1652 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:55.310 # samples=122160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:55.311 # raw_mV min=1261 avg=1638 max=2002 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:56.303 # samples=123152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:56.304 # raw_mV min=1309 avg=1680 max=2052 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:57.311 # samples=124160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:40:57.312 # raw_mV min=1303 avg=1658 max=2016 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:58.303 # samples=125152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:58.304 # raw_mV min=1284 avg=1663 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:40:59.313 # samples=126160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:40:59.314 # raw_mV min=1254 avg=1625 max=1987 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:00.304 # samples=127152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:41:00.304 # raw_mV min=1251 avg=1619 max=1985 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:01.312 # samples=128160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:41:01.313 # raw_mV min=1330 avg=1679 max=2028 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:02.303 # samples=129152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:02.304 # raw_mV min=1286 avg=1658 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:03.312 # samples=130160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:03.312 # raw_mV min=1290 avg=1636 max=1983 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:04.302 # samples=131152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:04.302 # raw_mV min=1336 avg=1679 max=2032 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:05.312 # samples=132160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.7 dsp_us_frame_max=236
+17:41:05.313 # raw_mV min=1253 avg=1655 max=2091 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:06.303 # samples=133152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:41:06.304 # raw_mV min=1034 avg=1604 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:07.313 # samples=134160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:07.314 # raw_mV min=1189 avg=1638 max=2080 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:08.303 # samples=135152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:41:08.304 # raw_mV min=1175 avg=1649 max=2165 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:09.309 # samples=136160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:41:09.310 # raw_mV min=1215 avg=1648 max=2171 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:10.303 # samples=137152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=153.0 dsp_us_frame_max=236
+17:41:10.304 # raw_mV min=1201 avg=1647 max=2087 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:11.313 # samples=138160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.8 dsp_us_frame_max=236
+17:41:11.313 # raw_mV min=1353 avg=1719 max=2095 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:12.303 # samples=139152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:12.304 # raw_mV min=1303 avg=1662 max=2049 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:13.312 # samples=140160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:13.313 # raw_mV min=1292 avg=1643 max=2012 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:14.303 # samples=141152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.4 dsp_us_frame_max=236
+17:41:14.303 # raw_mV min=1292 avg=1650 max=2017 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:15.311 # samples=142160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:15.312 # raw_mV min=1245 avg=1622 max=2010 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:16.303 # samples=143152 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.5 dsp_us_frame_max=236
+17:41:16.304 # raw_mV min=1268 avg=1649 max=2028 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:41:17.313 # samples=144160 ovf=0 dropped=0 bad=0 dsp_us_frame_avg=152.6 dsp_us_frame_max=236
+17:41:17.314 # raw_mV min=1310 avg=1667 max=2052 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)

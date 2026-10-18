@@ -1,0 +1,928 @@
+17:22:42.033 ## port open
+17:22:42.034 2 ovf=0 queue_drop=0 bad=0 wifi=down rssi=0 sent=0 send_fail=0 offline=58 reconnects=0 dsp_us_frame_avg=169.7 dsp_us_frame_max=915 button=1 button_low_frames=0
+17:22:42.034 # raw_mV min=665 avg=1578 max=2061 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:42.034 I (3947) esp_netif_handlers: sta ip: [LAN IP], mask: 255.255.255.0, gw: [LAN IP]
+17:22:42.035 # samples=4080 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=8 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=184.1 dsp_us_frame_max=915 button=1 button_low_frames=0
+17:22:42.035 # raw_mV min=614 avg=1550 max=2057 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:42.036 # samples=5072 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=28 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=915 button=1 button_low_frames=0
+17:22:42.036 # raw_mV min=310 avg=1665 max=2178 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:42.036 I (5767) wifi_stream: calibration attempt 1: rejected: baseline too high (valid 98.6%, cv 0.882, rms 17.612 mV)
+17:22:42.037 ESP-ROM:esp32s3-20210327
+17:22:42.037 Build:Mar 27 2021
+17:22:42.037 rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+17:22:42.037 Saved PC:0x4037b73e
+17:22:42.037 SPIWP:0xee
+17:22:42.037 mode:DIO, clock div:1
+17:22:42.039 load:0x3fce2820,len:0x158c
+17:22:42.042 load:0x403c8700,len:0xd68
+17:22:42.044 load:0x403cb700,len:0x2f9c
+17:22:42.052 entry 0x403c8904
+17:22:42.057 I (24) boot: ESP-IDF v6.0.3 2nd stage bootloader
+17:22:42.057 I (24) boot: compile time Oct 12 2026 23:48:52
+17:22:42.057 I (25) boot: Multicore bootloader
+17:22:42.058 I (25) boot: chip revision: v0.2
+17:22:42.058 I (25) boot: efuse block revision: v1.3
+17:22:42.058 I (25) boot.esp32s3: Boot SPI Speed : 80MHz
+17:22:42.058 I (25) boot.esp32s3: SPI Mode       : DIO
+17:22:42.058 I (26) boot.esp32s3: SPI Flash Size : 2MB
+17:22:42.059 I (26) boot: Enabling RNG early entropy source...
+17:22:42.059 I (26) boot: Partition Table:
+17:22:42.059 I (26) boot: ## Label            Usage          Type ST Offset   Length
+17:22:42.059 I (26) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+17:22:42.060 I (27) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+17:22:42.060 I (27) boot:  2 factory          factory app      00 00 00010000 00100000
+17:22:42.060 I (28) boot: End of partition table
+17:22:42.061 I (28) esp_image: segment 0: paddr=00010020 vaddr=3c090020 size=1d248h (119368) map
+17:22:42.083 I (50) esp_image: segment 1: paddr=0002d270 vaddr=3fc98800 size=02da8h ( 11688) load
+17:22:42.086 I (53) esp_image: segment 2: paddr=00030020 vaddr=42000020 size=8cce0h (576736) map
+17:22:42.190 I (156) esp_image: segment 3: paddr=000bcd08 vaddr=3fc9b5a8 size=02234h (  8756) load
+17:22:42.192 I (159) esp_image: segment 4: paddr=000bef44 vaddr=40374000 size=14774h ( 83828) load
+17:22:42.211 I (178) esp_image: segment 5: paddr=000d36c0 vaddr=50000000 size=00024h (    36) load
+17:22:42.220 I (187) boot: Loaded app from partition at offset 0x10000
+17:22:42.220 I (187) boot: Disabling RNG early entropy source...
+17:22:42.221 I (188) cpu_start: Multicore app
+17:22:42.231 I (198) cpu_start: Pro cpu start user code
+17:22:42.231 I (198) cpu_start: cpu freq: 160000000 Hz
+17:22:42.231 I (198) app_init: Application information:
+17:22:42.231 I (198) app_init: Project name:     wifi_stream
+17:22:42.232 I (198) app_init: App version:      712c393-dirty
+17:22:42.232 I (198) app_init: Compile time:     Oct 18 2026 17:22:13
+17:22:42.232 I (198) app_init: ELF file SHA256:  6209cf834...
+17:22:42.233 I (199) app_init: ESP-IDF:          v6.0.3
+17:22:42.233 I (199) efuse_init: Min chip rev:     v0.0
+17:22:42.233 I (199) efuse_init: Max chip rev:     v0.99
+17:22:42.233 I (199) efuse_init: Chip rev:         v0.2
+17:22:42.234 I (199) heap_init: Initializing. RAM available for dynamic allocation:
+17:22:42.234 I (200) heap_init: At 3FCA20A0 len 00047670 (285 KiB): RAM
+17:22:42.234 I (200) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+17:22:42.235 I (200) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+17:22:42.235 I (200) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+17:22:42.235 I (201) spi_flash: detected chip: generic
+17:22:42.235 I (201) spi_flash: flash io: dio
+17:22:42.236 W (202) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+17:22:42.237 I (203) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+17:22:42.237 I (204) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+17:22:42.238 I (204) main_task: Started on CPU0
+17:22:42.238 I (204) main_task: Calling app_main()
+17:22:42.242 I (204) wifi_stream: GPIO4 -> ADC1 ch3 at 1000 Hz; LED GPIO5, button GPIO6; sending to [LAN IP]:9750 as "esp32s3-emg"
+17:22:42.264 I (234) pp: pp rom version: e7ae62f
+17:22:42.266 I (234) net80211: net80211 rom version: e7ae62f
+17:22:42.289 W (254) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2
+17:22:42.291 I (254) phy_init: phy_version 712,87e8c20e,Apr 13 2026,18:51:10
+17:22:42.352 I (314) main_task: Returned from app_main()
+17:22:43.345 # samples=1088 ovf=0 queue_drop=0 bad=0 wifi=down rssi=0 sent=0 send_fail=0 offline=18 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:43.346 # raw_mV min=0 avg=1978 max=3108 at_low=116 at_high=56 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:44.343 # samples=2096 ovf=0 queue_drop=0 bad=0 wifi=down rssi=0 sent=0 send_fail=0 offline=38 reconnects=0 dsp_us_frame_avg=165.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:44.344 # raw_mV min=329 avg=1416 max=2024 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:45.345 # samples=3088 ovf=0 queue_drop=0 bad=0 wifi=down rssi=0 sent=0 send_fail=0 offline=58 reconnects=0 dsp_us_frame_avg=171.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:45.346 # raw_mV min=710 avg=1662 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:45.914 I (3884) esp_netif_handlers: sta ip: [LAN IP], mask: 255.255.255.0, gw: [LAN IP]
+17:22:46.345 # samples=4096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=8 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=185.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:46.346 # raw_mV min=691 avg=1559 max=2043 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:47.344 # samples=5088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=28 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:47.345 # raw_mV min=1145 avg=1669 max=2137 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:47.751 I (5714) wifi_stream: calibration attempt 1: rejected: baseline too high (valid 100.0%, cv 0.817, rms 15.419 mV)
+17:22:48.345 # samples=6096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=48 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:48.346 # raw_mV min=431 avg=1605 max=2238 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:49.344 # samples=7088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=68 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:49.344 # raw_mV min=976 avg=1623 max=2176 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:50.344 # samples=8096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=88 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:50.344 # raw_mV min=259 avg=1601 max=2155 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:51.345 # samples=9088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:51.346 # raw_mV min=862 avg=1622 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:52.345 # samples=10096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:52.346 # raw_mV min=0 avg=1610 max=2168 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:53.344 # samples=11088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:53.345 # raw_mV min=837 avg=1637 max=2139 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:54.345 # samples=12096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:54.346 # raw_mV min=240 avg=1587 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:54.759 I (12724) wifi_stream: calibration attempt 2: rejected: baseline too high (valid 100.0%, cv 0.695, rms 19.961 mV)
+17:22:55.345 # samples=13088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:55.346 # raw_mV min=853 avg=1633 max=2121 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:56.345 # samples=14096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:56.346 # raw_mV min=297 avg=1596 max=2115 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:57.345 # samples=15088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:57.346 # raw_mV min=507 avg=1628 max=2130 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:58.345 # samples=16096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:58.346 # raw_mV min=0 avg=1561 max=2050 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:22:59.344 # samples=17088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:22:59.344 # raw_mV min=1160 avg=1665 max=2145 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:00.345 # samples=18096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:00.346 # raw_mV min=0 avg=1520 max=2035 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:01.344 # samples=19088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:01.345 # raw_mV min=0 avg=1669 max=2240 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:01.751 I (19714) wifi_stream: calibration attempt 3: rejected: baseline too high (valid 99.7%, cv 0.780, rms 20.441 mV)
+17:23:02.344 # samples=20096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:02.344 # raw_mV min=951 avg=1677 max=2242 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:03.345 # samples=21088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:03.346 # raw_mV min=96 avg=1559 max=2190 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:04.345 # samples=22096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:04.346 # raw_mV min=557 avg=1622 max=2242 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:05.343 # samples=23088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:05.344 # raw_mV min=0 avg=1629 max=2119 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:06.345 # samples=24096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:06.346 # raw_mV min=619 avg=1605 max=2087 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:07.345 # samples=25088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:07.346 # raw_mV min=0 avg=1609 max=2115 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:08.344 # samples=26096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:08.344 # raw_mV min=0 avg=1582 max=2155 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:08.758 I (26724) wifi_stream: calibration attempt 4: rejected: baseline too high (valid 99.8%, cv 0.633, rms 19.664 mV)
+17:23:09.345 # samples=27088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:09.346 # raw_mV min=601 avg=1645 max=2160 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:10.344 # samples=28096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:10.346 # raw_mV min=258 avg=1571 max=2135 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:11.343 # samples=29088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:11.344 # raw_mV min=619 avg=1628 max=2108 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:12.344 # samples=30096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:12.345 # raw_mV min=977 avg=1630 max=2086 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:13.344 # samples=31088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:13.345 # raw_mV min=0 avg=1604 max=2247 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:14.344 # samples=32096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:14.345 # raw_mV min=951 avg=1642 max=2183 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:15.344 # samples=33088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:15.346 # raw_mV min=95 avg=1595 max=2120 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:15.750 I (33714) wifi_stream: calibration attempt 5: rejected: baseline too high (valid 99.9%, cv 0.716, rms 23.723 mV)
+17:23:16.344 # samples=34096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:16.345 # raw_mV min=84 avg=1585 max=2093 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:17.343 # samples=35088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:17.344 # raw_mV min=0 avg=1625 max=2303 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:18.344 # samples=36096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:18.345 # raw_mV min=129 avg=1640 max=2221 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:19.343 # samples=37088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:19.344 # raw_mV min=0 avg=1585 max=2141 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:20.343 # samples=38096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:20.344 # raw_mV min=103 avg=1638 max=2184 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:21.344 # samples=39088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:21.345 # raw_mV min=1091 avg=1577 max=2041 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:22.344 # samples=40096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:22.345 # raw_mV min=284 avg=1618 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:22.758 I (40724) wifi_stream: calibration attempt 6: rejected: baseline too high (valid 99.9%, cv 0.746, rms 22.917 mV)
+17:23:23.343 # samples=41088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:23.344 # raw_mV min=310 avg=1605 max=2145 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:24.344 # samples=42096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:24.345 # raw_mV min=0 avg=1592 max=2141 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:25.344 # samples=43088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:25.345 # raw_mV min=1141 avg=1644 max=2217 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:26.344 # samples=44096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:26.345 # raw_mV min=0 avg=1592 max=2197 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:27.344 # samples=45088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:27.345 # raw_mV min=1147 avg=1623 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:28.344 # samples=46096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:28.345 # raw_mV min=628 avg=1586 max=2116 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:29.343 # samples=47088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-53 sent=868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:29.343 # raw_mV min=381 avg=1601 max=2102 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:29.750 I (47714) wifi_stream: calibration attempt 7: rejected: baseline too high (valid 99.9%, cv 0.649, rms 21.601 mV)
+17:23:30.344 # samples=48096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:30.345 # raw_mV min=558 avg=1594 max=2133 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:31.344 # samples=49088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:31.345 # raw_mV min=512 avg=1629 max=2083 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:32.344 # samples=50096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:32.345 # raw_mV min=259 avg=1587 max=2072 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:33.344 # samples=51088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:33.345 # raw_mV min=616 avg=1607 max=2128 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:34.344 # samples=52096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:34.345 # raw_mV min=562 avg=1608 max=2057 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:35.343 # samples=53088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:35.343 # raw_mV min=639 avg=1611 max=2106 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:36.344 # samples=54096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:36.345 # raw_mV min=696 avg=1616 max=2079 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:36.758 I (54724) wifi_stream: calibration attempt 8: rejected: baseline too high (valid 100.0%, cv 0.619, rms 21.195 mV)
+17:23:37.344 # samples=55088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:37.344 # raw_mV min=472 avg=1649 max=2170 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:38.343 # samples=56096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:38.343 # raw_mV min=272 avg=1573 max=2107 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:39.343 # samples=57088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=1068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:39.343 # raw_mV min=360 avg=1621 max=2127 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:40.344 # samples=58096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:40.345 # raw_mV min=889 avg=1635 max=2078 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:41.342 # samples=59088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=1108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:41.343 # raw_mV min=244 avg=1592 max=2266 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:42.343 # samples=60096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=1128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:42.344 # raw_mV min=460 avg=1544 max=2156 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:43.343 # samples=61088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=1148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:43.345 # raw_mV min=354 avg=1681 max=2195 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:43.749 I (61714) wifi_stream: calibration attempt 9: rejected: baseline too high (valid 100.0%, cv 0.651, rms 22.158 mV)
+17:23:44.342 # samples=62096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:44.343 # raw_mV min=1123 avg=1627 max=2093 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:45.342 # samples=63088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=1188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:45.342 # raw_mV min=0 avg=1531 max=2045 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:46.344 # samples=64096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=1208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:46.345 # raw_mV min=1162 avg=1687 max=2238 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:47.342 # samples=65088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:47.343 # raw_mV min=638 avg=1579 max=2080 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:48.342 # samples=66096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:48.343 # raw_mV min=578 avg=1618 max=2102 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:49.342 # samples=67088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:49.343 # raw_mV min=540 avg=1616 max=2133 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:50.343 # samples=68096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:50.345 # raw_mV min=206 avg=1615 max=2133 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:50.757 I (68724) wifi_stream: calibration attempt 10: rejected: baseline too high (valid 100.0%, cv 0.630, rms 20.748 mV)
+17:23:51.343 # samples=69088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=1308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:51.344 # raw_mV min=269 avg=1613 max=2113 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:52.343 # samples=70096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-55 sent=1328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:52.344 # raw_mV min=341 avg=1654 max=2151 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:53.342 # samples=71088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:53.343 # raw_mV min=0 avg=1571 max=2215 at_low=28 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:54.343 # samples=72096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:54.343 # raw_mV min=226 avg=1645 max=2207 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:55.343 # samples=73088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=1388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:55.345 # raw_mV min=0 avg=1655 max=2432 at_low=43 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:56.342 # samples=74096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:56.343 # raw_mV min=348 avg=1576 max=2147 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:57.343 # samples=75088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:57.344 # raw_mV min=0 avg=1591 max=2243 at_low=9 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:57.749 I (75714) wifi_stream: calibration attempt 11: rejected: baseline too high (valid 99.0%, cv 0.827, rms 29.707 mV)
+17:23:58.343 # samples=76096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:58.344 # raw_mV min=555 avg=1671 max=2222 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:23:59.342 # samples=77088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:23:59.343 # raw_mV min=0 avg=1588 max=2155 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:00.343 # samples=78096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:00.344 # raw_mV min=0 avg=1568 max=2290 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:01.343 # samples=79088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:01.344 # raw_mV min=156 avg=1651 max=2243 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:02.342 # samples=80096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:02.342 # raw_mV min=54 avg=1629 max=2164 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:03.343 # samples=81088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:03.344 # raw_mV min=713 avg=1609 max=2089 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:04.342 # samples=82096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=209.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:04.343 # raw_mV min=902 avg=1590 max=2078 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:04.757 I (82724) wifi_stream: calibration attempt 12: rejected: baseline too high (valid 99.9%, cv 0.753, rms 22.447 mV)
+17:24:05.342 # samples=83088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:05.343 # raw_mV min=537 avg=1651 max=2155 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:06.343 # samples=84096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=1608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:06.344 # raw_mV min=548 avg=1605 max=2082 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:07.343 # samples=85088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=1628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:07.344 # raw_mV min=742 avg=1600 max=2113 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:08.342 # samples=86096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:08.342 # raw_mV min=271 avg=1627 max=2141 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:09.342 # samples=87088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=1668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:09.342 # raw_mV min=407 avg=1599 max=2086 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:10.342 # samples=88096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:10.343 # raw_mV min=0 avg=1587 max=2194 at_low=19 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:11.341 # samples=89088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:11.342 # raw_mV min=308 avg=1585 max=2192 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:11.749 I (89714) wifi_stream: calibration attempt 13: rejected: baseline too high (valid 99.5%, cv 0.749, rms 22.579 mV)
+17:24:12.343 # samples=90096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:12.344 # raw_mV min=0 avg=1700 max=2418 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:13.343 # samples=91088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:13.344 # raw_mV min=190 avg=1586 max=2137 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:14.343 # samples=92096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:14.343 # raw_mV min=0 avg=1632 max=2184 at_low=18 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:15.343 # samples=93088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=204.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:15.344 # raw_mV min=261 avg=1586 max=2127 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:16.342 # samples=94096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:16.342 # raw_mV min=0 avg=1654 max=2222 at_low=12 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:17.343 # samples=95088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=1828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:17.344 # raw_mV min=0 avg=1548 max=2120 at_low=12 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:18.343 # samples=96096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=1848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:18.344 # raw_mV min=0 avg=1678 max=2258 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:18.757 I (96724) wifi_stream: calibration attempt 14: rejected: baseline too high (valid 99.5%, cv 0.754, rms 27.387 mV)
+17:24:19.355 # samples=97088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=1868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:19.357 # raw_mV min=0 avg=1594 max=2242 at_low=10 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:20.342 # samples=98096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=1888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:20.342 # raw_mV min=522 avg=1633 max=2205 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:21.342 # samples=99088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-71 sent=1908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:21.342 # raw_mV min=721 avg=1607 max=2152 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:22.341 # samples=100096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-75 sent=1928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:22.342 # raw_mV min=207 avg=1641 max=2266 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:23.341 # samples=101088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=1948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:23.342 # raw_mV min=767 avg=1616 max=2089 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:24.341 # samples=102096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=1968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:24.342 # raw_mV min=472 avg=1631 max=2119 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:25.341 # samples=103088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=1988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:25.342 # raw_mV min=370 avg=1633 max=2197 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:25.749 I (103714) wifi_stream: calibration attempt 15: rejected: baseline too high (valid 100.0%, cv 0.648, rms 22.343 mV)
+17:24:26.341 # samples=104096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:26.342 # raw_mV min=341 avg=1575 max=2172 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:27.342 # samples=105088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:27.342 # raw_mV min=1162 avg=1632 max=2114 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:28.342 # samples=106096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:28.343 # raw_mV min=294 avg=1571 max=2326 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:29.341 # samples=107088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:29.342 # raw_mV min=0 avg=1691 max=2254 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:30.341 # samples=108096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:30.342 # raw_mV min=282 avg=1566 max=2047 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:31.341 # samples=109088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:31.342 # raw_mV min=106 avg=1604 max=2108 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:32.341 # samples=110096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:32.342 # raw_mV min=363 avg=1662 max=2194 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:32.757 I (110724) wifi_stream: calibration attempt 16: rejected: baseline too high (valid 100.0%, cv 0.716, rms 24.695 mV)
+17:24:33.341 # samples=111088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:33.341 # raw_mV min=487 avg=1599 max=2102 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:34.342 # samples=112096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:34.342 # raw_mV min=0 avg=1590 max=2288 at_low=11 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:35.341 # samples=113088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:35.342 # raw_mV min=354 avg=1636 max=2316 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:36.341 # samples=114096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:36.341 # raw_mV min=11 avg=1665 max=2263 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:37.342 # samples=115088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:37.342 # raw_mV min=900 avg=1608 max=2107 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:38.341 # samples=116096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-49 sent=2248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:38.342 # raw_mV min=0 avg=1590 max=2288 at_low=23 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:39.341 # samples=117088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-49 sent=2268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:39.341 # raw_mV min=207 avg=1664 max=2229 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:39.748 I (117714) wifi_stream: calibration attempt 17: rejected: baseline too high (valid 99.5%, cv 0.702, rms 25.957 mV)
+17:24:40.341 # samples=118096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=2288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:40.341 # raw_mV min=853 avg=1594 max=2076 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:41.342 # samples=119088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=2308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:41.342 # raw_mV min=301 avg=1622 max=2166 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:42.342 # samples=120096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:42.343 # raw_mV min=966 avg=1598 max=2058 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:43.341 # samples=121088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=2348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:43.341 # raw_mV min=0 avg=1639 max=2240 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:44.342 # samples=122096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-60 sent=2368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:44.343 # raw_mV min=239 avg=1567 max=2111 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:45.341 # samples=123088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=2388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:45.342 # raw_mV min=294 avg=1637 max=2195 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:46.341 # samples=124096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-49 sent=2408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:46.342 # raw_mV min=0 avg=1601 max=2139 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:46.756 I (124724) wifi_stream: calibration attempt 18: rejected: baseline too high (valid 99.8%, cv 0.793, rms 25.778 mV)
+17:24:47.341 # samples=125088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:47.342 # raw_mV min=328 avg=1619 max=2144 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:48.341 # samples=126096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:48.342 # raw_mV min=599 avg=1620 max=2083 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:49.341 # samples=127088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=2468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:49.341 # raw_mV min=0 avg=1570 max=2133 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:50.341 # samples=128096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-49 sent=2488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:50.342 # raw_mV min=0 avg=1627 max=2215 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:51.341 # samples=129088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:51.341 # raw_mV min=0 avg=1593 max=2259 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:52.341 # samples=130096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:52.341 # raw_mV min=309 avg=1676 max=2194 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:53.341 # samples=131088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=2548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:53.341 # raw_mV min=46 avg=1564 max=2179 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:53.748 I (131714) wifi_stream: calibration attempt 19: rejected: baseline too high (valid 99.8%, cv 0.766, rms 27.540 mV)
+17:24:54.340 # samples=132096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=2568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:54.341 # raw_mV min=233 avg=1652 max=2194 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:55.341 # samples=133088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=2588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:55.342 # raw_mV min=69 avg=1572 max=2108 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:56.341 # samples=134096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:56.341 # raw_mV min=458 avg=1673 max=2280 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:57.341 # samples=135088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-70 sent=2628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:57.341 # raw_mV min=913 avg=1569 max=2107 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:58.341 # samples=136096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=2648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:58.342 # raw_mV min=632 avg=1632 max=2159 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:24:59.341 # samples=137088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-67 sent=2668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:24:59.342 # raw_mV min=566 avg=1610 max=2130 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:00.340 # samples=138096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=2688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:00.341 # raw_mV min=607 avg=1643 max=2191 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:00.756 I (138724) wifi_stream: calibration attempt 20: rejected: baseline too high (valid 100.0%, cv 0.487, rms 19.488 mV)
+17:25:01.340 # samples=139088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=2708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:01.341 # raw_mV min=0 avg=1545 max=2279 at_low=34 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:02.341 # samples=140096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=2728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:02.341 # raw_mV min=871 avg=1683 max=2341 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:03.341 # samples=141088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-66 sent=2748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:03.342 # raw_mV min=910 avg=1630 max=2114 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:04.340 # samples=142096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-76 sent=2768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:04.341 # raw_mV min=22 avg=1591 max=2210 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:05.340 # samples=143088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-68 sent=2788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:05.341 # raw_mV min=391 avg=1637 max=2162 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:06.340 # samples=144096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-67 sent=2808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:06.342 # raw_mV min=562 avg=1584 max=2141 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:07.340 # samples=145088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=2828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:07.340 # raw_mV min=1051 avg=1644 max=2127 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:07.748 I (145714) wifi_stream: calibration attempt 21: rejected: baseline too high (valid 100.0%, cv 0.629, rms 23.723 mV)
+17:25:08.340 # samples=146096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-68 sent=2848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:08.341 # raw_mV min=535 avg=1601 max=2184 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:09.342 # samples=147088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:09.342 # raw_mV min=1108 avg=1633 max=2120 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:10.340 # samples=148096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:10.341 # raw_mV min=591 avg=1594 max=2131 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:11.340 # samples=149088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:11.341 # raw_mV min=593 avg=1614 max=2217 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:12.340 # samples=150096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=2928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:12.341 # raw_mV min=0 avg=1595 max=2215 at_low=12 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:13.340 # samples=151088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:13.341 # raw_mV min=756 avg=2292 max=3108 at_low=0 at_high=270 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:14.341 # samples=152096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:14.341 # raw_mV min=191 avg=1213 max=2056 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:14.756 I (152724) wifi_stream: calibration attempt 22: rejected: baseline too high (valid 94.4%, cv 0.875, rms 35.055 mV)
+17:25:15.340 # samples=153088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=2988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:15.341 # raw_mV min=569 avg=1687 max=2268 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:16.340 # samples=154096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:16.341 # raw_mV min=262 avg=1591 max=2195 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:17.340 # samples=155088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:17.341 # raw_mV min=405 avg=1650 max=2288 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:18.340 # samples=156096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:18.340 # raw_mV min=838 avg=1648 max=2179 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:19.341 # samples=157088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:19.342 # raw_mV min=249 avg=1636 max=2247 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:20.340 # samples=158096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=3088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:20.341 # raw_mV min=865 avg=1641 max=2162 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:21.340 # samples=159088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=3108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:21.340 # raw_mV min=239 avg=1563 max=2303 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:21.747 I (159714) wifi_stream: calibration attempt 23: rejected: baseline too high (valid 100.0%, cv 0.525, rms 27.463 mV)
+17:25:22.340 # samples=160096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=3128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:22.340 # raw_mV min=0 avg=1650 max=2364 at_low=18 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:23.340 # samples=161088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:23.341 # raw_mV min=482 avg=1691 max=2379 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:24.340 # samples=162096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:24.343 # raw_mV min=904 avg=1662 max=2222 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:25.340 # samples=163088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:25.341 # raw_mV min=134 avg=1684 max=2316 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:26.340 # samples=164096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=3208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:26.340 # raw_mV min=603 avg=1710 max=2333 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:27.340 # samples=165088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-60 sent=3228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:27.340 # raw_mV min=0 avg=1640 max=2467 at_low=28 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:28.339 # samples=166096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:28.340 # raw_mV min=669 avg=1706 max=2312 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:28.755 I (166724) wifi_stream: calibration attempt 24: rejected: baseline too high (valid 96.4%, cv 0.721, rms 32.016 mV)
+17:25:29.340 # samples=167088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=3268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=190.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:29.340 # raw_mV min=418 avg=2516 max=3108 at_low=0 at_high=537 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:30.339 # samples=168096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=186.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:30.340 # raw_mV min=1058 avg=2823 max=3108 at_low=0 at_high=684 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:31.339 # samples=169088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=187.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:31.340 # raw_mV min=0 avg=789 max=2004 at_low=53 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:32.340 # samples=170096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:32.341 # raw_mV min=0 avg=1735 max=2593 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:33.340 # samples=171088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-60 sent=3348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:33.340 # raw_mV min=0 avg=2015 max=3011 at_low=18 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:34.340 # samples=172096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:34.341 # raw_mV min=0 avg=1672 max=2503 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:35.339 # samples=173088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:35.340 # raw_mV min=74 avg=1828 max=2596 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:35.747 I (173714) wifi_stream: calibration attempt 25: rejected: baseline too high (valid 98.0%, cv 0.828, rms 41.584 mV)
+17:25:36.340 # samples=174096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:36.340 # raw_mV min=0 avg=1934 max=2993 at_low=54 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:37.340 # samples=175088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=3428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:37.341 # raw_mV min=955 avg=1721 max=2460 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:38.339 # samples=176096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:38.340 # raw_mV min=256 avg=1652 max=2391 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:39.339 # samples=177088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=3468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:39.340 # raw_mV min=1 avg=1757 max=2627 at_low=1 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:40.339 # samples=178096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:40.340 # raw_mV min=0 avg=1574 max=2484 at_low=22 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:41.339 # samples=179088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:41.340 # raw_mV min=0 avg=1799 max=2610 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:42.340 # samples=180096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:42.340 # raw_mV min=939 avg=1713 max=2443 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:42.754 I (180724) wifi_stream: calibration attempt 26: rejected: baseline too high (valid 99.4%, cv 0.825, rms 38.354 mV)
+17:25:43.341 # samples=181088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=3548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:43.342 # raw_mV min=0 avg=1695 max=2526 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:44.340 # samples=182096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:44.341 # raw_mV min=252 avg=1954 max=2948 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:45.340 # samples=183088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:45.340 # raw_mV min=338 avg=2126 max=3044 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:46.339 # samples=184096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:46.340 # raw_mV min=0 avg=1652 max=2535 at_low=46 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:47.339 # samples=185088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:47.340 # raw_mV min=0 avg=1413 max=2416 at_low=11 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:48.339 # samples=186096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:48.340 # raw_mV min=175 avg=1501 max=2377 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:49.339 # samples=187088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=3668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:49.340 # raw_mV min=67 avg=1897 max=2758 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:49.746 I (187714) wifi_stream: calibration attempt 27: rejected: baseline too high (valid 98.6%, cv 0.776, rms 40.439 mV)
+17:25:50.340 # samples=188096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=3688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:50.341 # raw_mV min=0 avg=1765 max=2727 at_low=11 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:51.339 # samples=189088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=191.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:51.340 # raw_mV min=0 avg=1577 max=2440 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:52.339 # samples=190096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:52.340 # raw_mV min=883 avg=1658 max=2412 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:53.339 # samples=191088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-66 sent=3748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:53.340 # raw_mV min=0 avg=1595 max=2627 at_low=23 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:54.339 # samples=192096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:54.340 # raw_mV min=834 avg=1735 max=2782 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:55.339 # samples=193088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=3788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:55.340 # raw_mV min=0 avg=1684 max=2765 at_low=71 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:56.339 # samples=194096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-67 sent=3808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:56.340 # raw_mV min=34 avg=1671 max=2617 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:56.755 I (194724) wifi_stream: calibration attempt 28: rejected: baseline too high (valid 98.1%, cv 0.835, rms 48.501 mV)
+17:25:57.339 # samples=195088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=3828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:57.340 # raw_mV min=0 avg=1674 max=2596 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:58.339 # samples=196096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:58.340 # raw_mV min=0 avg=1948 max=2895 at_low=25 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:25:59.339 # samples=197088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:25:59.340 # raw_mV min=0 avg=2347 max=3108 at_low=19 at_high=161 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:00.339 # samples=198096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:00.339 # raw_mV min=590 avg=2655 max=3108 at_low=0 at_high=574 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:01.339 # samples=199088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=189.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:01.339 # raw_mV min=0 avg=810 max=2243 at_low=110 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:02.339 # samples=200096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:02.339 # raw_mV min=0 avg=1305 max=2471 at_low=27 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:03.340 # samples=201088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=3948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:03.341 # raw_mV min=0 avg=2016 max=2968 at_low=23 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:03.746 I (201714) wifi_stream: calibration attempt 29: rejected: saturated (valid 82.0%, cv 0.824, rms 58.474 mV)
+17:26:04.338 # samples=202096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=3968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:04.339 # raw_mV min=0 avg=1753 max=2711 at_low=12 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:05.338 # samples=203088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=3988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:05.339 # raw_mV min=0 avg=1743 max=2658 at_low=9 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:06.339 # samples=204096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:06.340 # raw_mV min=0 avg=1681 max=2561 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:07.339 # samples=205088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=4028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:07.340 # raw_mV min=0 avg=1701 max=2766 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:08.339 # samples=206096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=4048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:08.339 # raw_mV min=0 avg=1694 max=2727 at_low=10 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:09.339 # samples=207088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:09.339 # raw_mV min=747 avg=1673 max=2507 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:10.338 # samples=208096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:10.339 # raw_mV min=0 avg=1561 max=2490 at_low=38 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:10.754 I (208724) wifi_stream: calibration attempt 30: rejected: baseline too high (valid 98.7%, cv 0.764, rms 44.719 mV)
+17:26:11.339 # samples=209088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=4108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:11.339 # raw_mV min=0 avg=1800 max=2847 at_low=24 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:12.338 # samples=210096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=191.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:12.339 # raw_mV min=0 avg=1721 max=2704 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:13.339 # samples=211088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:13.340 # raw_mV min=0 avg=1733 max=2671 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:14.338 # samples=212096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:14.339 # raw_mV min=0 avg=1766 max=2898 at_low=38 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:15.339 # samples=213088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:15.341 # raw_mV min=840 avg=1718 max=2651 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:16.338 # samples=214096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:16.339 # raw_mV min=0 avg=1515 max=2422 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:17.339 # samples=215088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:17.339 # raw_mV min=0 avg=1764 max=2691 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:17.745 I (215714) wifi_stream: calibration attempt 31: rejected: baseline too high (valid 98.7%, cv 0.875, rms 48.342 mV)
+17:26:18.339 # samples=216096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:18.340 # raw_mV min=0 avg=1705 max=2659 at_low=19 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:19.339 # samples=217088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=190.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:19.340 # raw_mV min=0 avg=1750 max=2785 at_low=29 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:20.339 # samples=218096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=4288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:20.339 # raw_mV min=0 avg=1714 max=2683 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:21.338 # samples=219088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:21.339 # raw_mV min=90 avg=1593 max=2518 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:22.338 # samples=220096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=190.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:22.339 # raw_mV min=0 avg=1604 max=2805 at_low=56 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:23.339 # samples=221088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=4348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:23.340 # raw_mV min=507 avg=1802 max=2770 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:24.337 # samples=222096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:24.338 # raw_mV min=0 avg=1571 max=2760 at_low=26 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:24.753 I (222724) wifi_stream: calibration attempt 32: rejected: baseline too high (valid 98.4%, cv 0.824, rms 50.905 mV)
+17:26:25.338 # samples=223088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:25.338 # raw_mV min=326 avg=1834 max=2749 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:26.338 # samples=224096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:26.338 # raw_mV min=523 avg=1495 max=2596 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:27.338 # samples=225088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:27.339 # raw_mV min=0 avg=1726 max=3012 at_low=29 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:28.337 # samples=226096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:28.338 # raw_mV min=0 avg=1824 max=2930 at_low=1 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:29.338 # samples=227088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:29.338 # raw_mV min=0 avg=1602 max=2707 at_low=32 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:30.337 # samples=228096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:30.338 # raw_mV min=0 avg=1593 max=2619 at_low=16 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:31.338 # samples=229088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:31.338 # raw_mV min=0 avg=1816 max=2847 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:31.745 I (229714) wifi_stream: calibration attempt 33: rejected: baseline too high (valid 98.3%, cv 0.865, rms 58.976 mV)
+17:26:32.338 # samples=230096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=191.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:32.341 # raw_mV min=0 avg=1567 max=2660 at_low=39 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:33.338 # samples=231088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:33.338 # raw_mV min=0 avg=1705 max=2660 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:34.338 # samples=232096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:34.339 # raw_mV min=628 avg=1702 max=2689 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:35.339 # samples=233088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=4588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:35.339 # raw_mV min=0 avg=1646 max=2560 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:36.338 # samples=234096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:36.339 # raw_mV min=0 avg=1687 max=2685 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:37.338 # samples=235088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=4628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:37.338 # raw_mV min=0 avg=1772 max=2794 at_low=9 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:38.337 # samples=236096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:38.338 # raw_mV min=0 avg=1675 max=2674 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:38.753 I (236724) wifi_stream: calibration attempt 34: rejected: baseline too high (valid 99.0%, cv 0.898, rms 49.273 mV)
+17:26:39.338 # samples=237088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:39.338 # raw_mV min=0 avg=1674 max=2713 at_low=25 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:40.337 # samples=238096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=189.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:40.340 # raw_mV min=0 avg=1592 max=2584 at_low=10 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:41.338 # samples=239088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:41.339 # raw_mV min=741 avg=1750 max=2695 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:42.338 # samples=240096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:42.338 # raw_mV min=0 avg=1613 max=2749 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:43.339 # samples=241088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:43.339 # raw_mV min=738 avg=1805 max=2790 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:44.337 # samples=242096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:44.337 # raw_mV min=0 avg=1645 max=2716 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:45.338 # samples=243088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=4788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:45.338 # raw_mV min=628 avg=1731 max=2766 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:45.745 I (243714) wifi_stream: calibration attempt 35: rejected: baseline too high (valid 99.5%, cv 0.634, rms 42.728 mV)
+17:26:46.338 # samples=244096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=4808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=187.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:46.339 # raw_mV min=0 avg=1564 max=3086 at_low=46 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:47.338 # samples=245088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:47.339 # raw_mV min=431 avg=1889 max=3090 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:48.337 # samples=246096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=191.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:48.339 # raw_mV min=0 avg=1544 max=2758 at_low=20 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:49.338 # samples=247088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=4868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:49.339 # raw_mV min=0 avg=1726 max=2859 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:50.337 # samples=248096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:50.338 # raw_mV min=0 avg=1649 max=2747 at_low=31 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:51.337 # samples=249088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:51.338 # raw_mV min=132 avg=1711 max=2772 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:52.337 # samples=250096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=4928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:52.337 # raw_mV min=0 avg=1680 max=2758 at_low=24 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:52.752 I (250724) wifi_stream: calibration attempt 36: rejected: baseline too high (valid 98.6%, cv 0.804, rms 53.108 mV)
+17:26:53.337 # samples=251088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=4948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:53.337 # raw_mV min=88 avg=1747 max=2695 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:54.337 # samples=252096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=4968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=188.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:54.338 # raw_mV min=0 avg=1617 max=2760 at_low=20 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:55.337 # samples=253088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=4988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:55.338 # raw_mV min=0 avg=1620 max=2695 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:56.337 # samples=254096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:56.337 # raw_mV min=0 avg=1774 max=2854 at_low=23 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:57.338 # samples=255088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:57.339 # raw_mV min=0 avg=1564 max=2756 at_low=28 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:58.337 # samples=256096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:58.338 # raw_mV min=0 avg=1705 max=2703 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:59.336 # samples=257088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=5068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:26:59.337 # raw_mV min=228 avg=1700 max=2737 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:26:59.744 I (257714) wifi_stream: calibration attempt 37: rejected: baseline too high (valid 98.7%, cv 0.697, rms 51.888 mV)
+17:27:00.337 # samples=258096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=5088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=190.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:00.337 # raw_mV min=0 avg=1565 max=2934 at_low=17 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:01.338 # samples=259088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=5108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=188.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:01.339 # raw_mV min=0 avg=1850 max=3059 at_low=44 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:02.336 # samples=260096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=5128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=189.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:02.337 # raw_mV min=0 avg=1420 max=2665 at_low=77 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:03.338 # samples=261088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=5148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:03.339 # raw_mV min=0 avg=1921 max=3032 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:04.338 # samples=262096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-56 sent=5168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:04.339 # raw_mV min=0 avg=1717 max=2848 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:05.336 # samples=263088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:05.337 # raw_mV min=0 avg=1497 max=2707 at_low=15 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:06.338 # samples=264096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:06.339 # raw_mV min=0 avg=1557 max=2692 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:06.752 I (264724) wifi_stream: calibration attempt 38: rejected: baseline too high (valid 97.7%, cv 0.899, rms 54.849 mV)
+17:27:07.337 # samples=265088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:07.338 # raw_mV min=379 avg=1747 max=2895 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:08.338 # samples=266096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:08.340 # raw_mV min=0 avg=1725 max=2848 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:09.337 # samples=267088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:09.337 # raw_mV min=128 avg=1569 max=2605 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:10.337 # samples=268096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:10.338 # raw_mV min=0 avg=1576 max=2736 at_low=10 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:11.336 # samples=269088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-57 sent=5308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:11.337 # raw_mV min=0 avg=1625 max=2829 at_low=26 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:12.337 # samples=270096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:12.337 # raw_mV min=0 avg=1746 max=3001 at_low=26 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:13.339 # samples=271088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:13.340 # raw_mV min=314 avg=1703 max=2850 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:13.744 I (271714) wifi_stream: calibration attempt 39: rejected: baseline too high (valid 98.8%, cv 0.833, rms 56.581 mV)
+17:27:14.337 # samples=272096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:14.337 # raw_mV min=0 avg=1551 max=2854 at_low=38 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:15.337 # samples=273088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:15.338 # raw_mV min=467 avg=1732 max=2995 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:16.338 # samples=274096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:16.338 # raw_mV min=0 avg=1484 max=2847 at_low=11 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:17.337 # samples=275088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:17.337 # raw_mV min=42 avg=1671 max=2957 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:18.338 # samples=276096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:18.339 # raw_mV min=601 avg=1815 max=2934 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:19.337 # samples=277088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:19.338 # raw_mV min=0 avg=1621 max=2847 at_low=20 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:20.337 # samples=278096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=5488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=149.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:20.337 # raw_mV min=0 avg=630 max=2621 at_low=467 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:20.752 I (278724) wifi_stream: calibration attempt 40: rejected: saturated (valid 85.2%, cv 0.981, rms 73.732 mV)
+17:27:21.338 # samples=279088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=159.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:21.338 # raw_mV min=0 avg=1035 max=3108 at_low=452 at_high=14 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:22.336 # samples=280096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=159.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:22.337 # raw_mV min=0 avg=1550 max=3108 at_low=289 at_high=198 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:23.336 # samples=281088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:23.337 # raw_mV min=741 avg=2752 max=3108 at_low=0 at_high=481 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:24.337 # samples=282096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=173.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:24.338 # raw_mV min=0 avg=1174 max=2453 at_low=174 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:25.337 # samples=283088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=192.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:25.337 # raw_mV min=0 avg=1507 max=2863 at_low=173 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:26.336 # samples=284096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:26.336 # raw_mV min=0 avg=1649 max=2789 at_low=10 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:27.336 # samples=285088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:27.336 # raw_mV min=0 avg=1460 max=2207 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:27.743 I (285714) wifi_stream: calibration attempt 41: rejected: baseline too high (valid 91.7%, cv 0.966, rms 40.642 mV)
+17:27:28.336 # samples=286096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=5648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:28.336 # raw_mV min=176 avg=1516 max=2330 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:29.336 # samples=287088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-54 sent=5668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:29.336 # raw_mV min=0 avg=1754 max=2579 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:30.336 # samples=288096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-53 sent=5688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:30.336 # raw_mV min=212 avg=1697 max=2449 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:31.336 # samples=289088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-53 sent=5708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:31.336 # raw_mV min=0 avg=1558 max=2266 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:32.336 # samples=290096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:32.336 # raw_mV min=999 avg=1613 max=2261 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:33.336 # samples=291088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:33.336 # raw_mV min=174 avg=1621 max=2290 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:34.335 # samples=292096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:34.336 # raw_mV min=694 avg=1687 max=2333 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:34.751 I (292724) wifi_stream: calibration attempt 42: rejected: baseline too high (valid 99.9%, cv 0.681, rms 29.607 mV)
+17:27:35.335 # samples=293088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=5788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:35.336 # raw_mV min=576 avg=1546 max=2188 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:36.335 # samples=294096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:36.336 # raw_mV min=0 avg=1640 max=2337 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:37.335 # samples=295088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-59 sent=5828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:37.336 # raw_mV min=78 avg=1613 max=2354 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:38.335 # samples=296096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-58 sent=5848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:38.336 # raw_mV min=326 avg=1461 max=2330 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:39.335 # samples=297088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=5868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:39.336 # raw_mV min=0 avg=1614 max=2435 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:40.335 # samples=298096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=5888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:40.336 # raw_mV min=631 avg=1794 max=2532 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:41.335 # samples=299088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:41.336 # raw_mV min=192 avg=1599 max=2319 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:41.743 I (299714) wifi_stream: calibration attempt 43: rejected: baseline too high (valid 99.9%, cv 0.560, rms 27.282 mV)
+17:27:42.336 # samples=300096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=5928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:42.336 # raw_mV min=526 avg=1675 max=2376 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:43.335 # samples=301088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=5948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:43.336 # raw_mV min=426 avg=1527 max=2231 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:44.335 # samples=302096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=5968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:44.335 # raw_mV min=0 avg=1616 max=2337 at_low=11 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:45.336 # samples=303088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=5988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:45.336 # raw_mV min=0 avg=1689 max=2384 at_low=9 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:46.336 # samples=304096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:46.337 # raw_mV min=349 avg=1646 max=2296 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:47.337 # samples=305088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:47.338 # raw_mV min=0 avg=1668 max=2345 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:48.335 # samples=306096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:48.336 # raw_mV min=514 avg=1652 max=2284 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:48.751 I (306724) wifi_stream: calibration attempt 44: rejected: baseline too high (valid 99.6%, cv 0.712, rms 29.204 mV)
+17:27:49.336 # samples=307088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:49.337 # raw_mV min=781 avg=1671 max=2280 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:50.336 # samples=308096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:50.336 # raw_mV min=124 avg=1528 max=2257 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:51.335 # samples=309088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=6108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:51.336 # raw_mV min=0 avg=1675 max=2395 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:52.335 # samples=310096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:52.336 # raw_mV min=680 avg=1704 max=2337 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:53.336 # samples=311088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=205.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:53.337 # raw_mV min=510 avg=1613 max=2263 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:54.336 # samples=312096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:54.336 # raw_mV min=532 avg=1625 max=2386 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:55.336 # samples=313088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-67 sent=6188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:55.341 # raw_mV min=0 avg=1625 max=2396 at_low=19 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:55.743 I (313714) wifi_stream: calibration attempt 45: rejected: baseline too high (valid 99.6%, cv 0.664, rms 27.763 mV)
+17:27:56.335 # samples=314096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:56.336 # raw_mV min=557 avg=1659 max=2288 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:57.335 # samples=315088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:57.336 # raw_mV min=329 avg=1637 max=2319 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:58.336 # samples=316096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:58.336 # raw_mV min=292 avg=1607 max=2233 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:27:59.335 # samples=317088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-61 sent=6268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:27:59.336 # raw_mV min=0 avg=1611 max=2347 at_low=7 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:00.335 # samples=318096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-75 sent=6288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:00.336 # raw_mV min=0 avg=1721 max=2453 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:01.335 # samples=319088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-73 sent=6308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:01.336 # raw_mV min=228 avg=1620 max=2295 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:02.335 # samples=320096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-73 sent=6328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:02.336 # raw_mV min=1008 avg=1656 max=2253 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:02.752 I (320724) wifi_stream: calibration attempt 46: rejected: baseline too high (valid 99.8%, cv 0.643, rms 31.031 mV)
+17:28:03.335 # samples=321088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-72 sent=6348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:03.337 # raw_mV min=235 avg=1601 max=2345 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:04.337 # samples=322096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:04.338 # raw_mV min=319 avg=1651 max=2306 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:05.335 # samples=323088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-65 sent=6388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:05.336 # raw_mV min=0 avg=1674 max=2303 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:06.335 # samples=324096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:06.336 # raw_mV min=951 avg=1608 max=2191 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:07.335 # samples=325088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=6428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:07.336 # raw_mV min=24 avg=1694 max=2386 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:08.336 # samples=326096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:08.337 # raw_mV min=650 avg=1635 max=2345 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:09.335 # samples=327088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:09.336 # raw_mV min=18 avg=1631 max=2306 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:09.742 I (327714) wifi_stream: calibration attempt 47: rejected: baseline too high (valid 99.7%, cv 0.693, rms 30.976 mV)
+17:28:10.341 # samples=328096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:10.342 # raw_mV min=0 avg=1680 max=2450 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:11.334 # samples=329088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:11.335 # raw_mV min=268 avg=1755 max=2488 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:12.335 # samples=330096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:12.336 # raw_mV min=447 avg=1795 max=2584 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:13.335 # samples=331088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:13.335 # raw_mV min=613 avg=1581 max=2233 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:14.335 # samples=332096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-54 sent=6568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:14.336 # raw_mV min=212 avg=1444 max=2179 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:15.335 # samples=333088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-54 sent=6588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:15.336 # raw_mV min=815 avg=1753 max=2467 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:16.335 # samples=334096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:16.335 # raw_mV min=521 avg=1794 max=2500 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:16.750 I (334724) wifi_stream: calibration attempt 48: rejected: baseline too high (valid 100.0%, cv 0.628, rms 26.774 mV)
+17:28:17.336 # samples=335088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:17.341 # raw_mV min=728 avg=1469 max=2113 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:18.335 # samples=336096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=191.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:18.335 # raw_mV min=0 avg=1620 max=2357 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:19.335 # samples=337088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:19.335 # raw_mV min=0 avg=1644 max=2526 at_low=6 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:20.335 # samples=338096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:20.335 # raw_mV min=0 avg=1784 max=2636 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:21.335 # samples=339088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:21.336 # raw_mV min=621 avg=1577 max=2293 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:22.334 # samples=340096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=6728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:22.334 # raw_mV min=0 avg=1535 max=2330 at_low=9 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:23.335 # samples=341088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=6748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:23.335 # raw_mV min=1129 avg=1766 max=2419 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:23.742 I (341714) wifi_stream: calibration attempt 49: rejected: baseline too high (valid 99.3%, cv 0.676, rms 28.345 mV)
+17:28:24.335 # samples=342096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:24.336 # raw_mV min=0 avg=1454 max=2376 at_low=24 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:25.334 # samples=343088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=6788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:25.335 # raw_mV min=1027 avg=1846 max=2426 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:26.334 # samples=344096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=6808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:26.334 # raw_mV min=0 avg=1609 max=2437 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:27.334 # samples=345088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:27.334 # raw_mV min=625 avg=1495 max=2194 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:28.334 # samples=346096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:28.334 # raw_mV min=631 avg=1746 max=2354 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:29.334 # samples=347088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=6868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:29.334 # raw_mV min=329 avg=1626 max=2379 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:30.334 # samples=348096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=6888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:30.334 # raw_mV min=563 avg=1745 max=2388 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:30.749 I (348724) wifi_stream: calibration attempt 50: rejected: baseline too high (valid 99.9%, cv 0.637, rms 26.648 mV)
+17:28:31.334 # samples=349088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:31.334 # raw_mV min=188 avg=1560 max=2461 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:32.334 # samples=350096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6928 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:32.334 # raw_mV min=207 avg=1443 max=2339 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:33.335 # samples=351088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6948 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:33.336 # raw_mV min=525 avg=1797 max=2471 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:34.336 # samples=352096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=6968 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:34.337 # raw_mV min=0 avg=1630 max=2370 at_low=3 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:35.334 # samples=353088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=6988 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:35.334 # raw_mV min=0 avg=1564 max=2354 at_low=1 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:36.335 # samples=354096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-62 sent=7008 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:36.336 # raw_mV min=213 avg=1670 max=2389 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:37.334 # samples=355088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7028 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:37.334 # raw_mV min=0 avg=1848 max=2728 at_low=13 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:37.741 I (355714) wifi_stream: calibration attempt 51: rejected: baseline too high (valid 99.7%, cv 0.599, rms 26.440 mV)
+17:28:38.335 # samples=356096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7048 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:38.336 # raw_mV min=117 avg=1412 max=2131 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:39.334 # samples=357088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7068 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:39.335 # raw_mV min=92 avg=1609 max=2296 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:40.337 # samples=358096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7088 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:40.337 # raw_mV min=368 avg=1754 max=2400 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:41.335 # samples=359088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7108 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:41.336 # raw_mV min=0 avg=1555 max=2318 at_low=14 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:42.338 # samples=360096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7128 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:42.339 # raw_mV min=244 avg=1676 max=2407 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:43.334 # samples=361088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7148 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=205.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:43.335 # raw_mV min=240 avg=1690 max=2347 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:44.334 # samples=362096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7168 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:44.334 # raw_mV min=213 avg=1512 max=2242 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:44.750 I (362724) wifi_stream: calibration attempt 52: rejected: baseline too high (valid 99.7%, cv 0.662, rms 28.948 mV)
+17:28:45.334 # samples=363088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7188 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=204.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:45.335 # raw_mV min=0 avg=1733 max=2402 at_low=2 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:46.334 # samples=364096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7208 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:46.334 # raw_mV min=0 avg=1642 max=2526 at_low=5 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:47.334 # samples=365088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7228 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:47.335 # raw_mV min=574 avg=1656 max=2296 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:48.334 # samples=366096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7248 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:48.335 # raw_mV min=213 avg=1581 max=2326 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:49.334 # samples=367088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7268 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:49.334 # raw_mV min=353 avg=1790 max=2548 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:50.334 # samples=368096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7288 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:50.335 # raw_mV min=283 avg=1449 max=2207 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:51.334 # samples=369088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7308 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:51.335 # raw_mV min=1061 avg=1888 max=2601 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:51.742 I (369714) wifi_stream: calibration attempt 53: rejected: baseline too high (valid 99.8%, cv 0.653, rms 25.533 mV)
+17:28:52.335 # samples=370096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7328 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:52.335 # raw_mV min=0 avg=1497 max=2293 at_low=8 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:53.334 # samples=371088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7348 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:53.335 # raw_mV min=254 avg=1665 max=2306 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:54.335 # samples=372096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7368 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:54.337 # raw_mV min=0 avg=1541 max=2330 at_low=4 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:55.334 # samples=373088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7388 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:55.334 # raw_mV min=124 avg=1725 max=2477 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:56.334 # samples=374096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7408 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:56.336 # raw_mV min=285 avg=1633 max=2345 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:57.334 # samples=375088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7428 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:57.334 # raw_mV min=467 avg=1608 max=2244 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:58.335 # samples=376096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7448 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:58.338 # raw_mV min=0 avg=1694 max=2594 at_low=46 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:28:58.750 I (376724) wifi_stream: calibration attempt 54: rejected: baseline too high (valid 98.4%, cv 0.862, rms 36.619 mV)
+17:28:59.336 # samples=377088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7468 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=188.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:28:59.337 # raw_mV min=0 avg=1688 max=2837 at_low=84 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:00.334 # samples=378096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=7488 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=193.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:00.335 # raw_mV min=594 avg=1682 max=2615 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:01.337 # samples=379088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7508 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:01.338 # raw_mV min=364 avg=1508 max=2188 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:02.336 # samples=380096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7528 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=199.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:02.337 # raw_mV min=363 avg=1477 max=2192 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:03.335 # samples=381088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7548 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:03.336 # raw_mV min=482 avg=1814 max=2460 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:04.334 # samples=382096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7568 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:04.335 # raw_mV min=17 avg=1631 max=2418 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:05.335 # samples=383088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7588 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.0 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:05.336 # raw_mV min=240 avg=1634 max=2295 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:05.742 I (383714) wifi_stream: calibration attempt 55: rejected: baseline too high (valid 100.0%, cv 0.548, rms 25.396 mV)
+17:29:06.335 # samples=384096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7608 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=197.1 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:06.337 # raw_mV min=73 avg=1607 max=2333 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:07.335 # samples=385088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7628 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=195.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:07.337 # raw_mV min=326 avg=1670 max=2404 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:08.335 # samples=386096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7648 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=198.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:08.336 # raw_mV min=75 avg=1667 max=2372 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:09.335 # samples=387088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=7668 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:09.337 # raw_mV min=293 avg=1524 max=2296 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:10.334 # samples=388096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-63 sent=7688 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.3 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:10.336 # raw_mV min=905 avg=1681 max=2318 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:11.335 # samples=389088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7708 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:11.337 # raw_mV min=260 avg=1642 max=2333 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:12.335 # samples=390096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-64 sent=7728 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=202.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:12.336 # raw_mV min=784 avg=1708 max=2310 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:12.749 I (390724) wifi_stream: calibration attempt 56: rejected: baseline too high (valid 100.0%, cv 0.581, rms 26.177 mV)
+17:29:13.335 # samples=391088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-52 sent=7748 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:13.337 # raw_mV min=294 avg=1648 max=2296 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:14.335 # samples=392096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7768 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=196.2 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:14.337 # raw_mV min=512 avg=1805 max=2573 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:15.335 # samples=393088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=7788 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.4 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:15.336 # raw_mV min=81 avg=1556 max=2242 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:16.334 # samples=394096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=7808 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=203.7 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:16.335 # raw_mV min=527 avg=1594 max=2303 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:17.335 # samples=395088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-69 sent=7828 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:17.337 # raw_mV min=54 avg=1617 max=2414 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:18.334 # samples=396096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=7848 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=201.5 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:18.335 # raw_mV min=853 avg=1702 max=2479 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:19.336 # samples=397088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-51 sent=7868 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=200.9 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:19.338 # raw_mV min=348 avg=1556 max=2266 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:19.741 I (397714) wifi_stream: calibration attempt 57: rejected: baseline too high (valid 100.0%, cv 0.585, rms 28.181 mV)
+17:29:20.334 # samples=398096 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-49 sent=7888 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.8 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:20.334 # raw_mV min=0 avg=1653 max=2424 at_low=15 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
+17:29:21.335 # samples=399088 ovf=0 queue_drop=0 bad=0 wifi=up rssi=-50 sent=7908 send_fail=0 offline=70 reconnects=0 dsp_us_frame_avg=194.6 dsp_us_frame_max=1476 button=1 button_low_frames=0
+17:29:21.337 # raw_mV min=111 avg=1788 max=2521 at_low=0 at_high=0 (of 1000; rails <= 5 / >= 3100 mV)
