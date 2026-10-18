@@ -2,9 +2,9 @@
 
 MVP transport over USB: the on-board EMG tension of experiment 07, sent to the Mac bridge over the USB-Serial-JTAG port as one [protocol v1](../../../docs/protocol.md) message every 50 ms. No Wi-Fi.
 
-Why: in hardware session 2, Wi-Fi (08) raised the relaxed-forearm RMS from 6.5 mV (07, no Wi-Fi) to 15.5 mV, so calibration was rejected ([notes](../../../docs/experiments/09_hardware_session_2.md)). The MVP uses USB until the Wi-Fi interference is solved. (The folder is numbered 10 because experiment 09 is reserved for that Wi-Fi interference work.)
+Why: in hardware session 2, Wi-Fi (08) raised the relaxed-forearm RMS from 6.5 mV (07, no Wi-Fi) to 15.5 mV, so calibration was rejected ([notes](../../../docs/experiments/09_hardware_session_2.md)). The MVP uses USB until the Wi-Fi interference is solved in a separate experiment.
 
-**Status: tested on hardware** (session 2, 2026-10-18): streaming, bridge reconnect after RST, LED, three-level test.
+**Status: tested on hardware** (session 2, 2026-10-18): streaming, bridge reconnect after RST, three-level test. The LED toggling was not checked by eye in that session.
 
 Like 08, `CMakeLists.txt` adds `../07_onboard_tension/components` to `EXTRA_COMPONENT_DIRS`, so 07, 08, 10, the host test and the replayer all build the same `emg_dsp.c`.
 

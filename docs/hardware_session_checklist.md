@@ -1,6 +1,6 @@
 # Hardware session checklist
 
-Everything that could be done without the board is done and tested with replayed data ([mvp.md](mvp.md)). Session 1 (2026-10-13) got through steps 1-3 and stopped at a faulty AD8232 module: [notes](experiments/08_hardware_session_1.md). This list is for the next session with the ESP32-S3, the AD8232 module and electrodes. Work top to bottom; each step says what to write down.
+Everything that could be done without the board is done and tested with replayed data ([mvp.md](mvp.md)). Session 1 (2026-10-13) got through steps 1-3 and stopped at an AD8232 fault, which turned out to be the module's 3.3v/GND solder joints: [notes](experiments/08_hardware_session_1.md). Session 2 (2026-10-18) found that Wi-Fi raises the EMG noise so much that calibration fails, so the MVP now streams over USB with [`10_usb_stream`](../firmware/experiments/10_usb_stream/README.md) and `bridge.py --serial`: for now, flash 10 instead of 08 in step 3 (no Wi-Fi setup needed) and start the bridge with `--serial /dev/cu.usbmodem1101` in step 5 ([notes](experiments/09_hardware_session_2.md)). This list is for the next session with the ESP32-S3, the AD8232 module and electrodes. Work top to bottom; each step says what to write down.
 
 Before starting: `git pull`, `.venv` set up (`.venv/bin/pip install -r analysis/requirements.txt`), ESP-IDF v6.0.3 installed, phone with slow-motion video (240 fps if available), fresh electrode pads.
 

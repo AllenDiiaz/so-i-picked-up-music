@@ -18,7 +18,7 @@ The MVP is done when a guitarist wearing the electrodes sees their forearm tensi
 - 300 ms leaves about 100 ms for the board's frame collection, Wi-Fi, bridge, browser smoothing and display, which is several times their expected sum (tens of ms).
 - That roughly 300 ms is still felt as "right after" an action is a working assumption for this project, not a value taken from a study. If the hardware session shows the feedback feels late, the window length and smoothing are the knobs.
 
-## Current status (2026-10-13, after hardware session 1)
+## Current status (2026-10-18, after hardware session 2)
 
 | Part | Status | Evidence |
 |---|---|---|
@@ -26,11 +26,12 @@ The MVP is done when a guitarist wearing the electrodes sees their forearm tensi
 | Three levels on recordings | Partly met on recordings: A relax 91.2 %, medium 78.0 %, hard 100 %; B (guitar chords) relax 67.2 %, medium 30.2 % | Thresholds are provisional and in-sample; B misses criterion 1 |
 | Protocol v1 | Done | [protocol.md](protocol.md), `bridge/protocol.py` |
 | Replayer, bridge, front end (three designs) | Done, tested with replayed data | `tests/test_e2e_replay.py` passes for A and B: every message received, seq continuous, levels identical to the host test |
-| Wi-Fi firmware (08) | **Partly tested on the board** (session 1, 2026-10-13): Wi-Fi streaming, LED, button, no MAC in logs. Open defect: Wi-Fi stalls while `wifi=up` are not detected | [Session 1 notes](experiments/08_hardware_session_1.md) |
+| Wi-Fi firmware (08) | **Partly tested on the board**: streaming, LED, button, no MAC in logs. **Not usable for EMG yet:** with Wi-Fi on, the relaxed-forearm RMS is 15.5 mV instead of 6.5 mV (07), so calibration fails (session 2). Open defect: Wi-Fi stalls while `wifi=up` are not detected (session 1) | [Session 1](experiments/08_hardware_session_1.md), [session 2](experiments/09_hardware_session_2.md#2-07-vs-08-wi-fi-raises-the-noise) |
+| USB firmware (10) + `bridge.py --serial` | **Tested on the board** (session 2): arm -> ESP32 -> USB -> bridge -> browser, 16516 messages, 0 lost; bridge reconnects after RST. This is the MVP transport for now | [10 README](../firmware/experiments/10_usb_stream/README.md) |
 | Session summary, letter prompt | Done (prompt printed only, no model call) | Run on a replay session log |
-| Criterion 1 on the board, on the guitar | Not done: blocked by an AD8232 module whose output stays near 0 V (session 1) | Replace the module |
+| Criterion 1 on the board | **First run done** (session 2, forearm flat on the table, fists instead of chords, one run): relax 99-100 % in all four phases, hard 72 % and 100 %, light 66 % and 14 % (the second light grip was too weak). Bar (relax and hard >= 80 %, medium >= 60 %) not yet met reliably. The module fault of session 1 was a solder joint, fixed | [Session 2](experiments/09_hardware_session_2.md#6-three-level-test-run-2-baseline-642-mv) |
 | Criterion 2 (latency) | Algorithm part measured offline; device-to-screen part needs hardware | |
-| Criteria 3, 4 (5 min, loss) | Replay: 0 lost. Wi-Fi on the board: long stretches with 0 lost, but two multi-minute stalls brought the evening's total to 7.7 % lost | Fix stall detection, then the 5 min run |
+| Criteria 3, 4 (5 min, loss) | USB: 0 lost over about 14 min of streaming (session 2), but no dedicated 5 min run yet. Wi-Fi (session 1): two multi-minute stalls, 7.7 % lost | 5 min run over USB next |
 | WebXR AR on Quest | Written, untested | |
 
 Known weakness: with the baseline taken before each recording, normalized values in B are inflated (baseline 5.82 mV vs 7.36 mV relax during the recording), so relax after a chord sits near the medium threshold. New recordings with the real calibration flow are needed before the thresholds can be fixed ([checklist](hardware_session_checklist.md#7-recordings-to-validate-the-thresholds)).

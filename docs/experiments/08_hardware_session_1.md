@@ -2,6 +2,8 @@
 
 First session with the board after the replay-only MVP work, following [hardware_session_checklist.md](../hardware_session_checklist.md). Goal: flash 08, check Wi-Fi, LED and button, then measure the three levels on the guitar. The first part worked; the level test could not be done because the AD8232 module's output stayed near 0 V.
 
+> **Correction (session 2, 2026-10-18):** the cause was the module's 3.3v/GND solder joints, not a faulty module. After reflowing them, the output with the lead cable unplugged was back at about 1615 mV (30 s, 1609-1620 mV per second, no samples at the rails). See [session 2](09_hardware_session_2.md#1-reflowed-ad8232-module).
+
 Data: the bridge session log and the board's USB log stayed local (not committed); the numbers below are taken from them. No MAC address appeared in any log.
 
 ## 1. Front-end design
@@ -52,15 +54,17 @@ Fault isolation, using GPIO4 as a voltmeter (the yellow GPIO4 -> OUTPUT wire unp
 | GPIO4 to the module's 3.3v row | 3107 mV (ADC limit) | Supply reaches the module's row |
 | GPIO4 to the module's GND row | 0 mV | Ground is connected |
 | GPIO4 directly to the module's OUTPUT row | ~160 mV, same as through the yellow wire | The wire to GPIO4 is fine; the low level comes from the module |
-| Pressing and bending the module's 3.3v / GND header pins | No change | No obvious loose solder joint |
+| Pressing and bending the module's 3.3v / GND header pins | No change | No *intermittent* joint; a fully open joint does not react to pressing (and turned out to be the cause, see the correction above) |
 | LO-, LO+, SDN rows | Empty | Not shut down by SDN |
 | Heart LED on the module | Lit on hard grips the day before, never lit today | Consistent with an output that cannot swing |
 
 Once, for about 3 s, the output went to 1600-1900 mV and fell back below 200 mV within about 2 s, so the chip can still drive its output.
 
-Conclusion (inference, not proven): the AD8232 module is no longer working as it did in experiment 06, and nothing in the wiring explains it. Possible causes are damage during today's rewiring (for example plugging wires with power on) or a fault not visible from the header rows (a solder joint between a header pin and the board). The 3.3v and GND checks measured the breadboard rows, not the module's pads.
+Conclusion at the time (inference): the module was not working as in experiment 06 and nothing in the breadboard wiring explained it; a solder joint between a header pin and the module's board was one of the two candidates, because the 3.3v and GND checks measured the breadboard rows, not the module's pads.
 
-## 5. Not done (needs a working module)
+**Resolved in session 2:** 3.3v/GND solder joint problem. Reflowing the module's 3.3v and GND header pins brought the output back (about 1615 mV with the lead cable unplugged, as in experiment 05).
+
+## 5. Not done in this session
 
 - Three-level test on the guitar (one cued run was made, but the module was saturated throughout and no calibration was accepted, so it has no usable result)
 - Latency with the phone's slow motion
@@ -69,6 +73,6 @@ Conclusion (inference, not proven): the AD8232 module is no longer working as it
 
 ## 6. Next session
 
-1. Replace the AD8232 module (or reflow its header pins). Before the electrodes: with the lead cable unplugged, `raw_mV avg` should be around 1600 mV; with three electrodes on relaxed skin, around 1300-1650 mV with no `at_low` / `at_high`.
+1. ~~Replace the AD8232 module (or reflow its header pins).~~ Done in session 2: reflowed. Before the electrodes: with the lead cable unplugged, `raw_mV avg` should be around 1600 mV; with three electrodes on relaxed skin, around 1300-1650 mV with no `at_low` / `at_high`.
 2. Fix the Wi-Fi stall detection in 08 first, so the 5 min run is meaningful.
 3. Then continue the checklist from step 4 (calibration, right hand on the button).

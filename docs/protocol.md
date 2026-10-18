@@ -12,6 +12,8 @@ bridge/bridge.py (Mac)        adds bridge_rx_ms and src, logs every message to s
 web/ (browser, Three.js)
 ```
 
+Over USB (firmware `10_usb_stream`), the same device messages are printed on the board's USB serial port, one per line with an `@` prefix (`@{"type":"emg",...}`), and `bridge/bridge.py --serial PORT` handles each line exactly like a datagram (`src` is then `serial:<port>`). Lines without `@` are diagnostics.
+
 The executable definition is [`bridge/protocol.py`](../bridge/protocol.py): `validate_device_message()` and `validate_bridge_message()` check every field listed here, and the end-to-end test uses them.
 
 ## Device message (`type: "emg"`)
