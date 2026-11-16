@@ -171,6 +171,11 @@ canvas.webgl { display: block; }
 #flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
 #flash.on { opacity: 1; }
 
+/* ?view=cores: only the two-core panel, the device mode and the coach (narrow windows, recordings). */
+body.compact #panel, body.compact #conn, body.compact #topbar button, body.compact #topbar .spacer { display: none; }
+body.compact #coach { bottom: 14px; }
+body.compact #coach-text { font-size: 18px; margin: 8px auto 4px; min-height: 24px; }
+
 @media (max-width: 600px) {
   #topbar { flex-wrap: wrap; }
   #panel { width: calc(100% - 48px); }

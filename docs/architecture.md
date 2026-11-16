@@ -60,7 +60,7 @@ How the classes are kept apart:
 - The bridge calls the model in a worker thread; the serial reader and the WebSocket side keep running.
 - The model's reply is data, not code: one sentence and one number, checked against a schema and a range on the Mac and again on the board.
 
-`mode = naive` exists to show the difference: the sampler waits for the reply itself, as a single loop would. In the simulated device the stream then stops for the whole thinking time and the samples of that time are lost; in designed mode the longest pause between two messages was 20 ms at 4x playback, where one hop is 12.5 ms (`tests/test_e2e_coach.py`). On the board this comparison has not been run yet.
+`mode = naive` exists to show the difference: the sampler waits for the reply itself, as a single loop would. In the simulated device the stream then stops for the whole thinking time and the samples of that time are lost; in designed mode the longest pause between two messages was 20-24 ms over three runs at 4x playback, where one hop is 12.5 ms (`tests/test_e2e_coach.py`). On the board this comparison has not been run yet.
 
 Design decisions:
 

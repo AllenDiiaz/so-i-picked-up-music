@@ -48,7 +48,7 @@ The coach loop (a local language model commenting on each practice segment and a
 | Bridge: one serial handle for both directions, segments from keyboard / browser / board button, coach call in a worker thread (10 s timeout), validation and clamping, fallback, everything logged | Tested (board button: code path only, no simulated button) | `tests/test_e2e_coach.py` |
 | Coach, mock rule | Tested | Same test |
 | Coach, local Ollama (`llama3.2:3b`) with a JSON schema | One real round trip run and saved: reply in 0.7 s warm (7.2 s from cold, hence the warm-up at start), command acked. The model's judgement is weak: with 82 % relax it raised `hard_scale` to 1.10, against the prompt's rule, and its sentence is generic | [`docs/data/11_coach_loop/ollama_round_trip.json`](data/11_coach_loop/ollama_round_trip.json) |
-| Designed vs naive | Tested in simulation: designed, longest pause between tension messages 20 ms while the coach thought for 1 s; naive, a 1 s hole after every segment and lost samples reported. **Not measured on the board** | Same test |
+| Designed vs naive | Tested in simulation: designed, longest pause between tension messages 20-24 ms (three runs, 4x playback, one hop = 12.5 ms) while the coach thought for 1 s; naive, a 1 s hole after every segment and lost samples reported. **Not measured on the board** | Same test |
 | Front end: coach sentence, segment state, command round trip line, two-core timeline, sync flash | Tested by eye on headless Chrome screenshots with the simulated device; no automated check of these elements | |
 | `hard_scale` range 0.80-1.50 and what the coach should do with it | **Provisional design choice**, not validated with a player | |
 

@@ -34,3 +34,6 @@ firmware/experiments/08_wifi_stream/main/wifi_config.h
 
 # README video: licensed / personal source material (BioRender figure, practice videos), never committed
 media/readme_video/private/
+
+# README video: generated intermediates (layers, captured browser frames)
+media/readme_video/build/

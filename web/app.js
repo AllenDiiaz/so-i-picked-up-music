@@ -305,6 +305,8 @@ addEventListener("keydown", (e) => {
   else if (e.key === "f") send({ type: "sync" });
 });
 if (params.get("designs") === "all") $("designs").hidden = false;
+// ?view=cores: a compact layout for narrow windows and screen recordings (two-core panel and coach only).
+if (params.get("view") === "cores") document.body.classList.add("compact");
 function toggleRtMode() {
   send({ type: "mode", mode: state.rtMode === "naive" ? "designed" : "naive" });
 }
@@ -506,7 +508,9 @@ function drawCores() {
   }
   const c1 = c.core1, c0 = c.core0;
   const dev = c1.max_dev_us >= 1000 ? `${(c1.max_dev_us / 1000).toFixed(0)} ms` : `${c1.max_dev_us} µs`;
-  $("v-core1").textContent = `max deviation ${dev} · late ${c1.late} · ovf ${c1.ovf}` + (c1.blocked_ms ? ` · BLOCKED ${c1.blocked_ms} ms` : "");
+  $("v-core1").textContent = c1.blocked_ms
+    ? `BLOCKED ${c1.blocked_ms} ms · late ${c1.late} · ovf ${c1.ovf}`
+    : `max deviation ${dev} · late ${c1.late} · ovf ${c1.ovf}`;
   $("v-core0").textContent = `commands ${c0.cmd_rx} · rejected ${c0.parse_fail} · applied ${c0.applied}`;
 }
 

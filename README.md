@@ -2,11 +2,15 @@
 
 An ESP32-S3 firmware and real-time system project for guitar practice: the board measures forearm EMG at 1 kHz under FreeRTOS, computes the fretting hand's tension on the device and streams it over USB to a Mac bridge and a browser view (Three.js, WebXR-ready). Between practice segments a local language model comments on the segment and may adjust one threshold on the board, in the loop but outside the hard real-time path: sampling stays alone on core 1, commands arrive through a low-priority task on core 0. Timing is measured at every step.
 
-![Replay of measured frame timing for three conditions: no Wi-Fi, Wi-Fi with the sampler on core 0, Wi-Fi with the sampler on core 1](docs/figures/04_timing_replay.gif)
+![25 s overview. A practice video beside a forearm EMG trace passing through the filter stages (draft material); the architecture, with sampling on core 1 of the ESP32-S3, output and a command task on core 0, a bridge on the Mac, a browser view and a local AI coach; a side-by-side browser recording of a naive design, whose data stream stops while the coach thinks, and the two-core design, whose stream continues (simulated device); the wiring](docs/figures/so_i_picked_up_music_25s.gif)
+
+What is real in this clip: the architecture is the current code, and the side-by-side scene is the actual front end recorded with a **simulated device** (recorded EMG through the firmware's C code, timing from a model) and a mock coach. The first scene is **draft material**: the EMG trace is a lab recording, not from that take. [MP4](docs/figures/so_i_picked_up_music_25s.mp4), [how it is built](media/readme_video/README.md).
 
 Work in progress. Tested on the board: the one-way pipeline from the forearm to the browser over USB, with the three levels measured once ([session 2](docs/experiments/09_hardware_session_2.md)). Built and tested against a simulated device, not yet run on the board: the coach loop (firmware `11_coach_loop`, commands, acks, the two-core timeline). Open: Wi-Fi streaming raises the EMG noise, so it is not in use. The browser view has WebXR session code that has never been run on a headset. See [Roadmap / status](#roadmap--status).
 
 ## Key results
+
+![Replay of measured frame timing for three conditions: no Wi-Fi, Wi-Fi with the sampler on core 0, Wi-Fi with the sampler on core 1](docs/figures/04_timing_replay.gif)
 
 Numbers below are from the 60 s per-frame runs of experiment 04 (3750 frames each, one run per condition) unless noted.
 
