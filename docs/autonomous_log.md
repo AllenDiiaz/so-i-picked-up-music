@@ -18,3 +18,12 @@ Also done before this session's task list: `.venv` created, `tests/test_e2e_repl
 
 ## Decisions
 
+- **`hard_scale` as the one tunable parameter.** The task names `{"hard_scale": n}` without a definition. It is implemented as a multiplier on the hard entry and exit ratios (2.72 / 2.45), allowed range 0.80-1.50, default 1.00. The lower limit keeps hard above medium (0.80 x 2.45 = 1.96 > 1.49). The range is a design choice, not derived from data.
+- **`emg_dsp.c` is not modified** (07, 08 and 10 share it). The scaled level is computed in a new component `11_coach_loop/components/coach` from the DSP's normalized value. The host test shows it equals the DSP's level on every hop at scale 1.00 for both experiment 06 recordings.
+- **Invalid command lines get no ack**: they are dropped and counted (`core0.parse_fail`), as specified. Out-of-range values are clamped and acked with `"clamped":true`.
+- **Fallback never re-sends a command.** When the model is unreachable, late or its reply is unusable, the last good feedback text is shown again, marked `fallback`, and no command goes to the board. Repeating an old parameter change without a fresh judgement seemed the less conservative choice.
+- **Empty `set_params` in naive mode.** A naive device blocks until a reply arrives. When the coach has no parameter to send (null or rejected command), the bridge sends `set_params` without a value, which changes nothing but releases the device. In designed mode nothing is sent in that case.
+- **Board button.** 10 uses the button for calibration. In 11 a short press sends a `button` message (segment start / end) and holding it for 1 s calibrates. Untested on the board.
+- **The designed path tests one extra flag** (`s_naive_wait`, set only in naive mode) at the end of each frame. Beyond that, and the lock-free read of the parameter word and the timing counters, the sampler is the code of 10.
+- **Simulated `cores` numbers.** The fake device has no ADC or DMA, so its core 1 timing is a model: 0 µs when the sampler never waits, the wait length when it blocks. Every such message carries `"simulated": true`. Real jitter is not modelled.
+- **Side effect of `brew install`:** Homebrew also installed Python 3.15 and made it the default `python3` (it was 3.14.8). ESP-IDF's `export.sh` then fails, because its environment is `idf6.0_py3.14_env`. Nothing was reinstalled; `scripts/idf_env.sh` puts the matching `python3.14` first on PATH and then sources `export.sh`. `.venv` still uses 3.14.8.
