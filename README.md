@@ -1,10 +1,10 @@
 # So I Picked Up Music
 
-An ESP32-S3 firmware and real-time system project: the board measures forearm EMG at 1 kHz under FreeRTOS, computes the fretting hand's tension on the device, and streams it over Wi-Fi to a Mac bridge and a browser (Three.js / WebXR) front end for guitar practice, with measured timing at every step.
+An ESP32-S3 firmware and real-time system project for guitar practice: the board measures forearm EMG at 1 kHz under FreeRTOS, computes the fretting hand's tension on the device and streams it over USB to a Mac bridge and a browser view (Three.js, WebXR-ready). Between practice segments a local language model comments on the segment and may adjust one threshold on the board, in the loop but outside the hard real-time path: sampling stays alone on core 1, commands arrive through a low-priority task on core 0. Timing is measured at every step.
 
 ![Replay of measured frame timing for three conditions: no Wi-Fi, Wi-Fi with the sampler on core 0, Wi-Fi with the sampler on core 1](docs/figures/04_timing_replay.gif)
 
-Work in progress: the whole pipeline runs end to end from the forearm to the browser over USB, and the three levels were measured once on the board ([session 2](docs/experiments/09_hardware_session_2.md)); Wi-Fi streaming works but its interference with the EMG is still open. See [Roadmap / status](#roadmap--status).
+Work in progress. Tested on the board: the one-way pipeline from the forearm to the browser over USB, with the three levels measured once ([session 2](docs/experiments/09_hardware_session_2.md)). Built and tested against a simulated device, not yet run on the board: the coach loop (firmware `11_coach_loop`, commands, acks, the two-core timeline). Open: Wi-Fi streaming raises the EMG noise, so it is not in use. The browser view has WebXR session code that has never been run on a headset. See [Roadmap / status](#roadmap--status).
 
 ## Key results
 
@@ -39,21 +39,42 @@ Done (tested without hardware, on the experiment 06 recordings):
 - [x] Browser front end with three feedback designs and live latency readouts
 - [x] End-to-end replay test (replay -> bridge -> WebSocket): every message, levels identical to the host test
 - [x] Session summary (JSON) and a "letter to future self" prompt (printed only, no model call)
+- [x] Coach loop against a simulated device: two-way bridge, local LLM (Ollama) or mock rule with validated and clamped replies, firmware `11_coach_loop` built, designed vs naive comparison, two-core timeline in the front end ([architecture](docs/architecture.md#three-timing-classes), `tests/test_e2e_coach.py`)
 
 On the hardware ([checklist](docs/hardware_session_checklist.md)):
 
 - [x] Flash 08: Wi-Fi streaming, button, LED, no MAC address in the logs ([session 1](docs/experiments/08_hardware_session_1.md))
 - [x] AD8232 fault of session 1 fixed (solder joints reflowed)
 - [x] MVP over USB: `10_usb_stream` + `bridge.py --serial`, arm -> browser with 0 lost; first three-level test on the board (relax 99-100 %, hard 72-100 %, light 14-66 %)
-- [ ] Wi-Fi interference: with 08 the relaxed-forearm RMS rises from 6.5 to 15.5 mV, so calibration fails ([session 2](docs/experiments/09_hardware_session_2.md)); also detect Wi-Fi stalls (session 1)
+- [ ] Flash `11_coach_loop` and run the coach loop on the board: commands and acks over USB, `cores` timing, designed vs naive, the button ([list](docs/autonomous_log.md#to-verify-on-the-board))
+- [ ] Wi-Fi interference (known problem, USB is used instead): with 08 the relaxed-forearm RMS rises from 6.5 to 15.5 mV, so calibration fails ([session 2](docs/experiments/09_hardware_session_2.md)); also detect Wi-Fi stalls (session 1)
 - [ ] Three levels reliably and on the guitar; new recordings to fix the provisional thresholds
 - [ ] End-to-end latency < 300 ms (LED + phone slow motion)
 - [ ] 5 min continuous streaming, packet loss < 1 %
-- [ ] WebXR AR overlay on Quest
+- [ ] WebXR on a headset (session code written, never run; the current view is a desktop browser page)
 
 ## Live over USB (with the board)
 
 Flash [`10_usb_stream`](firmware/experiments/10_usb_stream/README.md), then run `.venv/bin/python bridge/bridge.py --serial /dev/cu.usbmodem1101` and serve `web/` as below; open http://localhost:8000/?mode=C.
+
+## Coach loop without the board
+
+```sh
+brew install ollama && brew services start ollama && ollama pull llama3.2:3b     # optional; --llm mock needs nothing
+scripts/run_coach_demo.sh                 # simulated device + bridge (mock coach) + web server
+LLM=ollama scripts/run_coach_demo.sh      # the same with the local model
+MODE=naive scripts/run_coach_demo.sh      # the counter-example: the sampler waits for the coach
+```
+
+Open http://localhost:8000/. Space starts and ends a practice segment (or press Enter in the terminal); when it ends, the coach's sentence appears and the line under it shows the round trip `LLM -> command -> ack`. `m` switches between designed and naive, `f` triggers a sync flash. The device here is simulated ([what is real and what is not](tools/fake_device.py)).
+
+```sh
+.venv/bin/python tests/test_e2e_coach.py            # both modes with a scripted coach, about 40 s
+.venv/bin/python tests/test_e2e_coach.py --ollama   # plus one segment against the local model
+make -C firmware/experiments/11_coach_loop/host_test test
+```
+
+With the board (not yet done): flash [`11_coach_loop`](firmware/experiments/11_coach_loop/README.md) and run `bridge/bridge.py --serial /dev/cu.usbmodem1101 --llm ollama`.
 
 ## Replay demo (no hardware)
 
@@ -63,7 +84,7 @@ python3 -m venv .venv
 scripts/run_replay_demo.sh          # or: scripts/run_replay_demo.sh 04_B_chord.log 1
 ```
 
-Open http://localhost:8000/ and switch designs with keys 1 / 2 / 3. The script runs the bridge, a static web server and the replayer (which builds the firmware DSP for the Mac with `make` on first use) (experiment 06 segment A in a loop, real time); Ctrl-C stops everything. Session logs land in `sessions/` (git-ignored):
+Open http://localhost:8000/?designs=all and switch designs with keys 1 / 2 / 3 (C, the edge glow, is the default). The script runs the bridge, a static web server and the replayer (which builds the firmware DSP for the Mac with `make` on first use) (experiment 06 segment A in a loop, real time); Ctrl-C stops everything. Session logs land in `sessions/` (git-ignored):
 
 ```sh
 .venv/bin/python tools/session_summary.py          # newest session -> JSON statistics
@@ -85,6 +106,7 @@ Early bring-up experiments, each a standalone ESP-IDF project under `firmware/ex
 | `07_onboard_tension` | MVP step 1: compute EMG tension on the board (mains notches, 45-200 Hz band-pass, 200 ms RMS, relax calibration, three levels). No Wi-Fi. | [README](firmware/experiments/07_onboard_tension/README.md) |
 | `08_wifi_stream` | MVP step 2: the 07 DSP plus Wi-Fi UDP streaming (protocol v1), latency LED and calibration button. **Partly tested on hardware; Wi-Fi raises the EMG noise.** | [README](firmware/experiments/08_wifi_stream/README.md) |
 | `10_usb_stream` | MVP over USB: the 07 DSP printing protocol v1 JSON lines for `bridge.py --serial`, latency LED and calibration button. **Tested on hardware.** | [README](firmware/experiments/10_usb_stream/README.md) |
+| `11_coach_loop` | 10 plus a downlink: `!` commands parsed by a low-priority task on core 0, one parameter (`hard_scale`) handed to the sampler on core 1, acks, per-second core statistics, and a naive mode as the counter-example. **Built, not yet run on the board.** | [README](firmware/experiments/11_coach_loop/README.md) |
 
 ## Regenerating figures
 
