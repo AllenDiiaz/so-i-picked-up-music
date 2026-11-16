@@ -19,6 +19,7 @@ from protocol import FEEDBACK_MAX_WORDS, HARD_SCALE_MAX, HARD_SCALE_MIN
 OLLAMA_URL = "http://localhost:11434"
 DEFAULT_MODEL = "llama3.2:3b"
 TIMEOUT_S = 10.0
+KEEP_ALIVE = "30m"      # keep the model in memory between segments (loading it took ~3.5 s of a 7 s first reply)
 
 REPLY_SCHEMA = {
     "type": "object",
@@ -93,8 +94,24 @@ class Coach:
         """The exact request for the session log (ollama) or a description (mock)."""
         if self.kind == "ollama":
             return {"url": f"{self.url}/api/generate", "model": self.model, "prompt": prompt, "stream": False,
-                    "format": REPLY_SCHEMA, "options": {"temperature": 0.2, "num_predict": 120}}
+                    "format": REPLY_SCHEMA, "keep_alive": KEEP_ALIVE,
+                    "options": {"temperature": 0.2, "num_predict": 120}}
         return {"mock": "replies file" if self.calls < len(self.mock_replies) else "rule", "prompt": prompt}
+
+    def warm_up(self):
+        """Load the Ollama model before the first segment ends (blocking; call it in a thread).
+        Returns a short status text. The mock needs no warm-up."""
+        if self.kind != "ollama":
+            return "mock coach ready"
+        body = json.dumps({"model": self.model, "prompt": "", "stream": False, "keep_alive": KEEP_ALIVE}).encode()
+        req = urllib.request.Request(f"{self.url}/api/generate", data=body, headers={"Content-Type": "application/json"})
+        started = time.monotonic()
+        try:
+            with urllib.request.urlopen(req, timeout=60) as res:
+                res.read()
+            return f"ollama model {self.model} loaded in {time.monotonic() - started:.1f} s"
+        except Exception as e:
+            return f"ollama not reachable ({e}); segments will use the fallback until it is"
 
     def call(self, prompt, summary, hard_scale):
         """Blocking; returns the raw reply text. Raises on connection errors and timeouts."""

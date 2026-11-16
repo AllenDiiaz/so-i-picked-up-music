@@ -1,0 +1,134 @@
+{
+ "note": "One real round trip: simulated device (experiment 06 recording), local Ollama model. Times are epoch ms.",
+ "llm_request": {
+  "type": "llm_request",
+  "v": 1,
+  "id": 1,
+  "llm": "ollama",
+  "model": "llama3.2:3b",
+  "summary": {
+   "messages": 241,
+   "duration_s": 12.05,
+   "lost_messages": 0,
+   "loss_rate": 0.0,
+   "calibrating_s": 0.0,
+   "saturated_s": 0.0,
+   "saturated_episodes": 0,
+   "level_time_s": {
+    "none": 0.0,
+    "relax": 9.9,
+    "medium": 1.25,
+    "hard": 0.9
+   },
+   "level_share": {
+    "none": 0.0,
+    "relax": 0.8216,
+    "medium": 0.1037,
+    "hard": 0.0747
+   },
+   "level_changes": 7,
+   "hard_entries": 2,
+   "longest_hard_s": 0.55,
+   "longest_medium_or_hard_s": 1.35,
+   "norm": {
+    "mean": 1.265,
+    "p90": 2.228,
+    "max": 4.12
+   },
+   "baseline_mV": 4.489,
+   "calibrations": []
+  },
+  "hard_scale": 1.0,
+  "request": {
+   "url": "http://localhost:11434/api/generate",
+   "model": "llama3.2:3b",
+   "prompt": "You are a guitar practice coach. A forearm EMG sensor measured the fretting hand's tension during one practice segment. Levels: relax, medium, hard (hard = squeezing more than needed).\n\nSegment data:\n- duration: 12.1 s\n- time share: relax 82%, medium 10%, hard 7%\n- entries into hard: 2; longest continuous hard: 0.6 s\n- tension as a multiple of the relax baseline: mean 1.265, 90th percentile 2.228, max 4.12\n- current hard_scale: 1.00\n\nReply with JSON only: {\"feedback\": string, \"command\": {\"hard_scale\": number} or null}.\n- feedback: one sentence for the player, at most 20 words, based only on the numbers above. No medical claims.\n- command: hard_scale multiplies the threshold of the hard level (1.0 = default). Lower it (stricter) when the player was mostly relaxed, raise it (more lenient) when hard dominated the whole segment, otherwise null. Allowed range 0.80 to 1.50; change it by at most 0.10 at a time.",
+   "stream": false,
+   "format": {
+    "type": "object",
+    "properties": {
+     "feedback": {
+      "type": "string"
+     },
+     "command": {
+      "anyOf": [
+       {
+        "type": "object",
+        "properties": {
+         "hard_scale": {
+          "type": "number"
+         }
+        },
+        "required": [
+         "hard_scale"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "feedback",
+     "command"
+    ]
+   },
+   "keep_alive": "30m",
+   "options": {
+    "temperature": 0.2,
+    "num_predict": 120
+   }
+  },
+  "bridge_ms": 1794830556256.984
+ },
+ "llm_response": {
+  "type": "llm_response",
+  "v": 1,
+  "id": 1,
+  "llm": "ollama",
+  "model": "llama3.2:3b",
+  "raw": "{\"feedback\": \"Maintain consistent tension to avoid discomfort.\", \"command\": {\"hard_scale\": 1.10}}",
+  "error": null,
+  "latency_ms": 723.1,
+  "bridge_ms": 1794830556980.079
+ },
+ "coach": {
+  "type": "coach",
+  "v": 1,
+  "id": 1,
+  "feedback": "Maintain consistent tension to avoid discomfort.",
+  "command": {
+   "hard_scale": 1.1
+  },
+  "llm": "ollama",
+  "model": "llama3.2:3b",
+  "fallback": false,
+  "clamped": false,
+  "truncated": false,
+  "command_error": null,
+  "sent": true,
+  "acked": true,
+  "reason": null,
+  "ack_seq": 3,
+  "latency_ms": 737.3,
+  "bridge_ms": 1794830556994.2751
+ },
+ "acks": [
+  {
+   "type": "ack",
+   "v": 1,
+   "dev": "fake-esp32s3-emg",
+   "boot": 4085077243,
+   "seq": 3,
+   "cmd": "set_params",
+   "applied": {
+    "hard_scale": 1.1
+   },
+   "clamped": false,
+   "sample_index": 20499,
+   "device_ms": 20509,
+   "bridge_rx_ms": 1794830556993.849
+  }
+ ]
+}

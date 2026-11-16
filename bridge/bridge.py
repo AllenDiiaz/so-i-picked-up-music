@@ -447,6 +447,13 @@ async def run(args):
         info = coach.describe()
         print(f"bridge: {inputs} -> ws://{args.ws_host}:{args.ws_port} | session log {shown} | "
               f"coach {info['llm']} ({info['model']})", flush=True)
+        async def warm_up():
+            text = await asyncio.to_thread(coach.warm_up)
+            bridge.log_only({"type": "llm_warm_up", "v": VERSION, **info, "result": text, "bridge_ms": now_ms()})
+            if not args.quiet:
+                print(f"coach: {text}", flush=True)
+        if args.llm == "ollama":
+            bridge.spawn(warm_up())
         if sys.stdin and sys.stdin.isatty():
             print("keys + Enter: [Enter] segment start/end, n naive, d designed, f sync flash", flush=True)
         try:

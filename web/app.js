@@ -5,8 +5,18 @@
 //   A  a ring around the left forearm: thickness and colour follow tension
 //   B  a light strip along the fretboard: brightness and colour follow tension
 //   C  a soft glow at the screen edges (DOM overlay), leaving the centre clear
-// The scene is in metres with the floor at y = 0 (a seated player), so it can be used as is in
-// an immersive-ar session with a 'local-floor' reference space. WebXR is untested on Quest.
+// C is the default and the design in use; A and B stay reachable with keys 1 / 2 or ?designs=all.
+// The scene is in metres with the floor at y = 0 (a seated player), so it could be used in an
+// immersive-ar session with a 'local-floor' reference space. That WebXR path is written but has
+// never been run on a headset: this is a browser view, WebXR-ready, not an AR application.
+//
+// Coach loop (11_coach_loop or tools/fake_device.py behind bridge.py --serial):
+//   - segment state (recording / thinking / feedback), the coach's sentence, and one line that
+//     follows the round trip "LLM -> command -> ack";
+//   - a two-track timeline: core 1 (sampler) with the arrival of every tension message and the
+//     device's own frame-timing numbers, core 0 with the commands, acks and the thinking time;
+//   - space starts / ends a segment, m switches designed / naive, f asks the bridge for a sync
+//     flash (white frame + beep on every page, time-stamped in the session log).
 import * as THREE from "three";
 
 // ---------------------------------------------------------------------------------------------
@@ -21,6 +31,8 @@ const LEVEL_NAME = { 0: "relax", 1: "medium", 2: "hard" };
 // No device message for this long -> "no data". ?nodata_ms= lets the screenshot test pause the stream.
 const NO_DATA_MS = Number(params.get("nodata_ms")) || 1000;
 const HISTORY_MS = 10000;       // chart length
+const TIMELINE_MS = Number(params.get("timeline_ms")) || 30000;   // two-core timeline length
+const COACH_SHOW_MS = Number(params.get("coach_ms")) || 15000;    // feedback fades out after this
 // Thresholds of the 07 firmware (emg_dsp.h), drawn in the chart. Provisional.
 const ENTER = [1.49, 2.72];
 const EXIT = [1.35, 2.45];
@@ -35,7 +47,19 @@ const TAU_MS = 60;
 // ---------------------------------------------------------------------------------------------
 // State
 const state = {
-  mode: (params.get("mode") || localStorageGet("mode") || "A").toUpperCase(),
+  mode: (params.get("mode") || "C").toUpperCase(),
+  rtMode: null,             // "designed" | "naive", from the device (cores, ack) or the bridge status
+  simulated: false,         // the device says its core numbers are simulated (tools/fake_device.py)
+  hardScale: 1,
+  segment: { id: 0, state: "idle", since: 0 },
+  coach: null,              // latest coach message
+  coachAt: 0,
+  loop: null,               // { id, llm, command, ack } for the "LLM -> command -> ack" line
+  cores: [],                // {t, msg} last TIMELINE_MS of cores messages
+  arrivals: [],             // browser arrival times of emg messages, for the core 1 track
+  events: [],               // {t, kind, label} for the core 0 track
+  thinking: [],             // {t0, t1} spans between segment end and the coach's reply
+  lastCores: null,
   ws: null,
   wsOpen: false,
   last: null,               // latest device message
@@ -75,8 +99,11 @@ function connect() {
     const recv = nowMs();
     let msg;
     try { msg = JSON.parse(ev.data); } catch { return; }
-    if (msg.type === "status") { state.status = msg; return; }
-    if (msg.type !== "emg" || msg.v !== 1) return;
+    if (msg.type === "status") { state.status = msg; onStatus(msg); return; }
+    if (msg.v !== 1) return;
+    if (msg.type !== "emg") { onLoopMessage(msg, recv); return; }
+    state.arrivals.push(recv);
+    while (state.arrivals.length && state.arrivals[0] < recv - TIMELINE_MS) state.arrivals.shift();
     state.last = msg;
     state.lastRecvMs = recv;
     if (typeof msg.bridge_rx_ms === "number") pushStat(state.netLat, recv - msg.bridge_rx_ms);
@@ -85,6 +112,76 @@ function connect() {
     while (state.history.length && state.history[0].t < recv - HISTORY_MS) state.history.shift();
   };
 }
+function send(obj) {
+  if (state.wsOpen) state.ws.send(JSON.stringify(obj));
+}
+
+// ---------------------------------------------------------------------------------------------
+// Coach loop messages (docs/protocol.md): segment, coach, command, ack, cores, sync
+function onStatus(msg) {
+  if (msg.mode && !state.lastCores) state.rtMode = msg.mode;
+  if (typeof msg.hard_scale === "number") state.hardScale = msg.hard_scale;
+  if (msg.segment && msg.segment.state !== state.segment.state) {     // a page opened mid-segment
+    state.segment = { id: msg.segment.id, state: msg.segment.state, since: nowMs() };
+  }
+}
+function addEvent(t, kind, label) {
+  state.events.push({ t, kind, label });
+  while (state.events.length && state.events[0].t < t - TIMELINE_MS) state.events.shift();
+}
+function onLoopMessage(msg, recv) {
+  if (msg.type === "segment") {
+    state.segment = { id: msg.id, state: msg.state, since: recv };
+    if (msg.state === "recording") { state.coach = null; state.loop = null; }
+    if (msg.state === "thinking") state.thinking.push({ t0: recv, t1: null });
+  } else if (msg.type === "coach") {
+    state.coach = msg;
+    state.coachAt = recv;
+    const span = state.thinking[state.thinking.length - 1];
+    if (span && span.t1 === null) span.t1 = recv;
+    state.loop = Object.assign(state.loop || {}, { id: msg.id, coach: msg });
+    addEvent(recv, "llm", msg.fallback ? "fallback" : "reply");
+  } else if (msg.type === "command") {
+    addEvent(recv, msg.cmd === "set_params" ? "params" : "cmd", msg.cmd === "segment" ? msg.state : msg.cmd);
+    if (msg.cmd === "set_params") state.loop = Object.assign(state.loop || {}, { command: msg, ack: null });
+  } else if (msg.type === "ack") {
+    addEvent(recv, "ack", "ack");
+    if (msg.applied && typeof msg.applied.hard_scale === "number") state.hardScale = msg.applied.hard_scale;
+    if (msg.applied && msg.applied.mode) state.rtMode = msg.applied.mode;
+    if (msg.cmd === "set_params" && state.loop && state.loop.command && state.loop.command.seq === msg.seq) {
+      state.loop.ack = msg;
+    }
+  } else if (msg.type === "cores") {
+    state.lastCores = msg;
+    state.rtMode = msg.mode;
+    state.simulated = msg.simulated;
+    state.hardScale = msg.hard_scale;
+    state.cores.push({ t: recv, msg });
+    while (state.cores.length && state.cores[0].t < recv - TIMELINE_MS) state.cores.shift();
+  } else if (msg.type === "sync") {
+    flash(msg.id);
+  }
+}
+
+// Sync flash: one white frame and a 1 kHz beep, so a screen recording (or a camera filming the
+// screen) can be lined up with the bridge's session log, which has the time stamp.
+let audio = null;
+function flash(id) {
+  const el = document.getElementById("flash");
+  el.classList.add("on");
+  setTimeout(() => el.classList.remove("on"), 120);
+  try {
+    audio = audio || new AudioContext();
+    const osc = audio.createOscillator(), gain = audio.createGain();
+    osc.frequency.value = 1000;
+    gain.gain.value = 0.2;
+    osc.connect(gain).connect(audio.destination);
+    osc.start();
+    osc.stop(audio.currentTime + 0.12);
+  } catch { /* no audio device or autoplay blocked: the flash alone still marks the frame */ }
+  send({ type: "sync_shown", id, browser_ms: nowMs() });
+}
+
 function pushStat(list, value) {
   list.push(value);
   if (list.length > 40) list.shift();
@@ -198,16 +295,29 @@ function setMode(mode) {
   ring.visible = mode === "A";
   strip.visible = stripGlow.visible = mode === "B";
   edgeGlow.style.display = mode === "C" ? "block" : "none";
+  placeholders.visible = mode !== "C";      // C leaves the centre clear: no guitar / arm stand-ins
 }
 document.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
-addEventListener("keydown", (e) => { if ({ 1: "A", 2: "B", 3: "C" }[e.key]) setMode({ 1: "A", 2: "B", 3: "C" }[e.key]); });
+addEventListener("keydown", (e) => {
+  if ({ 1: "A", 2: "B", 3: "C" }[e.key]) setMode({ 1: "A", 2: "B", 3: "C" }[e.key]);
+  else if (e.key === " ") { e.preventDefault(); send({ type: "segment", action: "toggle" }); }
+  else if (e.key === "m") toggleRtMode();
+  else if (e.key === "f") send({ type: "sync" });
+});
+if (params.get("designs") === "all") $("designs").hidden = false;
+function toggleRtMode() {
+  send({ type: "mode", mode: state.rtMode === "naive" ? "designed" : "naive" });
+}
+$("btn-segment").addEventListener("click", () => send({ type: "segment", action: "toggle" }));
+$("btn-mode").addEventListener("click", toggleRtMode);
+$("btn-sync").addEventListener("click", () => send({ type: "sync" }));
 addEventListener("resize", () => {
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(innerWidth, innerHeight);
 });
 
-// WebXR: offer AR only where immersive-ar is supported. Untested on Quest.
+// WebXR: offer AR only where immersive-ar is supported. Written, never run on a headset.
 if (navigator.xr) {
   navigator.xr.isSessionSupported("immersive-ar").then((ok) => {
     if (!ok) return;
@@ -222,7 +332,7 @@ if (navigator.xr) {
       });
       placeholders.visible = false;
       scene.background = null;              // pass-through
-      session.addEventListener("end", () => { placeholders.visible = true; scene.background = new THREE.Color(0x121212); });
+      session.addEventListener("end", () => { placeholders.visible = state.mode !== "C"; scene.background = new THREE.Color(0x121212); });
       await renderer.xr.setSession(session);
     });
   }).catch(() => {});
@@ -236,7 +346,9 @@ function drawChart(now) {
   const y = (v) => h - (Math.min(v, top) / top) * h;
   ctx.clearRect(0, 0, w, h);
   ctx.lineWidth = 1;
-  for (const [values, dash] of [[ENTER, [6, 4]], [EXIT, [2, 4]]]) {
+  // The hard thresholds move with the coach's hard_scale (11_coach_loop); medium is fixed.
+  const hs = state.hardScale || 1;
+  for (const [values, dash] of [[[ENTER[0], ENTER[1] * hs], [6, 4]], [[EXIT[0], EXIT[1] * hs], [2, 4]]]) {
     ctx.setLineDash(dash);
     ctx.strokeStyle = "#666";
     for (const v of values) { ctx.beginPath(); ctx.moveTo(0, y(v)); ctx.lineTo(w, y(v)); ctx.stroke(); }
@@ -246,6 +358,7 @@ function drawChart(now) {
   const pts = state.history;
   for (let i = 1; i < pts.length; i++) {
     const a = pts[i - 1], b = pts[i];
+    if (b.t - a.t > 250) continue;          // the stream stopped here: leave the gap visible
     const key = b.saturated ? "saturated" : (LEVEL_NAME[b.level] || "nodata");
     ctx.strokeStyle = "#" + COLORS[key].toString(16).padStart(6, "0");
     ctx.beginPath();
@@ -253,6 +366,148 @@ function drawChart(now) {
     ctx.lineTo(w * (1 - (now - b.t) / HISTORY_MS), y(b.norm));
     ctx.stroke();
   }
+}
+
+// Two-core timeline (last TIMELINE_MS, newest at the right edge).
+//   core 1  top strip: one tick per tension message as it arrived here (a gap = the stream stopped);
+//           bars: the device's largest frame-interval deviation per second, log scale 10 us .. 10 s,
+//           red when the sampler was blocked or frames were late.
+//   core 0  band = the coach is thinking; ticks = commands sent, replies and acks.
+const timeline = $("timeline");
+const tctx = timeline.getContext("2d");
+const EVENT_COLOR = { cmd: "#8FA8DC", params: "#00A087", ack: "#EDEDED", llm: "#4DBBD5" };
+const EVENT_LEGEND = [["cmd", "segment / mode"], ["llm", "reply"], ["params", "set_params"], ["ack", "ack"]];
+function drawTimeline(now) {
+  const w = timeline.width, h = timeline.height, left = 112, right = w - 8;
+  const x = (t) => right - ((now - t) / TIMELINE_MS) * (right - left);
+  const rows = { c1: [34, 150], c0: [186, 270] };       // [top, bottom] of each track
+  tctx.clearRect(0, 0, w, h);
+  tctx.font = "22px Arial";
+  tctx.textBaseline = "middle";
+  tctx.fillStyle = "#EDEDED";
+  tctx.fillText("core 1", 4, 58);
+  tctx.fillText("core 0", 4, 208);
+  tctx.fillStyle = "#9A9A9A";
+  tctx.font = "17px Arial";
+  tctx.fillText("sampler", 4, 84);
+  tctx.fillText("1 kHz + DSP", 4, 106);
+  tctx.fillText("output,", 4, 234);
+  tctx.fillText("cmd_rx", 4, 256);
+  for (const [top, bottom] of Object.values(rows)) {
+    tctx.fillStyle = "rgba(255,255,255,0.04)";
+    tctx.fillRect(left, top, right - left, bottom - top);
+  }
+  // core 1: message arrivals
+  tctx.fillStyle = "#8C8C8C";
+  for (const t of state.arrivals) {
+    const px = x(t);
+    if (px >= left) tctx.fillRect(px, rows.c1[0], 1.5, 12);
+  }
+  // core 1: deviation bars (log scale)
+  const [top1, bottom1] = [rows.c1[0] + 18, rows.c1[1]];
+  const barW = Math.max(3, (right - left) / (TIMELINE_MS / 1000) - 3);
+  for (const { t, msg } of state.cores) {
+    const px = x(t);
+    if (px < left) continue;
+    const c1 = msg.core1;
+    const bad = c1.blocked_ms > 0 || c1.late > 0;
+    const frac = Math.min(1, Math.max(0.03, (Math.log10(Math.max(c1.max_dev_us, 1)) - 1) / 6));   // 10 us .. 10 s
+    tctx.fillStyle = bad ? "#E64B35" : "#5f6f8f";
+    tctx.fillRect(px - barW, bottom1 - frac * (bottom1 - top1), barW, frac * (bottom1 - top1));
+  }
+  // core 0: thinking spans, then events
+  for (const span of state.thinking) {
+    const x0 = Math.max(left, x(span.t0)), x1 = x(span.t1 === null ? now : span.t1);
+    if (x1 < left) continue;
+    tctx.fillStyle = "rgba(77,187,213,0.28)";
+    tctx.fillRect(x0, rows.c0[0], x1 - x0, rows.c0[1] - rows.c0[0]);
+    tctx.fillStyle = "#4DBBD5";
+    tctx.font = "16px Arial";
+    if (x1 - x0 > 70) tctx.fillText("LLM thinking", x0 + 5, rows.c0[0] + 14);
+  }
+  while (state.thinking.length && state.thinking[0].t1 !== null && state.thinking[0].t1 < now - TIMELINE_MS) state.thinking.shift();
+  for (const ev of state.events) {
+    const px = x(ev.t);
+    if (px < left) continue;
+    tctx.fillStyle = EVENT_COLOR[ev.kind] || "#fff";
+    const tall = ev.kind === "params" || ev.kind === "ack";
+    tctx.fillRect(px - 1.5, rows.c0[tall ? 0 : 0] + (tall ? 26 : 44), 3, rows.c0[1] - rows.c0[0] - (tall ? 26 : 44));
+  }
+  // legend between the tracks
+  let lx = left;
+  tctx.font = "15px Arial";
+  for (const [kind, label] of EVENT_LEGEND) {
+    tctx.fillStyle = EVENT_COLOR[kind];
+    tctx.fillRect(lx, 162, 4, 14);
+    tctx.fillStyle = "#9A9A9A";
+    tctx.fillText(label, lx + 9, 170);
+    lx += 9 + tctx.measureText(label).width + 22;
+  }
+  // time axis
+  tctx.fillStyle = "#777";
+  tctx.font = "15px Arial";
+  for (let sec = 0; sec <= TIMELINE_MS / 1000; sec += 10) {
+    const px = right - (sec * 1000 / TIMELINE_MS) * (right - left);
+    tctx.fillText(sec === 0 ? "now" : `-${sec} s`, Math.max(left, px - (sec === 0 ? 30 : 18)), h - 10);
+  }
+}
+
+function drawCoach(now) {
+  const seg = state.segment;
+  const chip = $("seg-state");
+  chip.className = "chip " + seg.state;
+  chip.textContent = seg.state;
+  const secs = seg.since ? ((now - seg.since) / 1000).toFixed(1) : "";
+  $("seg-info").textContent = seg.state === "recording" ? `segment ${seg.id} · ${secs} s`
+    : seg.state === "thinking" ? `segment ${seg.id} · waiting for the coach ${secs} s`
+    : seg.id ? `segment ${seg.id}` : "press space to start a segment";
+  const button = $("btn-segment");
+  button.textContent = seg.state === "recording" ? "end segment" : "start segment";
+  button.classList.toggle("recording", seg.state === "recording");
+  button.disabled = seg.state === "thinking";
+
+  const text = $("coach-text"), line = $("loop-line");
+  const c = state.coach;
+  const visible = c && seg.state !== "recording" && now - state.coachAt < COACH_SHOW_MS;
+  if (c) {
+    text.textContent = c.feedback;
+    text.classList.toggle("fallback", c.fallback);
+  }
+  text.classList.toggle("show", !!visible);
+  line.classList.toggle("show", !!visible);
+  if (!c) return;
+  const who = c.llm === "none" ? "no LLM call" : `LLM <b>${c.llm}${c.model && c.model !== "rule" ? " · " + c.model : ""}</b> ${Math.round(c.latency_ms)} ms`;
+  let cmd, ack = "";
+  if (c.fallback) cmd = `<span class="bad">fallback: last good feedback, no command</span>`;
+  else if (c.command_error) cmd = `<span class="bad">command dropped (${c.command_error})</span>`;
+  else if (!c.command) cmd = "no command";
+  else {
+    cmd = `command <b>hard_scale ${c.command.hard_scale.toFixed(2)}</b>${c.clamped ? " (clamped)" : ""}`;
+    const a = state.loop && state.loop.ack;
+    ack = !c.sent ? ` → <span class="bad">not sent (no downlink)</span>`
+      : a ? ` → <span class="ok">ack #${a.seq} at sample ${a.sample_index}</span>`
+      : ` → <span class="bad">no ack</span>`;
+  }
+  line.innerHTML = `${who} → ${cmd}${ack}`;
+}
+
+function drawCores() {
+  const c = state.lastCores;
+  const modePill = $("rt-mode");
+  modePill.textContent = `mode ${state.rtMode || "—"}`;
+  modePill.className = "pill " + (state.rtMode === "naive" ? "bad" : state.rtMode ? "ok" : "");
+  $("btn-mode").textContent = state.rtMode === "naive" ? "switch to designed" : "switch to naive";
+  $("sim-tag").hidden = !state.simulated;
+  $("cores-note").textContent = state.simulated ? "simulated device · timing from a model" : "";
+  if (!c) {
+    $("v-core1").textContent = "no cores message (firmware 10 / replay)";
+    $("v-core0").textContent = "—";
+    return;
+  }
+  const c1 = c.core1, c0 = c.core0;
+  const dev = c1.max_dev_us >= 1000 ? `${(c1.max_dev_us / 1000).toFixed(0)} ms` : `${c1.max_dev_us} µs`;
+  $("v-core1").textContent = `max deviation ${dev} · late ${c1.late} · ovf ${c1.ovf}` + (c1.blocked_ms ? ` · BLOCKED ${c1.blocked_ms} ms` : "");
+  $("v-core0").textContent = `commands ${c0.cmd_rx} · rejected ${c0.parse_fail} · applied ${c0.applied}`;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -314,8 +569,11 @@ function frame() {
   $("v-loss").textContent = s && s.received + s.lost > 0
     ? `${(100 * s.lost / (s.received + s.lost)).toFixed(2)} % (${s.lost} of ${s.received + s.lost})` : "—";
   drawChart(now);
+  drawTimeline(now);
+  drawCoach(now);
+  drawCores();
 }
 renderer.setAnimationLoop(frame);
 
-setMode(["A", "B", "C"].includes(state.mode) ? state.mode : "A");
+setMode(["A", "B", "C"].includes(state.mode) ? state.mode : "C");
 connect();

@@ -20,12 +20,18 @@
 
     <div id="topbar">
       <span id="conn" class="pill">connecting…</span>
-      <span class="modes">
+      <span class="modes" id="designs" hidden>
         <button data-mode="A" title="key 1">A · forearm ring</button>
         <button data-mode="B" title="key 2">B · fretboard strip</button>
         <button data-mode="C" title="key 3">C · edge glow</button>
       </span>
-      <button id="enter-ar" hidden title="untested on Quest">Enter AR</button>
+      <span id="rt-mode" class="pill" title="how the device waits for the coach">mode —</span>
+      <span id="sim-tag" class="pill warn" hidden>simulated device</span>
+      <span class="spacer"></span>
+      <button id="btn-segment" title="space">start segment</button>
+      <button id="btn-mode" title="key m">switch to naive</button>
+      <button id="btn-sync" title="key f: white flash and beep, time-stamped by the bridge">sync flash</button>
+      <button id="enter-ar" hidden title="WebXR session: written, untested on a headset">Enter AR</button>
     </div>
 
     <div id="panel">
@@ -39,6 +45,23 @@
         <span>loss</span><b id="v-loss">—</b>
       </div>
     </div>
+
+    <div id="cores">
+      <div class="cores-head"><b>Two cores, one loop</b><span id="cores-note"></span></div>
+      <canvas id="timeline" width="920" height="300"></canvas>
+      <div class="grid">
+        <span>core 1 · sampler</span><b id="v-core1">—</b>
+        <span>core 0 · output + cmd_rx</span><b id="v-core0">—</b>
+      </div>
+    </div>
+
+    <div id="coach">
+      <div class="coach-top"><span id="seg-state" class="chip idle">idle</span><span id="seg-info"></span></div>
+      <div id="coach-text"></div>
+      <div id="loop-line"></div>
+    </div>
+
+    <div id="flash"></div>
   </div>
   <script type="module" src="app.js"></script>
 </body>
